@@ -1,0 +1,50 @@
+a - Heuristics for Internet Map Discovery - Ramesh Govindan, Hongsuda Tangmunarunkit
+------------------------------------------------------------------------------------
+	Egy szimulátor leírása, ami különbözõ heurisztikákat használ arra, hogy
+	- egy teljesen független, általános hálózati végpontból indítva
+	- tisztán hop-limited próbákat használva
+	feltárja az Internet térképét.
+	
+	+----------+
+	| Verdikt: |
+	+----------+
+	Nem a policy-kel foglalkozik, pusztán a hálózatot térképezi fel: Mercator szimulátor.
+
+a - Inferring AS-level Internet Topology from Router-Level Path Traces - Hyunseok Chang, Sugih Jamin, Walter Willinger
+----------------------------------------------------------------------------------------------------------------------
+	Sok új kutatás foglalkozik az Internet AS-szintû topológiájának feltérképezésével úgy, hogy az ehhez szükséges információt a kapcsolatokról a BGP routing táblákból szerzik. Ez a cikk egy új megközelítést ad, mert az önálló AS-kapcsolatokat tárja fel az Internet router-szintû topológiájából. Ez több szempontból is jobb lehet, mint a BGP-s routing táblákból kiolvasott topológia. (1) Nagyobb felbontásban láthatjuk az AS-szintû térképet (pl. látszódnak a többszörös kapcsolatok AS-ek között); (2) """we can discover ASs aggregated in BGP routing tables"""; (3) lehetõségünk van azonosítani a határ-routereket, aminek segítségével pontosabban karakterizálhatjuk az AS-n belül kapcsolatokat.
+	
+	+----------+
+	| Verdikt: |
+	+----------+
+	AS-szintû topológiát térképez fel, de nem a BGP routing táblák alapján, hanem egy szinttel mélyebbrõl, a router-szintû topológiából. A fõ cél a határ-routerek azonosítás további tanulmányozás céljából.
+
+a - On Inferring and Characterizing Internet Routing Policies - Feng Wang (13)
+------------------------------------------------------------------------------
+	A BGP protokoll lehetõvé teszi az AS-eknek, hogy megválasszák az útvonaltovábbítási policy-jüket, ami alapján történik a csomagtovábbítás és az elérhetõségi adatok terjesztése. Habár rengeteg tanulmány foglalkozik az Internet topológiájának feltérképezésével, keveset tudunk arról, hogy milyen routing policy-t használnak az AS-k. Ebben a cikkben ennek feltérképezésére teszünk egy próbát. Megmutatjuk, hogy az AS-k a szolgáltatók csak egy csoportjának hirdetik magukat, ami mögött valószínûleg traffic engineering lehet. Pl. több Tier-1-es AS is az ügyfeleit (közvetve vagy direkt) a peer kapcsolatain keresztül éri el a közvetlen customerei helyett. Ezenkívül a válogatott hirdetés szerint jóval kevesebb elérhetõ útvonal van az Interneten, mint azt az AS kapcsolati gráf mutatja. Emellett az AS-k hajlamosak minden prefix-üket hirdetni a peer-eknek.
+	
+	+----------+
+	| Verdikt: |
+	+----------+
+	Nem az Internet topológiával foglalkozik, hanem az egyes AS-k policy-jével. Nem ad választ arra, hogy miért alakulnak ki így a hálózatok, illetve az a válasz, hogy "mert ilyen a policy". De azt nem tudja megmondani, hogy miért pont ilyen policy-t használnak, miért nem "az optimálisat"...
+
+a - The Impact of Routing Policy on Internet Paths - Hongsuda Tangmunarunkit, Ramesh Govindan, Scott Shenker, Deborah Estrin
+----------------------------------------------------------------------------------------------------------------------------
+	Lényegében az elõzõre alapoz: van egy router-szintû és egy AS-szintû topológiánk: megnézzük, hogy a router-szintû topológiában mi lenne a shortest-út és ehhez képest mi az adott (valós) policy-út. Négy szempont:
+	- Mennyivel fújja fel a policy a shortest-utat?
+	- Létezik-e S és D forrás-cél pár között egy I köztes pont, amire a d_policy( S -> I ) + d_policy( I -> D ) < d_policy( S -> D )? (Ebben az esetben lehetne egy ilyen közbeiktatott ponttal javítani...)
+	- a policy-k vajon a nagyobb AS-k felé terelik a forgalmat?
+	- Hogyan hatnak a policy-k a multicast fák méretére?
+	
+	
+	+----------+
+	| Verdikt: |
+	+----------+
+	Ez áll a legközelebb hozzám, ilyesmit akarok én is, de nem csak a shortest-útra ill. az egyes vizsgált algebrákra nem kell ilyen részletes vizsgálat.
+
+
+
+
+
+
+
