@@ -1,0 +1,13 @@
+hálózat:
+	* D-dimenziós térben vannak <<pontok>> (D hosszú koordináta vektorokkal)
+	* ezeket <<élek>> kötik össze, amiknek <<tulajdonságaik>> vannak
+	* az élek tulajdonsága lehet pl.: hossz, szélesség, egyedi típus (pl. bináris vektor), stb.
+	* az élek tulajdonságai csak elnevezések, pl. a hosszt lehet euklideszi- vagy hiperbolikus térben számolni, de lehet mástól függő: konstans 1 vagy az időben változó (egy hídon átkocsikáznék, de árvíz idején nem jó; vagy a Diószegi utcában naplemente után nem mennék...)
+	* routing feladat: A-ból B-be eljutni.
+	
+routing policy-k:
+	* shortest, widest, stb
+	kombináltak:
+		<<időben>>: időfüggően egyiket vagy másikat
+		<<dimenzióban>>: shortest-widest
+		<<térben>>: adott helyen egyik, másik helyen másik: AS-en belül minél gyorsabban, AS-ek között vmi bonyolultabb; vagy városnézéskor hotel-metró a leggyorsabban, utána a lehető legtöbb néznivalót érintve, de mégis a legrövidebben, utána a leggyorsabban haza...
