@@ -110,8 +110,8 @@
 \author{\vikszerzo}
 \title{\viktitle}
 \includeonly{
-	% guideline,%
-	% project,%
+	%guideline,%
+	%project,%
 	titlepage,%
 	declaration,%
 	abstract,%
@@ -119,7 +119,8 @@
 	chapter1,%
 	chapter2,%
 	chapter3,%
-	acknowledgement,%
+	%acknowledgement,%
+	bibliography,
 	appendices,%
 }
 %--------------------------------------------------------------------------------------
@@ -153,14 +154,14 @@ aboveskip=10pt}
 \include{chapter1}
 \include{chapter2}
 \include{chapter3}
-\include{acknowledgement}
 
 %\listoffigures\addcontentsline{toc}{chapter}{Ábrák jegyzéke}
 %\listoftables\addcontentsline{toc}{chapter}{Táblázatok jegyzéke}
 
-\bibliography{mybib}
-\addcontentsline{toc}{chapter}{Irodalomjegyzék}
-\bibliographystyle{plain}
+%\bibliography{mybib}
+%\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+%\bibliographystyle{plain}
+\include{bibliography}
 
 \include{appendices}
 
