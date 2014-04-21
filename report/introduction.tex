@@ -2,6 +2,44 @@
 \chapter*{Bevezetõ}\addcontentsline{toc}{chapter}{Bevezetõ}
 %----------------------------------------------------------------------------
 
-A bevezetõ tartalmazza a diplomaterv-kiírás elemzését, történelmi elõzményeit, a feladat indokoltságát (a motiváció leírását), az eddigi megoldásokat, és ennek tükrében a hallgató megoldásának összefoglalását.
+A számítógépes hálózatok rohamos fejlõdésével egyre nagyobb igény mutatkozik ezen komplex rendszerek megismerésére. Általános esetben a (kis) hálózatok struktúrája és mûködési mechanizmusai jól meghatározottak, hiszen a saját tervezésünk eredményeként jöttek létre és a vezérlés is a mi kezünkben van. Pontosan tudjuk, hogy egy hálózati csomópont melyik másik csomóponttal van kapcsolatban, ismerjük az összeköttetéseket és az útvonalválasztást meghatározó szabályokat is. Ha bármilyen módosítást szeretnénk eszközölni, vagy egy hibát szeretnénk kijavítani, azonnal - *** de minden esetre is nagyon gyorsan - tudjuk, hogy hol kell beavatkozni.
+% ?? kell ENTER?
+Azonban egy olyan hálózat vizsgálata során, amelyet nem mi tervezetünk, nagyon gyorsan szembesülünk olyan kérdésekkel, amiket csak nehezen és sok munka árán tudunk megválaszolni - mérésekkel, teszteléssel - és csak abban az esetben, ha a hálózat mérete még nem jelent problémát.
 
-A bevezetõ szokás szerint a diplomaterv felépítésével záródik, azaz annak rövid leírásával, hogy melyik fejezet mivel foglalkozik.
+Az Internet gerinchálózatát kialakító szabályrendszert nagy vonalaiban ismerjük. Az Internet AS\footnote{Autonomous System - Autonóm rendszer: önálló útválasztási tartomány, amelyen belül egyetlen, jól meghatározott útvonalválasztási szabály érvényesül}-szintû topológiáját a BGP\footnote{Border Gateway Protocol} határozza meg. Különbözõ eljárásokat ismerünk az Autonóm Rendszerek közti kapcsolatok feltárására a BGP-s routing táblák alapján ***\cite{a}, illetve az Internet router-szintû topológiájából ***\cite{asdf}, sõt az AS-ek routing-policy\footnote{Útvonalválasztási szabályrendszer}-jét is tudjuk becsülni ***\cite{b}. Megismerhetjük tehát az Internet topológiáját, de eddig még senki sem tudott választ adni arra a kérdésre, hogy miért éppen így alakultak ki a kommunikációs utak.
+
+Az útvonalválasztó algoritmusok általános szabályok (policy) mentén alakítják ki a lehetséges kommunikációs útvonalakat és bár a kapcsolódó irányadó paraméterek igen változatosak lehetnek, a legrövidebb útvonalat szoktuk a legjobbnak tekinteni. Mégis, ha megvizsgáljuk az Internet magas szintû topológiáját és a kialakult utakat, akkor azt vesszük észre, hogy a kialakult utak nem az optimális megoldások az utak hosszát tekintve. Mivel feltehetjük, hogy az anyagi haszon maximalizálása céljából az AS-ek üzemeltetõi racionális döntések révén építették ki pontosan ezeket az utakat, jogos kérdés, hogy pontosan milyen stratégia alapján tették ezt. Mi vezethet egy látszólag ésszerûtlen döntéshez? Egyéb hálózatokra, problémákra is igaz az, hogy az adott szituáció optimális utai nem tûnnek racionálisnak. A valós életbõl vett példa: egy ország közlekedési hálózatán közlekedõ távolsági buszok útvonala. Sokszor nem a legrövidebb/leggyorsabb/legköltséghatékonyabb útvonalat használják, mert figyelembe vesznek csatlakozási-, menetrendi- és egyéb szempontokat is. Ugyanerre példa a hangyabolyok útvonalai: a hangyák a saját otthonukban hosszú, kacskaringós utakat építenek ki, csakhogy egy esetleges behatoló eltévedjen a bolyban. Mivel sok esetben megfigyelhetõ ez a látszólagos ellentmondás, egy általános megoldás sok kérdést megválaszolna. Diplomamunkámban ezt a problémát vizsgálom meg.
+\newline
+\newline
+Az ***elsõ fejezetben a szakirodalom áttekintés mellett egy általános hálózati- és routing modellt írok le, amely képes egységesen kezelni (racionálisnak elfogadni), hogy különbözõ problémák esetében különbözõ mérték szerint optimalizálunk. A hálózat-fogalom általánosítása mellett az útvonalválasztás szabályrendszerét is egy jól definiált matematikai struktúrával kell meghatározni, hogy definiálni lehessen policy-k közti mûveleteket, amelyekkel össze is tudunk kapcsolni policy-ket és tudjuk vizsgálni az költsönhatásukat.
+
+A ***második fejezetben változatos problémákat és a hozzájuk tartozó routing policy-ket mutatok be és írok le a megalkotott keretrendszerrel. Ezután szimulációs módszerekkel elemzem, hogy egyes teszt-hálózatokban milyen utakat határoz meg egy ilyen policy, és javaslatot teszek, hogy egy valós hálózat útvonalválasztását melyik policy-k keverékével lehet legpontosabban modellezni.
+
+A ***harmadik fejezetben több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitõl akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
+\newline
+\newline
+A feladatok elvégzéséhez a NetLogo\footnote{\url{http://ccl.northwestern.edu/netlogo/}} nevû hálózati szimulátort fogom használni; a valós hálózatok a BGP hálózat és egy repülési útvonalakat tartalmazó hálózat lesz.
+
+A Diplomatervben törekszem a szakmai közönség által érthetõ megfogalmazásra, általában a középiskolai matematikát meg nem haladó eszközrendszerrel dolgozom, az ennél komolyabb fogalmak, definíciók, tételek pedig megtalálhatók a függelékben. Mindazonáltal a számításelmélet, az algoritmuselmélet és egyéb magasabb szintû témakörök ismerete elengedhetetlen ennek a témának a tárgyalása során.
+
+%??????????????? fedését (), illetve a pontosságát
+
+%A diplomaterv célja olyan szabályalapú útvonalépítési stratégiák kutatása (szintetizálása/elemzése), mely mindamellett, hogy alkalmas lehet valós kommunikációs hálózati alkalmazásra is, felhasználható más természetes vagy mesterséges/technológiai valós hálózatok mûködésének felderítésére, alapvetõ mozgatórugóinak megismerésére.
+
+
+% ???
+%Tekinthetünk erre a problémára úgy is, mint a számítástechnikában használt \emph{fekete doboz} modellre, amikor tudjuk, hogy mi a rendszer bemenete (), ismerjük a kimenetet, de a pontos mûködést nem. Természetesen
+% ???
+
+
+%Szabály alapú útvonalépítési stratégiák nagy hálózatokban
+%Az Internet rohamos fejlõdésével az utóbbi idõben mind nagyobb hangsúlyt kapnak a hagyományostól eltérõ hálózatmenedzsment funkciókat megvalósító algoritmus kutatások. Ezek egyik legaktívabban mûvelt ága az útvonalválasztás kérdéseivel foglalkozik, és lényegében az erõforrások optimalizálást célzó klasszikus (fõként legrövidebb utak megtalálására koncentráló) algoritmusok alternatíváinak kutatását tûzi ki célul. Az algoritmusok általános szabályok (policy) mentén alakítják ki a lehetséges kommunikációs vonalakat, a kapcsolódó irányadó paraméterek igen változatosak lehetnek. A terület ugyanakkor nem önálló diszciplínaként jelentkezik, lehetõség adódik számos az általános hálózatkutatásban kidolgozott eredmény felhasználására, ill. viszontalkalmazására is.
+%A diplomaterv célja olyan szabályalapú útvonalépítési stratégiák kutatása (szintetizálása/elemzése), mely mindamellett, hogy alkalmas lehet valós kommunikációs hálózati alkalmazásra is, felhasználható más természetes vagy mesterséges/technológiai valós hálózatok mûködésének felderítésére, alapvetõ mozgatórugóinak megismerésére.
+
+%Szakirodalom alapján tekintse át a modern hálózattudomány legfontosabb eredményeit! Az áttekintés során koncentráljon a hálózati folyamatokra, ezen belül is elsõ sorban a navigálással kapcsolatos eredményekre!
+%Alkalmasan választott nagyméretû valós hálózat tanulmányozásán keresztül, elemezze azokat a módszereket, melyek a hálózatbeli általános értelemben vett kommunikációs folyamatokat alapvetõen meghatározzák! Állítson össze egy olyan lehetõség szerint minimális primitív szabályrendszer halmazt, mely segítségével a mûködés jól modellezhetõ!
+%Az eredmények alapján specifikáljon és dolgozzon ki egy olyan modellezési keretrendszert, melynek segítségével nagyméretû valós hálózatokat jellemzõ útvonalkialakítási dinamikát képes strukturált módon jellemezni!
+%A tesztelés során mutassa be keretrendszer alkalmazását hálózati mûködést definiáló adathalmaz(ok)on!
+%Eredményeit részletesen dokumentálja!
+
+%A bevezetõ tartalmazza a diplomaterv-kiírás elemzését, történelmi elõzményeit, a feladat indokoltságát (a motiváció leírását), az eddigi megoldásokat, és ennek tükrében a hallgató megoldásának összefoglalását. A bevezetõ szokás szerint a diplomaterv felépítésével záródik, azaz annak rövid leírásával, hogy melyik fejezet mivel foglalkozik.
