@@ -1,37 +1,91 @@
 %----------------------------------------------------------------------------
 \appendix
 %----------------------------------------------------------------------------
-\chapter*{Függelék}\addcontentsline{toc}{chapter}{Függelék}
+\chapter*{\texorpdfstring{\protect\hypertarget{appendix}{Függelék}}{}}\addcontentsline{toc}{chapter}{Függelék}
 \setcounter{chapter}{6}  % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
 \setcounter{equation}{0} % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
+
 \numberwithin{equation}{section}
+\numberwithin{definition}{section}
+\numberwithin{conjecture}{section}
+\numberwithin{lemma}{section}
+\numberwithin{theorem}{section}
+\numberwithin{note}{section}
 \numberwithin{figure}{section}
 \numberwithin{lstlisting}{section}
 %\numberwithin{tabular}{section}
 
 %----------------------------------------------------------------------------
-\section{A TeXnicCenter felülete}
+\section{Számításelméleti alapok}
 %----------------------------------------------------------------------------
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=150mm, keepaspectratio]{figures/TeXnicCenter.png}
-\caption{A TeXnicCenter Windows alapú \LaTeX-szerkesztõ.} 
-\end{figure}
+\begin{definition} [$O,~\Omega,~\Theta$]
+	$f,g: \mathbb{N} \rightarrow \mathbb{R}$
+	\begin{itemize}
+		\item \emph{ Ordó:} $f(n)=O(g(n)),~ha~ \exists c > 0,~n_{0} > 0:~|f(n)| \leq c|g(n)|,~\forall n>n_{0}.$
+		\item \emph{ Omega:} $f(n)=\Omega(g(n)),~ha~ \exists c > 0,~n_{0} > 0:~|f(n)| \geq c|g(n)|,~\forall n>n_{0}$
+		\item \emph{ Teta:} $f(n)=\Theta(g(n)),~ha~ f(n)=O(g(n)) \text{ és } f(n)=\Omega(g(n)),~azaz~ \exists c_{1},c_{2} > 0,~n_{0} > 0:~c_{1}|g(n)| \leq |f(n)| \leq c_{2}|g(n)|,~\forall n>n_{0}$
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	A nagy ordós jelölésbõl szokás kihagyni a $logn$-es szorzót, minthogy egy decimális számot mindenképpen át kell konvertálni $logn$ bitre, így egy algoritmus lépésszámánál vagy (lokális/globális) memóriaigénynél biztosan nem tudjuk megspórolni: $\tilde{O}(n)~=~O(nlogn)$.
+\end{note}
+
+%--- block comment ---
+\iffalse
+
+\begin{definition} [k-reguláris gráf]
+	Egy irányítatlan $G~=~(V,E)$ gráfot k-regulárisnak nevezünk, ha minden csúcsa pontosan k-fokú:
+  $d(v)~=~k,~\forall v~\in~V.$
+\end{definition}
+
+\begin{definition} [k-szorosan összefüggõ gráf]
+	Egy gráf k-szorosan összefüggõ, ha nincs $k-1$ olyan csúcs, amit elhagyva a gráf szétesik, azaz nem marad összefüggõ.
+\end{definition}
+
+\begin{definition} [Síkba rajzolható gráf]
+	Egy gráf síkba rajzolható, ha a pontjainak kölcsönösen egyértelmûen megfeleltethetõk síkbeli pontok, az éleknek pedig a megfelelõ csúcsokat összekötõ egyenes szakaszok úgy, hogy a különbözõ szakaszok legfeljebb csak a végpontjaikban találkozhatnak.
+\end{definition}
+
+\begin{definition} [DAG]
+	Egy irányított gráf akkor DAG (Directed Acyclic Graph), ha nem tartalmaz irányított kört.
+\end{definition}
+
+\begin{definition} [Topologikus rendezés]
+	A $G=(V,E)$ egy irányított gráf. $G$ egy topologikus rendezése, a csúcsok egy olyan $v_{1},~v_{2},...,~v_{|V|}$ sorrendje, melyben $i~\rightarrow~j~\in~E$ esetén $v_i$ elõbb van, mint $v_j$.
+\end{definition}
+
+\begin{theorem}
+	Egy irányított gráfnak akkor és csak akkor van topologikus rendezése, ha DAG.
+\end{theorem}
+\fi
+%--- block comment ---
 
 %----------------------------------------------------------------------------
-\clearpage\section{Válasz az ,,Élet, a világmindenség, meg minden'' kérdésére}
+\section{Az útvonalválasztás teljes modellje }\label{sect:appendix_routingmodell}
 %----------------------------------------------------------------------------
-A Pitagorasz-tételbõl levezetve
-\begin{align}
-c^2=a^2+b^2=42.
-\end{align}
-A Faraday-indukciós törvénybõl levezetve
-\begin{align}
-\rot E=-\frac{dB}{dt}\hspace{1cm}\longrightarrow \hspace{1cm}
-U_i=\oint\limits_\mathbf{L}{\mathbf{E}\mathbf{dl}}=-\frac{d}{dt}\int\limits_A{\mathbf{B}\mathbf{da}}=42.
-\end{align}
+Ahhoz, hogy felépíthessük a routing teljes modelljét, a routing algebrákon (\sectref{section_routingalgebrak}. rész) kívül egy routing függvényre van szükség. Ebben a modellben a csomagok (ahogyan a valóságban is) hasznos teherbõl (payload) és egy header-bõl állnak. Ha adott az $\mathcal{A}$ routing algebra és a G gráf, akkor a policy routing függvény az $R:~ \mathbb{N} \times \mathbb{N}~\mapsto~\mathbb{N} \times \mathbb{N}$ leképezés, a csúcsok $L_{V}:~V~\mapsto~\mathbb{N}$ címkézésével és az élek $L_{E}:~E~\mapsto~\mathbb{N}$ címkézésével, a következõképpen: minden $s,~t$ pontpárra egymás után alkalmazva R-t:
+$$(h_{i+1},~l_{i+1})~=~R(v_{i},~h_{i}),~\forall i~=~1, ..., k-1$$
+megadja a preferált $p_{st}^{*}~=~(s=) v_{1}, v_{2}, ..., v_{k}(=t)$ utat $\mathcal{A}$ szerint a megfelelõ $l_{i+1}~=~(v_{i},v_{i+1})$ él-címkékkel, ahol $h_{1}$ egy alkalmas kezdõ header. Azt mondjuk, hogy $R$ megvalósítja az $\mathcal{A}$ policy-t $G$-n. Még néhány óvintézkedést meg kell tennünk, hogy a címkékkel nehogy több routing információt kelljen kódolni a szükségesnél, azaz $c log n$\footnote{ Ez a címek kódolásához szükséges információ.}, valamilyen alkalmas $c$ konstanssal.
 
+Ezek alapján tehát a routing a következõ képpen történik: Ha egy $u$ csomópont kap egy üzenetet $h$ header-rel, akkor egyszerûen kiszámolja az $R_{u}(h)$ lokális routing függvény értékét: $R_{u}(h)~=~R(u,h)$, hogy megkapja az új header-t, $h'$-t és a kimenõ portot, $l$-t. Ezután $u$ beállítja a csomag header-jének $h'$-t és továbbküldi $l$-en keresztül.
+A routing függvénnyel már könnyen megadható egy hálózat minden csomópontjának a lokális memóriaigénye ahhoz, hogy egy adott routing policy-t valósítson meg:
+\begin{definition} [Routing policy megvalósításához szükséges lokális memória]
+	Az $\mathcal{A}$ routing policy megvalósításához szükséges $\mathcal{M_{\mathcal{A}}}$ lokális memória: $$\mathcal{M_{\mathcal{A}}}~=~\max_{G \in \mathcal{G}_{n}}{ \min_{R \in \mathcal{R}}{\max_{u \in V}{ \mathcal{M_{\mathcal{A}}}(R,u)}}},$$ ahol $\mathcal{M_{\mathcal{A}}}(R,u)$ az $R_{u}$ lokális routing függyvény kódolásához szükségés bitek minimális száma, $\mathcal{R}$ azon policy routing függvények halmaza, melyek megvalósítják $\mathcal{A}$ policy-t valamely $G$ gráfon, és $\mathcal{G}_{n}$ az összes $n$ csúcsú gráfok halmaza.
+\end{definition}
 
+%----------------------------------------------------------------------------
+\section{Tételek a routing algebrák témakörében}\label{sect:appendix_algebratetelek}
+%----------------------------------------------------------------------------
+\begin{theorem}\label{eq:appendix_algebratetel1}
+	Ha $\mathcal{A}$ algebra kiválasztó (S) és monoton (M), akkor tömöríthetõ.
+\end{theorem}
 
+\begin{theorem}\label{eq:appendix_algebratetel2}
+	Ha $\mathcal{A}$ algebra szigorúan monoton (SM), akkor nem tömöríthetõ.
+\end{theorem}
 
-
+Ennél egy általánosabb tétel, aminek következménye az elõzõ tétel:
+\begin{theorem}\label{eq:appendix_algebratetel3}
+	Ha $\mathcal{A}$ algebra tartalmaz egy delimitált (D), szigorúan monoton (SM) subalgebrát, akkor $\mathcal{A}$ nem tömöríthetõ.
+\end{theorem}

@@ -41,10 +41,3 @@ a - The Impact of Routing Policy on Internet Paths - Hongsuda Tangmunarunkit, Ra
 	| Verdikt: |
 	+----------+
 	Ez áll a legközelebb hozzám, ilyesmit akarok én is, de nem csak a shortest-útra ill. az egyes vizsgált algebrákra nem kell ilyen részletes vizsgálat.
-
-
-
-
-
-
-

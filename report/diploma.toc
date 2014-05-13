@@ -1,0 +1,26 @@
+\select@language {magyar} \contentsline {chapter}{Kivonat}{3}{chapter*.2}
+\select@language {magyar} \contentsline {chapter}{Abstract}{4}{chapter*.3}
+\select@language {magyar} \contentsline {chapter}{Bevezet\H o}{5}{chapter*.4}
+\select@language {magyar} \contentsline {chapter}{\numberline {1}\'Altal\'anos\IeC {\'\i }tott h\'al\'ozatok \'es \'utvonalv\'alaszt\'asi szab\'alyok}{7}{chapter.1}
+\select@language {magyar} \contentsline {section}{\numberline {1.1}T\"ort\'eneti \'attekint\'es}{7}{section.1.1}
+\select@language {magyar} \contentsline {section}{\numberline {1.2}\'Utvonalv\'alaszt\'as, routing algebr\'ak}{9}{section.1.2}
+\select@language {magyar} \contentsline {section}{\numberline {1.3}Routing algebr\'ak tulajdons\'agai}{12}{section.1.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {1.3.1}Monotonit\'as, izotonit\'as \'es egy\'eb tulajdons\'agok}{12}{subsection.1.3.1}
+\select@language {magyar} \contentsline {section}{\numberline {1.4}M\H uveletek routing algebr\'ak k\"oz\"ott}{13}{section.1.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {1.4.1}A m\H uveletek hat\'asa a tulajdons\'agokra}{14}{subsection.1.4.1}
+\select@language {magyar} \contentsline {section}{\numberline {1.5}P\'eld\'ak algebr\'akra \'es kombin\'al\'asukra}{14}{section.1.5}
+\select@language {magyar} \contentsline {section}{\numberline {1.6}\"Osszefoglal\'o}{15}{section.1.6}
+\select@language {magyar} \contentsline {chapter}{\numberline {2}P\'eld\'ak h\'al\'ozatokra \'es \'utvonalv\'alaszt\'asukra}{16}{chapter.2}
+\select@language {magyar} \contentsline {section}{\numberline {2.1}V\IeC {\'\i }rusterjed\'es komplex h\'al\'ozatokban}{16}{section.2.1}
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Trendterjed\'es k\"oz\"oss\'egi h\'al\'ozatokban}{16}{section.2.2}
+\select@language {magyar} \contentsline {section}{\numberline {2.3}\'Utvonalv\'alaszt\'as az Interneten}{16}{section.2.3}
+\select@language {magyar} \contentsline {section}{\numberline {2.4}A tov\'abbi elemz\'esre kiv\'alasztott algebr\'ak}{16}{section.2.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.1}A tov\'abbi elemz\'esre kiv\'alasztott algebr\'ak}{16}{subsection.2.4.1}
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Tervek tov\'abbfejleszt\'esre, a munka folytat\'asa}{17}{chapter.3}
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Val\'os h\'al\'ozatok vizsg\'alata}{17}{section.3.1}
+\select@language {magyar} \contentsline {chapter}{\numberline {4}\"Osszefoglal\'as}{18}{chapter.4}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{19}{chapter*.6}
+\select@language {magyar} \contentsline {chapter}{F\"uggel\'ek}{21}{appendix*.7}
+\select@language {magyar} \contentsline {section}{\numberline {F.1}Sz\'am\IeC {\'\i }t\'aselm\'eleti alapok}{21}{section.F.1}
+\select@language {magyar} \contentsline {section}{\numberline {F.2}Az \'utvonalv\'alaszt\'as teljes modellje }{21}{section.F.2}
+\select@language {magyar} \contentsline {section}{\numberline {F.3}T\'etelek a routing algebr\'ak t\'emak\"or\'eben}{22}{section.F.3}
