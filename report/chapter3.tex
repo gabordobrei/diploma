@@ -3,8 +3,17 @@
 %----------------------------------------------------------------------------
 \chapter{Tervek továbbfejlesztésre, a munka folytatása}\label{sect:chapter_test}
 %----------------------------------------------------------------------------
+
+A \sectref{chapter_examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésük, hogy hogyan alakítanak ki utakat. Ezután tetszõleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
+
 \section{Valós hálózatok vizsgálata}
-Ez még a jövõ zenéje...
+
+A valós hálózatokon kialakult útvonalak és a policy primitívek által meghatározott útvonalak összehasonlítására több megoldás is létezik, ugyanakkor mivel még nem szimuláltam, nem tudom, hogy melyik összehasonlítási folyamat lesz a legkifejezõbb.\\
+
+Egyik ilyen összehasonlítási lehetõség, hogy minden forrás-cél párra megvizsgálom, hogy a valós és a szimulált út mennyire hasonlít a lépésszám és az érintett köztes csomópontok alapján, illetve az adott p. primitív út nevezhetõ-e jobbnak az adott problémakörben, esetleg egy alternatív útnak, vagy akár rosszabb-e, mint az eredeti útvonal.
+
+Emellett a hálózatok egészét is összehasonlítom statisztikai módszerekkel: fokszámeloszlás, élek száma, összefüggõség. Ezzel feltárhatók az olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, pl. lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Az Internet tervezésekor fontos szempont volt a robusztusság, amit a gráf pont- ill. él-összefüggõségével tudunk mérni, nyilván egy olyan hálózat, amiben a routing táblák mérete kicsi, de nagy a szétszakadás veszélye, nem jobb, mint az eredeti, valós hálózat, sõt ez egy indok is lehet, hogy miért éppen azokat a szabályokat használták az AS-k, amiket titkolnak a nyilvánosság elõl.
+
  % \begin{figure}[!ht]
  % \centering
  % \includegraphics[width=67mm, keepaspectratio]{figures/TeXnicCenter.png}\hspace{1cm}
