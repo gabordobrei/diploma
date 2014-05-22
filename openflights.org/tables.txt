@@ -1,0 +1,28 @@
++---------------+			+---------------+			+---------------------------+
+|  AirPorts     |			|  AirLines     |			|  Routes                   |
++---------------+			+---------------+			+---------------------------+
+| * Airport ID  |			| * Airline ID  |			| Airline                   |
+| Name          |			| Name          |			| * Airline ID              |
+| City          |			| Alias         |			| Source airport            |
+| Country       |			| IATA          |			| * Source airport ID       |
+| IATA/FAA      |			| ICAO          |			| Destination airport       |
+| ICAO          |			| Callsign      |			| * Destination airport ID  |
+| * Latitude    |			| * Country     |			| Codeshare                 |
+| * Longitude   |			| Active        |			| Stops                     |
+| * Altitude    |			+---------------+			| Equipment                 |
+| Timezone      |										+---------------------------+
+| DST           |
++---------------+
+
+
+		+-------------------------------+
+		|								|
++-------+-------+			^			|
+|  AirPorts     +------< Routes >-------+
++---------------+			ˇ
+							|
+							|
+							|
+					+-------+-------+
+					|  AirLines     |
+					+---------------+

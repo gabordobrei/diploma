@@ -31,16 +31,36 @@
 	A nagy ordós jelölésbõl szokás kihagyni a $logn$-es szorzót, minthogy egy decimális számot mindenképpen át kell konvertálni $logn$ bitre, így egy algoritmus lépésszámánál vagy (lokális/globális) memóriaigénynél biztosan nem tudjuk megspórolni: $\tilde{O}(n)~=~O(nlogn)$.
 \end{note}
 
+\begin{definition} [k-szorosan pont-összefüggõ gráf 1.]
+	Egy G gráf k-szorosan pont-összefüggõ, ha tetszõleges $k$-nál kisebb elemszámú csúcshalmazát elhagyva összefüggõ gráfot kapunk, és $|V(G)| \geq k$.
+\end{definition}
+\begin{definition} [k-szorosan él-összefüggõ gráf 1.]
+	Egy G gráf k-szorosan él-összefüggõ, ha tetszõleges $k$-nál kisebb elemszámú élhalmazát elhagyva összefüggõ gráfot kapunk.
+\end{definition}
+
+%--- block comment ---
+\iffalse
+Két alternatív definíció:
+\begin{definition} [k-szorosan pont-összefüggõ gráf 2.]
+	Egy G gráf k-szorosan pont-összefüggõ, ha tetszõleges $k$-nál kisebb elemszámú csúcshalmazát elhagyva összefüggõ gráfot kapunk, és $|V(G)| \geq k$.
+\end{definition}
+\begin{definition} [k-szorosan él-összefüggõ gráf 2.]
+	Egy G gráf k-szorosan él-összefüggõ, ha tetszõleges $k$-nál kisebb elemszámú élhalmazát elhagyva összefüggõ gráfot kapunk.
+\end{definition}
+\fi
+%--- block comment ---
+
+\begin{definition} [összefüggõ gráf átmérõje]
+	A $G$ összefüggõ gráf átmérõje a két legtávolabbi csúcsának távolsága, azaz az összes csúcspár közötti legrövidebb utak közül a leghosszabbnak a hossza. Jelölje $P(u, v)$ az $u$ és $v$ csúcsok közötti utak halmazát, és $l(p)$ a $p$ út hosszát, ekkor a gráf átmérõje:\\
+	$$D_G = \max_{u,v \in V} \min_{p \in P(u,v)} l(p)$$
+\end{definition}
+
 %--- block comment ---
 \iffalse
 
 \begin{definition} [k-reguláris gráf]
 	Egy irányítatlan $G~=~(V,E)$ gráfot k-regulárisnak nevezünk, ha minden csúcsa pontosan k-fokú:
   $d(v)~=~k,~\forall v~\in~V.$
-\end{definition}
-
-\begin{definition} [k-szorosan összefüggõ gráf]
-	Egy gráf k-szorosan összefüggõ, ha nincs $k-1$ olyan csúcs, amit elhagyva a gráf szétesik, azaz nem marad összefüggõ.
 \end{definition}
 
 \begin{definition} [Síkba rajzolható gráf]
