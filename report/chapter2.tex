@@ -14,7 +14,7 @@ asdf
 
 \fi
 
-Számos kutatás foglalkozik különbözõ hálózatokon terjedõ információk vizsgálatával. Természetesen minden ilyen modellt le lehet írni az általánosított hálózati modellel, így a meghatározó policy-k azonosítása után vizsgálható az \sectref{chapter_modell}. fejezetben bemutatott, vagy azokhoz hasonló algebrákkal. Ebben a fejezetben bemutatom a hálózatkutatás leggyakrabban vizsgált modelljeit, és leírom a modellekhez tartozó meghatározó policy-ket is.\\
+Számos kutatás foglalkozik különbözõ hálózatokon terjedõ információk vizsgálatával. Természetesen minden ilyen modellt le lehet írni az általánosított hálózati modellel, így a meghatározó policy-k azonosítása után vizsgálható \aref{sect:chapter_modell}. fejezetben bemutatott, vagy azokhoz hasonló algebrákkal. Ebben a fejezetben bemutatom a hálózatkutatás leggyakrabban vizsgált modelljeit, és leírom a modellekhez tartozó meghatározó policy-ket is.\\
 
 Az útvonalválasztás szempontjából alapvetõ különbség van a lokális- és a globális optimalizálás között. Míg globális optimalizálás esetén az egész hálózatot figyelembe véve választjuk meg a legjobb útvonalat, addig lokális optimalizálásnál csak a helyi viszonyok számítanak. Jelenleg a számítógépes hálózatokban a két legelterjedtebben használt policy kategória a ,,distance-vector''\footnote{Távolság-vektor módszerek, a Bellman-Ford algoritmusra épül.} és a ,,link-state''\footnote{Link-állapot módszerek, a Dijkstra algoritmusra épül.}. A módszerek abban különböznek, hogy a hálózatról milyen információkat gyûjtenek és hogyan, de abban megegyeznek, hogy globális optimumra törekszenek, tehát pl. a legrövidebb utat keresik meg. Ezzel szemben pl. a greedy routing\footnote{Mohó útvonalválasztás: A lokális helyzet optimumát választja.} csupán törekszik elérni globális optimumot, ám könnyen elakadhat, ha nem javítunk az alapalgoritmuson \cite{Routing_with_Guaranteed_Delivery_in_Adhoc_Wireless_Networks}. Könnyen belátható, hogy a vírusterjedés-jellegû feladatok lokális optimumra törekszenek, míg az Internetes útvonalválasztás globálisan optimalizál.
 
@@ -146,7 +146,7 @@ Ahogy fejlõdött a világ, újabb feladatok és problémák jelentek meg, amelyet a sz
 
 Emellett pusztán a hálózat mérete is feszegeti az Internet teljesítõképességének jelenlegi határait. Mára az Internet óriásira nõtt és a 1990-es évek vége óta a mindennapi élet meghatározó részévé vált. 2000 és 2009 között 394 millióról 1,84 milliárd nõtt az Internet kapcsolattal rendelkezõk száma\footnote{Market Information and Statistics, International Telecommunications Union, \url{http://www.itu.int/ITU-D/ict/statistics/}}. Ma már több, mint 2,4 milliárd\footnote{2.405.518.376 - 2012. második negyedév, \url{http://www.internetworldstats.com/stats.htm} 2014. 05. 09} felhasználója van az Internetnek, és 2010-ben 12,5 milliárd Internetre csatlakoztatott eszköz volt. Ez azt jelenti, hogy minden élõ emberre jutott 1,84 készülék. 2020-ra az Internetre kapcsolt eszközök száma elérheti az 50 milliárdot \cite{The_Internet_of_Things}.\newpage
 
-Útvonalválasztási szempontból az Internet routing egy klasszikus feladat, amikor a legszélesebb-, legrövidebb- és legmegbízhatóbb utakat keressük. Ezen policy-k algebráit már bemutattam, megtalálhatók a \tabref{table_algebrapeldak} táblázatban.
+Útvonalválasztási szempontból az Internet routing egy klasszikus feladat, amikor a legszélesebb-, legrövidebb- és legmegbízhatóbb utakat keressük. Ezen policy-k algebráit már bemutattam, megtalálhatók a \aref{tab:table_algebrapeldak} táblázatban.
 
 \begin{figure}[!ht]
 	\centering
@@ -174,7 +174,7 @@ Emellett, ha felhasználjuk a gráfbeágyazás és kompakt routing eredményeit, akkor
 	\label{fig:figure_hiperbolikusabrak}
 \end{figure}
 
-A $\mathbb{H}$ hiperbolikus síknak többféle szemléltetõ modellje is van, ám a két legelterjedtebb a felsõ félsík modell és a Poincaré diszk modell, amiket a \figref{figure_hiperbolikusabrak} ábrán láthatunk is. A Poincaré modellben $\mathbb{H}$-t egy egységkörrel reprezentálják: $x^2~+~y^2~<~1$, a következõ metrikával:
+A $\mathbb{H}$ hiperbolikus síknak többféle szemléltetõ modellje is van, ám a két legelterjedtebb a felsõ félsík modell és a Poincaré diszk modell, amiket \aref{fig:figure_hiperbolikusabrak} ábrán láthatunk is. A Poincaré modellben $\mathbb{H}$-t egy egységkörrel reprezentálják: $x^2~+~y^2~<~1$, a következõ metrikával:
 \begin{align}
 ds^2~=~\frac{4(dx^2~+~dy^2)}{(1~-~x^2~-~y^2)^2}.
 \end{align}
@@ -204,7 +204,7 @@ A hiperbolikus síkra ágyazott Internet gráf minden pontja egy $(x,y)$ koordináta
 \subsubsection{Völgymentesség}
 %----------------------------------------------------------------------------
 
-A völgymentesség policy-nak az algebrája a $\mathcal{V}$ ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$),  ahol a $\bigoplus_{\mathcal{V}}$ a \tabref{szumma_tab} táblázat szerinti\footnote{ Egy adott súlyú (típusú) úthoz hozzá akarnánk venni egy élet, akkor az út milyen súlyúvá (típusúvá) válna.}. Az elõbbi szabály másik megfogalmazásban azt jelenti, hogy sem $l$-t, sem $p$-t nem követhet sem $p$, sem $f$.
+A völgymentesség policy-nak az algebrája a $\mathcal{V}$ ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$),  ahol a $\bigoplus_{\mathcal{V}}$ \aref{tab:szumma_tab} táblázat szerinti\footnote{ Egy adott súlyú (típusú) úthoz hozzá akarnánk venni egy élet, akkor az út milyen súlyúvá (típusúvá) válna.}. Az elõbbi szabály másik megfogalmazásban azt jelenti, hogy sem $l$-t, sem $p$-t nem követhet sem $p$, sem $f$.
 
 \begin{table}[ht]
   \footnotesize
@@ -262,4 +262,4 @@ Ebben a fejezetben megvizsgáltam a hálózatkutatás szempontjából alapvetõ modelle
 
 Rávilágított a trend- és a vírusterjedés hasonlóságaira és különbségeire útvonalválasztási szempontból és definiáltam két policy-t, a Összekötõ-keresés-t és a Korai-elfogadó-keresés-t. Ezen policy-k algebrái: $\mathcal{O}$ = ($(1,d),~0,~max,~\geq$) és $\mathcal{K}$ = ($\mathbb{N},~-1,~+,~\geq$).
 
-Végül megvizsgáltam a már ismertetett policy-kon (ld. \sectref{section_algebrapeldak}. alfejezet) kívül az Internet tartományszintû gráfjának az alapszabályát, a Völgymentességet, illetve felvázoltam a hiperbolikus térbe ágyazás - általa pedig az elakadásmentes mohó útvonalválasztás - lehetõségét: $\mathcal{V}$ = ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$) és $\mathcal{H}$ = ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$).
+Végül megvizsgáltam a már ismertetett policy-kon (ld. \aref{sect:section_algebrapeldak}. alfejezet) kívül az Internet tartományszintû gráfjának az alapszabályát, a Völgymentességet, illetve felvázoltam a hiperbolikus térbe ágyazás - általa pedig az elakadásmentes mohó útvonalválasztás - lehetõségét: $\mathcal{V}$ = ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$) és $\mathcal{H}$ = ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$).

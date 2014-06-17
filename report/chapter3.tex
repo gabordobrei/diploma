@@ -1,10 +1,10 @@
 %----------------------------------------------------------------------------
-%A \sectref{chapter_test}. fejezetben több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitõl akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
+%\Aref{sect:chapter_test}. fejezetben több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitõl akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
 %----------------------------------------------------------------------------
 \chapter{Tervek, a munka folytatása}\label{sect:chapter_test}
 %----------------------------------------------------------------------------
 
-A \sectref{chapter_examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésüket, hogy hogyan alakítanak ki utakat. Ezután tetszõleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
+\Aref{sect:chapter_examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésüket, hogy hogyan alakítanak ki utakat. Ezután tetszõleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
 
 %----------------------------------------------------------------------------
 \section{Valós hálózatok vizsgálata}
@@ -24,7 +24,7 @@ Az \href{http://openflights.org/}{openflights.org} oldalon elérhetõ repülési ada
 \subsection{Az adatok}
 %----------------------------------------------------------------------------
 
-Az openflights-on elérhetõ adatbázis világszerte mindenhonnan gyûjt és tárol reptéri, repülési társasági és repülési út adatokat. Közel 8000 reptér, 6000 társaság és 60000 repülési út érhetõ el. Részletes adatok a \tabref{table_repterek},~\tabref{table_repulesitarsasagok}, és a \tabref{table_repulesiutvonalak} táblázatokban.
+Az openflights-on elérhetõ adatbázis világszerte mindenhonnan gyûjt és tárol reptéri, repülési társasági és repülési út adatokat. Közel 8000 reptér, 6000 társaság és 60000 repülési út érhetõ el. Részletes adatok \aref{tab:table_repterek},~\aref{tab:table_repulesitarsasagok}, és a \aref{tab:table_repulesiutvonalak} táblázatokban.
 
 %----------------------------------------------------------------------------
 \subsubsection{Repterek}
@@ -39,7 +39,7 @@ Az openflights-on elérhetõ adatbázis világszerte mindenhonnan gyûjt és tárol rep
 	\label{fig:figure_repterek}
 \end{figure}
 
-A rendszer tárolja a repterek \emph{nevét}; a \emph{várost}, ahol található; a \emph{szélességi}- és \emph{hosszúsági fokokat}, illetve a \emph{tengerszint feletti magasságot}. Emellett elérhetõ a repülési hatóságok által használt 3 karakter hosszú \emph{IATA\footnote{International Air Transport Association: Nemzetközi Légi Szállítási Szövetség}/FAA\footnote{Federal Aviation Administration: Szövetségi Légügyi Hivatal (USA)} azonosító} is és az OpenFlights által használt decimális \emph{azonosító} is. A legutolsó, 2014 januári frissítéskor az OpenFlights adatbázisa 7733 repteret tartalmazott világszerte, ezt mutatja a \figref{figure_repterek} ábra.
+A rendszer tárolja a repterek \emph{nevét}; a \emph{várost}, ahol található; a \emph{szélességi}- és \emph{hosszúsági fokokat}, illetve a \emph{tengerszint feletti magasságot}. Emellett elérhetõ a repülési hatóságok által használt 3 karakter hosszú \emph{IATA\footnote{International Air Transport Association: Nemzetközi Légi Szállítási Szövetség}/FAA\footnote{Federal Aviation Administration: Szövetségi Légügyi Hivatal (USA)} azonosító} is és az OpenFlights által használt decimális \emph{azonosító} is. A legutolsó, 2014 januári frissítéskor az OpenFlights adatbázisa 7733 repteret tartalmazott világszerte, ezt mutatja \aref{fig:figure_repterek} ábra.
 
 \begin{table}[ht]
 	\footnotesize
@@ -77,7 +77,7 @@ A rendszer tárolja a repterek \emph{nevét}; a \emph{várost}, ahol található; a \
 	\label{fig:figure_repulesiutvonalak}
 \end{figure}
 
-A repülési útvonalak leírása öt attribútumot tartalmaz: az \emph{üzemeltetõ repülési társaság} (név és OpenFlights azonosító); a \emph{forrás reptér}; a \emph{cél reptér}. Emellett feljegyzik a \emph{megállások számát}\footnote{Az összesen 59637 bejegyzésbõl 6 esetében van 1 megállás és 1 esetben 2 megállás.}, illetve az ebben a viszonylatban használt \emph{repülõgép típusokat}. Ha két reptér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 reptér és 531 társaság\footnote{Ugyan a légitársaság és reptér adatbázisokban ennél jelentõsen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repterek.} között világszerte, ahogy a \figref{figure_repulesiutvonalak} ábra is mutatja.
+A repülési útvonalak leírása öt attribútumot tartalmaz: az \emph{üzemeltetõ repülési társaság} (név és OpenFlights azonosító); a \emph{forrás reptér}; a \emph{cél reptér}. Emellett feljegyzik a \emph{megállások számát}\footnote{Az összesen 59637 bejegyzésbõl 6 esetében van 1 megállás és 1 esetben 2 megállás.}, illetve az ebben a viszonylatban használt \emph{repülõgép típusokat}. Ha két reptér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 reptér és 531 társaság\footnote{Ugyan a légitársaság és reptér adatbázisokban ennél jelentõsen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repterek.} között világszerte, ahogy \aref{fig:figure_repulesiutvonalak} ábra is mutatja.
 
 \begin{table}[ht]
 	\footnotesize
