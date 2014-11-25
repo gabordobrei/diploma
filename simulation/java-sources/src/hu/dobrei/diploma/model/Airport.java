@@ -1,8 +1,10 @@
-package net.gabordobrei.diploma.openflights.model;
+package hu.dobrei.diploma.model;
+
+import java.util.List;
 
 import com.google.common.collect.Iterables;
 
-public class Airport extends ModelObject {
+public class Airport {
 
 	enum DST {
 		E, // Europe,
@@ -35,7 +37,7 @@ public class Airport extends ModelObject {
 
 	};
 
-	private final int airportID;
+	private final int airportId;
 	private final String name;
 	private final String city;
 	private final String country;
@@ -49,10 +51,14 @@ public class Airport extends ModelObject {
 	private final double zimezone;
 	private final DST dst;
 
-	public Airport(int airportID, String name, String city, String country, String IATA_FAA, String ICAO,
+	private Airport previous;
+	private List<Airport> prev;
+	private boolean scanned = false;
+
+	public Airport(int airportId, String name, String city, String country, String IATA_FAA, String ICAO,
 			double latitude, double longitude, double altitude, double zimezone, DST dst) {
 		super();
-		this.airportID = airportID;
+		this.airportId = airportId;
 		this.name = name;
 		this.city = city;
 		this.country = country;
@@ -66,8 +72,7 @@ public class Airport extends ModelObject {
 	}
 
 	public Airport(Iterable<String> split) {
-
-		this.airportID = Integer.parseInt(Iterables.get(split, 0));
+		this.airportId = Integer.parseInt(Iterables.get(split, 0));
 		this.name = Iterables.get(split, 1);
 		this.city = Iterables.get(split, 2);
 		this.country = Iterables.get(split, 3);
@@ -78,11 +83,10 @@ public class Airport extends ModelObject {
 		this.altitude = Double.parseDouble(Iterables.get(split, 8));
 		this.zimezone = Double.parseDouble(Iterables.get(split, 9));
 		this.dst = DST.parseDST(Iterables.get(split, 10));
-
 	}
 
-	public int getAirportID() {
-		return airportID;
+	public int getId() {
+		return airportId;
 	}
 
 	public String getName() {
@@ -125,11 +129,38 @@ public class Airport extends ModelObject {
 		return dst;
 	}
 
+	public Airport getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(Airport previous) {
+		this.previous = previous;
+	}
+
+	public List<Airport> getPrev() {
+		return prev;
+	}
+
+	public void setPrev(List<Airport> prev) {
+		this.prev = prev;
+	}
+
 	@Override
 	public String toString() {
-		return "Airport [airportID=" + airportID + ", name=" + name + ", city=" + city + ", country=" + country
+		return "(" + airportId + ", " + name + ")";
+	}
+
+	public String toLongString() {
+		return "Airport [airportID=" + airportId + ", name=" + name + ", city=" + city + ", country=" + country
 				+ ", IATA_FAA=" + IATA_FAA + ", ICAO=" + ICAO + ", latitude=" + latitude + ", longitude=" + longitude
 				+ ", altitude=" + altitude + ", zimezone=" + zimezone + ", dst=" + dst + "]";
 	}
 
+	public void scan() {
+		this.scanned = true;		
+	}
+	
+	public boolean isScanned() {
+		return this.scanned;
+	}
 }
