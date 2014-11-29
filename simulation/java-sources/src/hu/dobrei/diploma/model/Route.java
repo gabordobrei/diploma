@@ -5,7 +5,7 @@ public class Route {
 	private int flightCount = 0;
 	private final Airport sourceAirport;
 	private final Airport destinationAirport;
-	
+
 	public Route(Airport sourceAirport, Airport destinationAirport) {
 		this.sourceAirport = sourceAirport;
 		this.destinationAirport = destinationAirport;
@@ -69,4 +69,27 @@ public class Route {
 		return destinationAirport;
 	}
 
+	@Override
+	public String toString() {
+		return "{length: " + length + ", flightCount: " + flightCount + ", sourceAirport: " + sourceAirport.getId()
+				+ ", destinationAirport: " + destinationAirport.getId() + "}";
+	}
+
+	public RelaxedRoute getRelaxation() {
+		return new RelaxedRoute(length, flightCount, sourceAirport.getId(), destinationAirport.getId());
+	}
+
+	public class RelaxedRoute {
+		private final int length;
+		private final int flightCount;
+		private final int sourceAirportId;
+		private final int destinationAirportId;
+
+		public RelaxedRoute(int length, int flightCount, int sourceAirportId, int destinationAirportId) {
+			this.length = length;
+			this.flightCount = flightCount;
+			this.sourceAirportId = sourceAirportId;
+			this.destinationAirportId = destinationAirportId;
+		}
+	}
 }

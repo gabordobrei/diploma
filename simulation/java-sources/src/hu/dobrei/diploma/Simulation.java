@@ -3,6 +3,8 @@ package hu.dobrei.diploma;
 import hu.dobrei.diploma.model.Airport;
 import hu.dobrei.diploma.model.Flight;
 import hu.dobrei.diploma.model.OpenFlightsNetwork;
+import hu.dobrei.diploma.model.Route;
+import hu.dobrei.diploma.model.Route.RelaxedRoute;
 import hu.dobrei.diploma.model.algebra.LeastHopAlgebra;
 import hu.dobrei.diploma.model.algebra.ShortestAlgebra;
 
@@ -23,11 +25,11 @@ import com.google.gson.GsonBuilder;
 
 public class Simulation {
 	private static Stopwatch stopwatch;
+	private static OpenFlightsNetwork network = new OpenFlightsNetwork();
 
 	public static void simulate() {
 		startTimer();
 
-		OpenFlightsNetwork network = new OpenFlightsNetwork();
 		try {
 			parseNetwork(network);
 		} catch (IOException e) {
@@ -46,19 +48,20 @@ public class Simulation {
 
 		String fileName;
 		String algebraName;
-		List<List<Airport>> simulation;
+		List<List<Route>> simulation;
 		String airlineName;
 		List<Flight> flightsOfAirline;
 		for (Entry<String, List<Flight>> airlineEntry : topTenAirline.entrySet()) {
-			restartTimer();
 
 			airlineName = airlineEntry.getKey();
 			flightsOfAirline = airlineEntry.getValue();
 
 			for (Routing<Integer> routing : routings) {
+				restartTimer();
+
 				simulation = Lists.newLinkedList();
 				for (Flight flight : flightsOfAirline) {
-					addSimulationResult(simulation, routing, flight);
+					simulation.add(getSimulationResult(routing, flight));
 				}
 
 				algebraName = getSimpleName(routing.getAlgebra());
@@ -113,29 +116,70 @@ public class Simulation {
 		return "sim/" + airlineName + " - " + algebraName + ".json";
 	}
 
-	private static void addSimulationResult(List<List<Airport>> routes, Routing<Integer> routing, Flight flight) {
+	private static List<Route> getSimulationResult(Routing<Integer> routing, Flight flight) {
 		Airport sourceAirport = flight.getSourceAirport();
 		Airport destinationAirport = flight.getDestinationAirport();
 		routing.computeAllPreferredPathsFrom(sourceAirport);
-		routes.add(routing.getFirstPreferredPathsTo(destinationAirport));
+		List<Airport> airportList = routing.getFirstPreferredPathsTo(destinationAirport);
+		return convertAiportListToFlightList(airportList);
 	}
 
-	private static void saveSimulationToFile(List<List<Airport>> routes, String fileName) {
-		List<List<String>> toSave = Lists.newLinkedList();
+	private static List<Route> convertAiportListToFlightList(List<Airport> airportList) {
+		List<Route> routeList = Lists.newLinkedList();
 
-		for (List<Airport> list : routes) {
+		Route r;
+		Airport s = airportList.get(0);
+		Airport d;
+		for (int i = 1; i < airportList.size(); i++) {
+			d = airportList.get(i);
+			r = network.getRoute(s, d);
+			s = d;
+			routeList.add(r);
+		}
+
+		return routeList;
+	}
+
+	private static void saveSimulationToFile(List<List<Route>> routes, String fileName) {
+		/*-
+		List<List<String>> toSave = Lists.newLinkedList();
+		for (List<Route> list : routes) {
 			List<String> line = Lists.newLinkedList();
-			for (Airport airport : list) {
-				line.add(String.valueOf(airport.getId()));
+			for (Route route : list) {
+				//line.add(getPrintableRoute(route));toString
+				line.add(route.toString());
 			}
 			toSave.add(line);
 		}
-
+		//*/
+		
+		List<List<RelaxedRoute>> toSave = Lists.newLinkedList();
+		for (List<Route> list : routes) {
+			List<RelaxedRoute> line = Lists.newLinkedList();
+			for (Route route : list) {
+				line.add(route.getRelaxation());
+			}
+			toSave.add(line);
+		}
+		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try {
 			Files.write(gson.toJson(toSave), new File(fileName), Charsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static String getPrintableRoute(Route route) {
+		StringBuilder sb = new StringBuilder("");
+		Airport s = route.getSourceAirport();
+		Airport d = route.getDestinationAirport();
+		
+		sb.append(s.getId());
+		sb.append(" -- ");
+		sb.append(d.getId());
+		sb.append(": ");
+		sb.append(route.getLength());
+		return sb.toString();
 	}
 }
