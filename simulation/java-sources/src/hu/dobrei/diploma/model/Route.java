@@ -5,29 +5,48 @@ public class Route {
 	private int flightCount = 0;
 	private final Airport sourceAirport;
 	private final Airport destinationAirport;
-
+	
 	public Route(Airport sourceAirport, Airport destinationAirport) {
 		this.sourceAirport = sourceAirport;
 		this.destinationAirport = destinationAirport;
-
 		length = Haversine(sourceAirport, destinationAirport);
 	}
 
 	private int Haversine(Airport sourceAirport, Airport destinationAirport) {
-		double R = 6371 * 1000; // m
+		final Coordinate source = new Coordinate(sourceAirport);
+		final Coordinate destination = new Coordinate(destinationAirport);
+		final double haversineParameter = getHaversineParameter(source, destination);
 
-		double dLongitude = Math.toRadians(sourceAirport.getLongitude() - destinationAirport.getLongitude());
-		double dLatitude = Math.toRadians(sourceAirport.getLatitude() - destinationAirport.getLatitude());
+		return getDistance(haversineParameter);
+	}
 
-		double sindLat = Math.sin(dLatitude / 2.0);
-		double sindLong = Math.sin(dLongitude / 2.0);
-		double a = sindLat * sindLat + Math.cos(Math.toRadians(sourceAirport.getLatitude()))
-				* Math.cos(Math.toRadians(destinationAirport.getLatitude())) * sindLong * sindLong;
-		double b = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	public final class Coordinate {
+		final private double lon;
+		final private double lat;
 
-		int distance = (int) Math.round(R * b);
+		public Coordinate(Airport airport) {
+			this.lon = airport.getLongitude();
+			this.lat = airport.getLatitude();
+		}
+	}
 
-		return distance;
+	private double getHaversineParameter(Coordinate s, Coordinate d) {
+		final double sindLong = getDeltaSine(s.lon, d.lon);
+		final double sindLat = getDeltaSine(s.lat, d.lat);
+		return sindLat * sindLat + getCosineValue(s.lat) * getCosineValue(d.lat) * sindLong * sindLong;
+	}
+
+	private double getCosineValue(final double sourceLatitude) {
+		return Math.cos(Math.toRadians(sourceLatitude));
+	}
+
+	private int getDistance(final double a) {
+		final double b = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		return (int) Math.round(6371 * 1000 * b);
+	}
+
+	private double getDeltaSine(final double sourceLongitude, final double destinationLongitude) {
+		return Math.sin(Math.toRadians(sourceLongitude - destinationLongitude) / 2.0);
 	}
 
 	public int getLength() {

@@ -6,8 +6,7 @@ public class BusyAirportFindingAlgebra extends AbstractAlgebra<Integer> {
 
 	@Override
 	public Integer W(Route route) {
-		// TODO W
-		return null;
+		return route.getFlightCount();
 	}
 
 	@Override

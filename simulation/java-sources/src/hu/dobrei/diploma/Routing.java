@@ -21,6 +21,7 @@ import com.google.common.collect.Maps;
 public class Routing<T> {
 	private OpenFlightsNetwork graph;
 	private AbstractAlgebra<T> algebra;
+	
 	private Set<List<Airport>> allPreferredPath;
 
 	public Routing(OpenFlightsNetwork graph, AbstractAlgebra<T> algebra) {
@@ -170,5 +171,9 @@ public class Routing<T> {
 
 		Collections.reverse(toReturn);
 		return toReturn;
+	}
+	
+	public AbstractAlgebra<T> getAlgebra() {
+		return algebra;
 	}
 }
