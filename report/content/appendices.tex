@@ -28,7 +28,7 @@
   \end{definition}
 
   \begin{note}
-    A nagy ordós jelölésből szokás kihagyni a $logn$-es szorzót, minthogy egy decimális számot mindenképpen át kell konvertálni $logn$ bitre, így egy algoritmus lépésszámánál vagy (lokális/globális) memóriaigénynél biztosan nem tudjuk megspórolni: $\tilde{O}(n)~=~O(nlogn)$.
+    A nagy ordós jelölésből szokás kihagyni a $logn$-es szorzót, minthogy egy decimális számot mindenképpen át kell konvertálni $logn$ bitre, így egy algoritmus lépésszámánál vagy (lokális / globális) memóriaigénynél biztosan nem tudjuk megspórolni: $\tilde{O}(n)~=~O(nlogn)$.
   \end{note}
 
   \begin{definition} [k-szorosan pont-összefüggő gráf 1.]
@@ -89,12 +89,12 @@
   $$(h_{i+1},~l_{i+1})~=~R(v_{i},~h_{i}),~\forall i~=~1, ..., k-1$$
   megadja a preferált $p_{st}^{*}~=~(s=) v_{1}, v_{2}, ..., v_{k}(=t)$ utat $\mathcal{A}$ szerint a megfelelő $l_{i+1}~=~(v_{i},v_{i+1})$ él-címkékkel, ahol $h_{1}$ egy alkalmas kezdő header. Azt mondjuk, hogy $R$ megvalósítja az $\mathcal{A}$ policy-t $G$-n. Még néhány óvintézkedést meg kell tennünk, hogy a címkékkel nehogy több routing információt kelljen kódolni a szükségesnél, azaz $c log n$\footnote{ Ez a címek kódolásához szükséges információ.}, valamilyen alkalmas $c$ konstanssal.
 
-  Ezek alapján tehát a routing a következő képpen történik: Ha egy $u$ csomópont kap egy üzenetet $h$ header-rel, akkor egyszerűen kiszámolja az $R_{u}(h)$ lokális routing függvény értékét: $R_{u}(h)~=~R(u,h)$, hogy megkapja az új header-t, $h'$-t és a kimenő portot, $l$-t. Ezután $u$ beállítja a csomag header-jének $h'$-t és továbbküldi $l$-en keresztül.
+  Ezek alapján tehát a routing a következőképpen történik: Ha egy $u$ csomópont kap egy üzenetet $h$ header-rel, akkor egyszerűen kiszámolja az $R_{u}(h)$ lokális routing függvény értékét: $R_{u}(h)~=~R(u,h)$, hogy megkapja az új header-t, $h'$-t és a kimenő portot, $l$-t. Ezután $u$ beállítja a csomag header-jének $h'$-t és továbbküldi $l$-en keresztül.
   A routing függvénnyel már könnyen megadható egy hálózat minden csomópontjának a lokális memóriaigénye ahhoz, hogy egy adott routing policy-t valósítson meg:
   \begin{definition} [Routing policy megvalósításához szükséges lokális memória]
-    Az $\mathcal{A}$ routing policy megvalósításához szükséges $\mathcal{M_{\mathcal{A}}}$ lokális memória: $$\mathcal{M_{\mathcal{A}}}~=~\max_{G \in \mathcal{G}_{n}}{ \min_{R \in \mathcal{R}}{\max_{u \in V}{ \mathcal{M_{\mathcal{A}}}(R,u)}}},$$ ahol $\mathcal{M_{\mathcal{A}}}(R,u)$ az $R_{u}$ lokális routing függyvény kódolásához szükségés bitek minimális száma, $\mathcal{R}$ azon policy routing függvények halmaza, melyek megvalósítják $\mathcal{A}$ policy-t valamely $G$ gráfon, és $\mathcal{G}_{n}$ az összes $n$ csúcsú gráfok halmaza.
+    Az $\mathcal{A}$ routing policy megvalósításához szükséges $\mathcal{M_{\mathcal{A}}}$ lokális memória: $$\mathcal{M_{\mathcal{A}}}~=~\max_{G \in \mathcal{G}_{n}}{ \min_{R \in \mathcal{R}}{\max_{u \in V}{ \mathcal{M_{\mathcal{A}}}(R,u)}}},$$ ahol $\mathcal{M_{\mathcal{A}}}(R,u)$ az $R_{u}$ lokális routing függvény kódolásához szükséges bitek minimális száma, $\mathcal{R}$ azon policy routing függvények halmaza, melyek megvalósítják $\mathcal{A}$ policy-t valamely $G$ gráfon, és $\mathcal{G}_{n}$ az összes $n$ csúcsú gráfok halmaza.
   \end{definition}
-  
+
   %----------------------------------------------------------------------------
   \section{Tételek a routing algebrák témakörében}\label{sect:appendix_algebratetelek}
   %----------------------------------------------------------------------------
@@ -111,13 +111,22 @@
     Ha $\mathcal{A}$ algebra tartalmaz egy delimitált (D), szigorúan monoton (SM) subalgebrát, akkor $\mathcal{A}$ nem tömöríthető.
   \end{theorem}
   \newpage
-  
+
   %----------------------------------------------------------------------------
-  \section{A szimulátor technikai részletei}
+  \section{A szimulátor technikai részletei}\label{sect:appendix_simulator}
   %----------------------------------------------------------------------------
-    %----------------------------------------------------------------------------
-    \subsection{A választott platform}
-    %----------------------------------------------------------------------------
-    %----------------------------------------------------------------------------
-    \subsection{Fejlesztői megjegyzések}
-    %----------------------------------------------------------------------------
+  A szimulátort Java nyelven fejlesztettem, mivel semmilyen megkötés nem volt a \aref{sect:chapter_framework}. fejezet specifikációjában, ami alapján ne lett volna alkalmas ez a megoldás. Azért, hogy ne csak a szimulációs eredményeket tudjam felhasználni a diplomamunkában, illetve ne csak egy elméleti megoldás legyen a keretrendszerem, törekedtem a szép, tiszta, érthető kód írására. Így mellékletként ez is értékelhető, a további munka során felhasználható.\\
+
+  A fejlesztés során kér külső függvénykönyvtárat használtam fel: a Google Guava\footnote{A Google Guava forrása: \href{https://github.com/google/guava}{https://github.com/google/guava}} 18-as verzióját az adatszerkezetek és bejárásukra, illetve a Google Gson\footnote{A Google Gson forrása: \href{https://code.google.com/p/google-gson/}{https://code.google.com/p/google-gson/}} 2.2.4-es verzióját az eredmények JSON formátumban való mentéséhez és visszaállításukhoz.
+
+  A szimulátor alapvetően három részre tagolódik: a hálózatot leíró osztályok, az algebrákat leíró osztályok és a szimulációt futtató osztályok.\\
+
+  A \texttt{hu/dobrei/diploma/network package}-ben vannak az adott feladathoz tartozó hálózatot leíró osztályok, jelen esetben az \texttt{Airline}, \texttt{Airport}, \texttt{Flight}, \texttt{Route} és az \texttt{OpenFlightsNetwork} osztályok.\\
+
+  A \texttt{hu/dobrei/diploma/algebra package}-ben van az \texttt{AbstractAlgebra} absztrakt osztály és a belőle származó \texttt{BusyAirportFindingAlgebra}, \texttt{LeastHopAlgebra}, \texttt{EarlyAdopterFindingAlgebra} és a \texttt{ShortestAlgebra} osztályok.\\
+
+  A harmadik rész a \texttt{hu/dobrei/diploma/routing package}-ben levő osztályok, melyek a szimulációért, a végeredmények elemzéséért és az eredmények fájlba mentéséért felelősek.\\
+
+  A tervezéstől kezdve a fejlesztése során végig arra törekedtem, hogy moduláris, könnyen újrahasználható szoftvert fejlesszek, melyet később tovább lehet adni. Ennek érdekében a lehető legtisztább, legegyszerűbb megoldásokat alkalmaztam, illetve ahol csak tudtam, ragaszkodtam a clean code\footnote{Robert C. Martin: Clean Code - A Handbook of Agile Software Craftsmanship} elveihez.\\
+
+  Összefoglalva elmondható, hogy sikerült elérni a célt a saját fejlesztésű szimulátorral: nem kellett másik szoftver használatát megtanulnom, teljesen biztos lehetek benne, hogy az útvonalválasztási algoritmus optimálisan van megírva és az algebrák implementálása pontos, egyszerű, de ésszerű. Emellett további speciális felhasználásra viszonylag egyszerűen lehet módosítani a meglévő kódbázist.

@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------
 %Onnan indulok, hogy az 1990-es évek végétől egyre többet foglalkoztak a BGP feltárásával, amivel el is jutottak addig, hogy van egy viszonylag pontos kép a hálózatról, de arra, hogy miért egy adott policy-t használnak az AS-ek, nem tudnak válaszolni. Itt hozom fel, hogy van más olyan terület is, amit még nem értünk, ezért is lenne jó egy olyan eszköz, ami ilyesmit tudna csinálni. Ehhez a policy-kat felbontom egyszerű primitívekre, és azoknak a kombinálásával hozok ki komplexebb policy-kat.
 
-%1.2 fejezet: policy-k definciója,
+%1.2 fejezet: policy-k definíciója,
 %1.3 fejezet: műveletek policy-k között
 %1.4 fejezet: policy-k tulajdonságai
 
@@ -66,7 +66,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
 
   Az általános hálózati modellben egy véges, egyszerű és összefüggő $G(V;E)$ gráfot használunk a hálózat megadására, ahol $|V| = n$ és $|E| = m$. Az élek irányítottsága és súlyozása az adott problémától függ, minden kombináció megengedett. Legyen $deg(v)$ a $v \in V$ csúcs fokszáma és legyen $d = max_{v \in V} deg(v)$. Egy $s-t$ séta a csúcsoknak egy $p = (s =)v_1, v_2, ..., v_k(= t)$ sorozata, ahol $k$ a séta hossza és $(v_i, v_{i+1}) \in E$ : $\forall i = 1,...,k-1$. Ezenkívül egy kör olyan séta, ahol $s = t$.
 
-  Ahhoz, hogy meg tudjuk mondani, hogy két útból melyiket érdemes választani, definiálni kell egy preferencia sorrendet az utak között. Ehhez pedig az utak hosszára lesz szükség, amit egy metrikával, azaz távolságfüggvénnyel tudunk mérni. A metrikus tér fogalma egy (halmaz, függvény) párt jelent, ahol a függvény bármely két, halmazbeli elemhez egy nemnegatív valós számot rendel (vagyis a távolságukat méri). 
+  Ahhoz, hogy meg tudjuk mondani, hogy két útból melyiket érdemes választani, definiálni kell egy preferencia sorrendet az utak között. Ehhez pedig az utak hosszára lesz szükség, amit egy metrikával, azaz távolságfüggvénnyel tudunk mérni. A metrikus tér fogalma egy (halmaz, függvény) párt jelent, ahol a függvény bármely két, halmazbeli elemhez egy nemnegatív valós számot rendel (vagyis a távolságukat méri).
 
   \begin{definition}[Metrikus tér]\label{eq:MetrikusTerDef}
     A metrikus tér egy olyan (X, $\delta$) pár, ahol X egy tetszőleges halmaz,\\$\delta$: $X^{2}$ $\rightarrow$ $\mathbb{R}^{+}_{0}$ pedig egy olyan nemnegatív valós függvény, melyre tetszőleges x, y, z $\in$ X esetén:
@@ -245,7 +245,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
 
   A legmegbízhatóbb út algebra ($\mathcal{R}$) úgy értelmezhetjük, hogy az élek súlyát az a valószínűség adja, hogy az adott élen a csomag hibátlanul át tud menni, így nagyobb érték a jobb. Nyilvánvaló, hogy $\mathcal{R}$ tartalmaz egy szigorúan monoton (SM) subalgebrát: ha nem engedjük meg a biztos valószínűséget, akkor minden út biztosan romlik, ha hozzáveszünk egy újabb élet, azaz az értéke csökken, mert egy 1-nél kisebb számmal szorozzuk az eddig súlyt: $\hat{\mathcal{R}}~=~((0,1),~0,~*,~\geq)$.
 
-  A legszélesebb-legrövidebb út (widest-shortest path) $\mathcal{WS}$ routing esetén a legrövidebb utak közül a legnagyobb kapacitásút választjuk \cite{Quality_of_service_based_routing_A_performance_perspective}, míg a legrövidebb-legszélesebb út (shortest-widest path) $\mathcal{SW}$ (\cite{Quality_of_service_routing_for_supporting_multimedia_applications, On_path_selection_for_traffic_with_bandwidth_guarantees}) routing esetén, éppen fordítva, a legnagyobb kapacitású utak közül a legrövidebbet választjuk. Ezeket az algebrákat megkaphatjuk a $\mathcal{S}$ és a $\mathcal{W}$ algebrák lexikografikus szorzataként \cite{Lexicographic_products_in_metarouting}. 
+  A legszélesebb-legrövidebb út (widest-shortest path) $\mathcal{WS}$ routing esetén a legrövidebb utak közül a legnagyobb kapacitásút választjuk \cite{Quality_of_service_based_routing_A_performance_perspective}, míg a legrövidebb-legszélesebb út (shortest-widest path) $\mathcal{SW}$ (\cite{Quality_of_service_routing_for_supporting_multimedia_applications, On_path_selection_for_traffic_with_bandwidth_guarantees}) routing esetén, éppen fordítva, a legnagyobb kapacitású utak közül a legrövidebbet választjuk. Ezeket az algebrákat megkaphatjuk a $\mathcal{S}$ és a $\mathcal{W}$ algebrák lexikografikus szorzataként \cite{Lexicographic_products_in_metarouting}.
   \begin{note}
     $\mathcal{SW}$ nem izotón. Az \eqref{appendix_algebratetel2} tétel áll a nem izotón algebrákra is, így $\Omega(n)$ bit lokális memóriát igényel a $\mathcal{SW}$ algebra is. Jelenleg még nyitott kérdés, hogy ez a határ szoros-e. Nem tudjuk, hogy van-e jobb megoldás, mint a triviális, azaz hogy minden router tárol egy-egy routing tábla bejegyzést minden forrás-cél párra, ami $O(n^2 log d)$ ($d$ a maximális fokszám) bit per router memóriaigényű.
   \end{note}

@@ -13,6 +13,7 @@
 \usepackage{listings}
 \usepackage{color}
 %\usepackage{fancyhdr}
+\usepackage{courier}
 \usepackage{lastpage}
 \usepackage{anysize}
 \usepackage[magyar]{babel}
@@ -110,17 +111,17 @@
 \author{\vikszerzo}
 \title{\viktitle}
 \includeonly{
-  content/titlepage,%
-  content/declaration,%
-  content/acknowledgement,%
-  content/abstract,%
+  titlepage,%
+  declaration,%
+  acknowledgement,%
+  abstract,%
   content/introduction,%
   content/chapter1,%
   content/chapter2,%
   content/chapter3,%
   content/chapter4,%
   content/summary,%
-  content/bibliography,
+  bibliography,
   content/appendices,%
 }
 %--------------------------------------------------------------------------------------
@@ -142,11 +143,11 @@ aboveskip=10pt}
 \begin{document}
 \pagenumbering{arabic}
 \onehalfspacing
-\include{content/titlepage}
-\include{content/declaration}
-\include{content/acknowledgement}
+\include{titlepage}
+\include{declaration}
+\include{acknowledgement}
 \tableofcontents\vfill
-\include{content/abstract}
+\include{abstract}
 \include{content/introduction}
 \include{content/chapter1}
 \include{content/chapter2}
@@ -160,7 +161,7 @@ aboveskip=10pt}
 %\bibliography{mybib}
 %\addcontentsline{toc}{chapter}{Irodalomjegyzék}
 %\bibliographystyle{plain}
-\include{content/bibliography}
+\include{bibliography}
 
 \include{content/appendices}
 
