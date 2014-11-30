@@ -23,243 +23,236 @@ A másik szempont, ami meghatározó, az az, hogy a csomópontok felül tudják-e bírá
 Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az esettel állunk szemben, hogy nem tudunk egy problémát egyértelmûen karakterizálni.
 
 
-%----------------------------------------------------------------------------
-\section{Vírusterjedés komplex hálózatokban}
-%----------------------------------------------------------------------------
+	%----------------------------------------------------------------------------
+	\section{Vírusterjedés komplex hálózatokban}
+	%----------------------------------------------------------------------------
 
-A vírusok terjedését és járvánnyá fejlõdését sok évtizede vizsgálják. A járványok elõrejelzése lehetõséget ad a tudósoknak, hogy megtervezzék a védõoltások ütemezését és az esetleges karanténok felállítását, ami jelentõs hatással lehet egy adott betegség halálozási rátájára. A fertõzõ betegségek modellezése egy olyan eszköz, ami segítséget ad a fertõzés terjedésének vizsgálatához és a jövõbeli járványok elkerüléséhez stratégiákat lehet kidolgozni általa \cite{Epidemic_Modelling_An_Introduction}.
+	A vírusok terjedését és járvánnyá fejlõdését sok évtizede vizsgálják. A járványok elõrejelzése lehetõséget ad a tudósoknak, hogy megtervezzék a védõoltások ütemezését és az esetleges karanténok felállítását, ami jelentõs hatással lehet egy adott betegség halálozási rátájára. A fertõzõ betegségek modellezése egy olyan eszköz, ami segítséget ad a fertõzés terjedésének vizsgálatához és a jövõbeli járványok elkerüléséhez stratégiákat lehet kidolgozni általa \cite{Epidemic_Modelling_An_Introduction}.
 
-%----------------------------------------------------------------------------
-\subsection{A vírusterjedés matematikai modellje}
-%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{A vírusterjedés matematikai modellje}
+		%----------------------------------------------------------------------------
 
-A legkorábbi ismert matematikai modell a fertõzõ betegségek terjedésérõl Bernoullitól származik, aki a fekete himlõt vizsgálva megállapította, hogy ha mindenkit beoltanának a betegség ellen, akkor az átlagos életkor 26 év 7 hónapról 29 év 9 hónapra nõne \cite{Bernoulli_Blower}.
+		A legkorábbi ismert matematikai modell a fertõzõ betegségek terjedésérõl Bernoullitól származik, aki a fekete himlõt vizsgálva megállapította, hogy ha mindenkit beoltanának a betegség ellen, akkor az átlagos életkor 26 év 7 hónapról 29 év 9 hónapra nõne \cite{Bernoulli_Blower}.
 
-Bernoulli munkája során természetesen még nem értette annyira a baktériumok és vírusok biológiáját, mint mi. A XX. század elsõ felében Ronald Ross malária kutatásával kezdetét vette a modern elméleti fertõzés kutatás. Ezután nem sokkal, 1927-ben A. G. McKendrick and W. O. Kermack elismert munkája is megjelent, az ,,A Contribution to the Mathematical Theory of Epidemics''. Ez a determinisztikus modell sikeresen jelezte elõre sok fertõzõ betegség viselkedését.\\
+		Bernoulli munkája során természetesen még nem értette annyira a baktériumok és vírusok biológiáját, mint mi. A XX. század elsõ felében Ronald Ross malária kutatásával kezdetét vette a modern elméleti fertõzés kutatás. Ezután nem sokkal, 1927-ben A. G. McKendrick and W. O. Kermack elismert munkája is megjelent, az ,,A Contribution to the Mathematical Theory of Epidemics''. Ez a determinisztikus modell sikeresen jelezte elõre sok fertõzõ betegség viselkedését.\\
 
-Amikor nagy populációkat vizsgálunk, a determinisztikus modelleket használjuk, mert egy ilyenben a populáció egyedeit besorolhatjuk alcsoportokba, ami a fertõzés egy specifikus stádiumát jelenti. Ha a fertõzés átterjedése az egyik csoportról a másikra idõben folytonos, a csoportok aktuális mérete matematikailag a deriválással fejezhetõ ki, így a modell leírható differenciál egyenletekkel. Ott játszik fontos szerepet a determinisztikusság, hogy egy ilyen modellben feltesszük, hogy egy csoport egyedszáma deriválható az idõ szerint, ehhez viszont az kell, hogy a fertõzõdés kiszámíthatóan (nem véletlenszerûen) terjedjen tovább, más szóval a csoportok egyedszámának változása egyértelmûen meghatározható az addigi múltból. Ezen modellek szakirodalmát és terminológiáját áttanulmányozva számos különbözõ mérõszámot és tulajdonságot találhatunk, de az alapmodell a következõ három csoportot jelöli:
-\begin{itemize}
-	\item \emph{S(t)}: A $t$ idõpontig meg nem fertõzött egyedek száma, azaz akik még megfertõzõdhetnek.
-	\item \emph{I(t)}: A $t$ idõpontig megfertõzött egyedek száma, azaz akik tovább tudnak fertõzni.
-	\item \emph{R(t)}: A $t$ idõpontig megfertõzött, de mégsem I(t)-beli egyedek száma, azaz vagy meggyógyultak, vagy meghaltak. Ezen csoport egyedei már nem tudnak újra megbetegedni, sõt fertõzni sem fertõznek.
-\end{itemize}
+		Amikor nagy populációkat vizsgálunk, a determinisztikus modelleket használjuk, mert egy ilyenben a populáció egyedeit besorolhatjuk alcsoportokba, ami a fertõzés egy specifikus stádiumát jelenti. Ha a fertõzés átterjedése az egyik csoportról a másikra idõben folytonos, a csoportok aktuális mérete matematikailag a deriválással fejezhetõ ki, így a modell leírható differenciál egyenletekkel. Ott játszik fontos szerepet a determinisztikusság, hogy egy ilyen modellben feltesszük, hogy egy csoport egyedszáma deriválható az idõ szerint, ehhez viszont az kell, hogy a fertõzõdés kiszámíthatóan (nem véletlenszerûen) terjedjen tovább, más szóval a csoportok egyedszámának változása egyértelmûen meghatározható az addigi múltból. Ezen modellek szakirodalmát és terminológiáját áttanulmányozva számos különbözõ mérõszámot és tulajdonságot találhatunk, de az alapmodell a következõ három csoportot jelöli:
+		\begin{itemize}
+		  \item \emph{S(t)}: A $t$ idõpontig meg nem fertõzött egyedek száma, azaz akik még megfertõzõdhetnek.
+		  \item \emph{I(t)}: A $t$ idõpontig megfertõzött egyedek száma, azaz akik tovább tudnak fertõzni.
+		  \item \emph{R(t)}: A $t$ idõpontig megfertõzött, de mégsem I(t)-beli egyedek száma, azaz vagy meggyógyultak, vagy meghaltak. Ezen csoport egyedei már nem tudnak újra megbetegedni, sõt fertõzni sem fertõznek.
+		\end{itemize}
 
-Egy egyed az $S(t) \rightarrow I(t) \rightarrow R(t)$ sorrendben halad a csoportok között. Egy fix méretû populációt feltételezve, $N~=~S+I+R$, a következõ egyenleteket vezethetjük be \cite{Contributions_to_the_mathematical_theory_of_epidemics}:
-\begin{align}
-	\frac{dS}{dt} &= - \beta S I\\
-	\frac{dI}{dt} &= \beta S I - \gamma I\\
-	\frac{dR}{dt} &= \gamma I
-\end{align}
+		Egy egyed az $S(t) \rightarrow I(t) \rightarrow R(t)$ sorrendben halad a csoportok között. Egy fix méretû populációt feltételezve, $N~=~S+I+R$, a következõ egyenleteket vezethetjük be \cite{Contributions_to_the_mathematical_theory_of_epidemics}:
+		\begin{align}
+		  \frac{dS}{dt} &= - \beta S I\\
+		  \frac{dI}{dt} &= \beta S I - \gamma I\\
+		  \frac{dR}{dt} &= \gamma I
+		\end{align}
 
-Ahol $\beta$ a kapcsolati ráta és $1/\gamma$ az átlagos fertõzõ periódus.
+		Ahol $\beta$ a kapcsolati ráta és $1/\gamma$ az átlagos fertõzõ periódus.
 
-Néhány feltételezést tettünk az egyenletek felírásához: (1) minden egyedet ugyanakkora valószínûséggel fertõz meg egy $\beta$ kapcsolati rátájú betegség, így minden fertõzött egyed $\beta N$ egészséges egyedet fertõz meg egy idõegység alatt, illetve az egyedeknek átlagosan $S/N$ megfertõzhetõ kapcsolata van. Tehát a fertõzési ráta: az új betegek száma $\beta N (S/N)$, azaz amennyivel változik (nyilván csökken) $S$: $\beta N (S/N)I~=~\beta SI$.
+		Néhány feltételezést tettünk az egyenletek felírásához: (1) minden egyedet ugyanakkora valószínûséggel fertõz meg egy $\beta$ kapcsolati rátájú betegség, így minden fertõzött egyed $\beta N$ egészséges egyedet fertõz meg egy idõegység alatt, illetve az egyedeknek átlagosan $S/N$ megfertõzhetõ kapcsolata van. Tehát a fertõzési ráta: az új betegek száma $\beta N (S/N)$, azaz amennyivel változik (nyilván csökken) $S$: $\beta N (S/N)I~=~\beta SI$.
 
-Ezután érthetõ a második és harmadik egyenlet: a fertõzöttek száma annyival nõ, ahánnyal kevesebb egészséges lesz, illetve annyival fogy, ahány meghal vagy meggyógyul. A $\gamma$ jelöli az átlagos halálozási/felépülési rátát.
+		Ezután érthetõ a második és harmadik egyenlet: a fertõzöttek száma annyival nõ, ahánnyal kevesebb egészséges lesz, illetve annyival fogy, ahány meghal vagy meggyógyul. A $\gamma$ jelöli az átlagos halálozási/felépülési rátát.
 
-Végül feltesszük, hogy a megfertõzõdés és a felépülés idõben jóval gyorsabb folyamat, mint a születés és halálozás, így ezeket a faktorokat kihagyhatjuk a modellbõl.
+		Végül feltesszük, hogy a megfertõzõdés és a felépülés idõben jóval gyorsabb folyamat, mint a születés és halálozás, így ezeket a faktorokat kihagyhatjuk a modellbõl.
 
-\begin{note}
-	Természetesen számos következõ szempontot figyelembe lehet még venni a modell mélyítése érdekében, ilyen pl. az elõbb említett születés és halálozás; az $R \rightarrow S$ átmenet, azaz a fertõzésbõl való meggyógyulás után újra meg lehet betegedni; figyelembe lehet venni az ún. lappangási idõszakot, bevezetve egy újabb csoportot ($S \rightarrow \epsilon \rightarrow I \rightarrow R$); vagy a veleszületett betegséget is, azaz a fertõzött anyától elkapott betegséget is.\newline	
-	Jelen dolgozat szempontjából az alap SIR modell megfelelõ.
-\end{note}
+		\begin{note}
+		  Természetesen számos következõ szempontot figyelembe lehet még venni a modell mélyítése érdekében, ilyen pl. az elõbb említett születés és halálozás; az $R \rightarrow S$ átmenet, azaz a fertõzésbõl való meggyógyulás után újra meg lehet betegedni; figyelembe lehet venni az ún. lappangási idõszakot, bevezetve egy újabb csoportot ($S \rightarrow \epsilon \rightarrow I \rightarrow R$); vagy a veleszületett betegséget is, azaz a fertõzött anyától elkapott betegséget is.\newline  
+		  Jelen dolgozat szempontjából az alap SIR modell megfelelõ.
+		\end{note}
 
-%----------------------------------------------------------------------------
-\subsection{Vírusterjedés, mint útvonalválasztási probléma}
-%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{Vírusterjedés, mint útvonalválasztási probléma}
+		%----------------------------------------------------------------------------
 
-A fertõzõ betegségek terjedése nem látszik útvonalválasztási kérdésnek sõt, semmilyen policy-t nem veszünk észre elsõ ránézésre, ezért talán némi magyarázatot igényel a problémakör vizsgálata. A diplomadolgozat végsõ célja rejtett szabályok felismerése elõre definiált policy primitívek segítségével tetszõleges hálózatban, így világos, hogy a vírusterjedést sem zárhatom ki a vizsgálatból.\\
+		A fertõzõ betegségek terjedése nem látszik útvonalválasztási kérdésnek sõt, semmilyen policy-t nem veszünk észre elsõ ránézésre, ezért talán némi magyarázatot igényel a problémakör vizsgálata. A diplomadolgozat végsõ célja rejtett szabályok felismerése elõre definiált policy primitívek segítségével tetszõleges hálózatban, így világos, hogy a vírusterjedést sem zárhatom ki a vizsgálatból.\\
 
-A fejezet bevezetõjében említett két tulajdonság közül az optimalizálás az, ami itt a legszembetûnõbb. Ha ugyanis nem úgy tekintünk a problémára, mint egy kétszereplõs ,,háborúra'' (ember a vírus ellen), hanem úgy, mint a kis organizmusok egyéni útvonalválasztására, akkor látható, hogy lokális optimalizálásról van szó, hiszen minden egyes fertõzõ elem szeretne minél tovább élni újabb és újabb gazdatestet találva magának. Lévén itt nem a tipikus több lépésen keresztüli pont-pont routing-ról van szó, globális optimalizálási feladat legfeljebb az lehet, hogy minél több csomópont legyen fertõzött. Minden csomópontból arra fertõz tovább a vírus, amerre a legtöbb eséllyel fog továbbélni - ez nyilván függ az adott vírus-egyedtõl is -, azaz pl. a leggyengébb immunrendszerû ember felé. Ez alapján két policy-t mutatok be:
+		A fejezet bevezetõjében említett két tulajdonság közül az optimalizálás az, ami itt a legszembetûnõbb. Ha ugyanis nem úgy tekintünk a problémára, mint egy kétszereplõs ,,háborúra'' (ember a vírus ellen), hanem úgy, mint a kis organizmusok egyéni útvonalválasztására, akkor látható, hogy lokális optimalizálásról van szó, hiszen minden egyes fertõzõ elem szeretne minél tovább élni újabb és újabb gazdatestet találva magának. Lévén itt nem a tipikus több lépésen keresztüli pont-pont routing-ról van szó, globális optimalizálási feladat legfeljebb az lehet, hogy minél több csomópont legyen fertõzött. Minden csomópontból arra fertõz tovább a vírus, amerre a legtöbb eséllyel fog továbbélni - ez nyilván függ az adott vírus-egyedtõl is -, azaz pl. a leggyengébb immunrendszerû ember felé. Ez alapján két policy-t mutatok be:
 
-\begin{itemize}
-	\item Fertõzési-határ: A vírus-egyed legjobb továbbfertõzési policy-ja.
-	\item Unió-fedés: A globális fertõzés policy-ja. 
-\end{itemize}
+		\begin{itemize}
+		  \item Fertõzési-határ: A vírus-egyed legjobb továbbfertõzési policy-ja.
+		  \item Unió-fedés: A globális fertõzés policy-ja. 
+		\end{itemize}
 
-%----------------------------------------------------------------------------
-\subsubsection{Fertõzési-határ}
-%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Fertõzési-határ}
+			%----------------------------------------------------------------------------
 
-A Fertõzési-határ policy alapú útvonalválasztás garantálja a legjobb túlélési esélyt egy vírus-egyed számára. Ennek a policy-nak az algebrája az $\mathcal{F}$ ($(0,1],~0,~max,~\geq$). Ennél az algebránál az élek súlya (egy (0,1] intervallumbeli valós szám) azt adja meg, hogy azt a csomópontot, ahová vezet, milyen valószínûséggel tudjuk megfertõzni, így nyilván a nagyobb jobb, a 0 pedig azt jelenti, hogy a csomópont $R(t)$-beli, azaz már biztosan nem lehet megfertõzni. Mivel az útvonalválasztás lokálisan optimalizál, ezért két alternatív élet a $\geq$ operátorral tudunk összehasonlítani, illetve a két él összeillesztésére a két él súlyának maximumát vesszük.
+			A Fertõzési-határ policy alapú útvonalválasztás garantálja a legjobb túlélési esélyt egy vírus-egyed számára. Ennek a policy-nak az algebrája az $\mathcal{F}$ ($(0,1],~0,~max,~\geq$). Ennél az algebránál az élek súlya (egy (0,1] intervallumbeli valós szám) azt adja meg, hogy azt a csomópontot, ahová vezet, milyen valószínûséggel tudjuk megfertõzni, így nyilván a nagyobb jobb, a 0 pedig azt jelenti, hogy a csomópont $R(t)$-beli, azaz már biztosan nem lehet megfertõzni. Mivel az útvonalválasztás lokálisan optimalizál, ezért két alternatív élet a $\geq$ operátorral tudunk összehasonlítani, illetve a két él összeillesztésére a két él súlyának maximumát vesszük.
 
-%----------------------------------------------------------------------------
-\subsubsection{Unió-fedés}
-%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Unió-fedés}
+			%----------------------------------------------------------------------------
 
-Az Unió-fedés policy szerinti útvonalválasztás célja, hogy lehetõleg olyan élen menjünk és fertõzzünk tovább, amit még nem használtak. Ennek a policy-nak a számítógépes vírusok tárgyalásánál van nagyobb szerepe, semmint a biológiai fertõzéseknél, hiszen ez alapján - akár már fertõzött gépet is - minden olyan élet saját felügyelet alá vehetünk, amit még nem találtunk meg, így például ügyelhetünk arra, hogy semelyik fertõzött gép ne tudja frissíteni a vírusirtójának a vírusdefiníciós adatbázisát.
+			Az Unió-fedés policy szerinti útvonalválasztás célja, hogy lehetõleg olyan élen menjünk és fertõzzünk tovább, amit még nem használtak. Ennek a policy-nak a számítógépes vírusok tárgyalásánál van nagyobb szerepe, semmint a biológiai fertõzéseknél, hiszen ez alapján - akár már fertõzött gépet is - minden olyan élet saját felügyelet alá vehetünk, amit még nem találtunk meg, így például ügyelhetünk arra, hogy semelyik fertõzött gép ne tudja frissíteni a vírusirtójának a vírusdefiníciós adatbázisát.
 
-Az Unió-fedés policy algebrája az $\mathcal{U}$ ($\mathbb{N},~\infty,~f,~\leq$). Itt az élsúly egy természetes szám lehet és azt fejezi ki, hogy hányszor használták már fel egy útvonalválasztásban. Mivel a cél az, hogy minél ritkábban (optimálisan soha nem) használt utakat használjunk, a $\infty$ jelenti az átjárhatatlanságot és a $\leq$ az összehasonlító operátor. A több élbõl álló út súlyát az $f$ összegzõ függvény adja:
-$$f(e_1,e_2)~=~
-\begin{cases}
-	e_1+e_2 & \text{ha } e_1*e_2 \neq 0 \\
-	0 & \text{különben}
-\end{cases}$$
-Ezzel garantáljuk, hogy olyan esetben, amikor úgyis mindegy - azaz nincs még fel nem használt él - akkor az élek súlyának összegét vesszük, de amikor van olyan él, amit még nem használtunk, akkor azt biztosan fogjuk használni (hacsak nincs egy másik alternatív 0 súlyú út), hiszen a két élû út súlya 0 lesz.\newpage
+			Az Unió-fedés policy algebrája az $\mathcal{U}$ ($\mathbb{N},~\infty,~f,~\leq$). Itt az élsúly egy természetes szám lehet és azt fejezi ki, hogy hányszor használták már fel egy útvonalválasztásban. Mivel a cél az, hogy minél ritkábban (optimálisan soha nem) használt utakat használjunk, a $\infty$ jelenti az átjárhatatlanságot és a $\leq$ az összehasonlító operátor. A több élbõl álló út súlyát az $f$ összegzõ függvény adja:
+			$$f(e_1,e_2)~=~
+			\begin{cases}
+			  e_1+e_2 & \text{ha } e_1*e_2 \neq 0 \\
+			  0 & \text{különben}
+			\end{cases}$$
+			Ezzel garantáljuk, hogy olyan esetben, amikor úgyis mindegy - azaz nincs még fel nem használt él - akkor az élek súlyának összegét vesszük, de amikor van olyan él, amit még nem használtunk, akkor azt biztosan fogjuk használni (hacsak nincs egy másik alternatív 0 súlyú út), hiszen a két élû út súlya 0 lesz.\newpage
 
-%----------------------------------------------------------------------------
-\section{Trendterjedés közösségi hálózatokban}
-%----------------------------------------------------------------------------
+	%----------------------------------------------------------------------------
+	\section{Trendterjedés közösségi hálózatokban}
+	%----------------------------------------------------------------------------
 
-A közösségi hálózatok az elmúlt 10 év egyik legmeghatározóbb jelensége, új korszakot nyitott az emberi kapcsolatokban. A kapcsolatháló elemzés a szociometriából indult, de annál bonyolultabb, idõben is változó, nagyobb közösségek vizsgálatára alkalmas módszertan. A kapcsolatháló elemzési módszerek alkalmasak egy nagyobb csoport klikkjeinek és alcsoportjainak felrajzolására és megjelenítésére is. A kapcsolathálózati megközelítés kevésbé hangsúlyozza az egyéni cselekvés szerepét a struktúrák létrehozásában, nem az egyéni szándékból, hanem a struktúrák belsõ feszültségeibõl jön létre a cselekvés mozgástere. A struktúra - pl. egy elterjed trend - e szemléletmód számára nem egy közvetlenül megmutatkozó adottság, hanem sokkal inkább a kapcsolatok hálójából bonyolultan kibontható szervezõdés.
+	A közösségi hálózatok az elmúlt 10 év egyik legmeghatározóbb jelensége, új korszakot nyitott az emberi kapcsolatokban. A kapcsolatháló elemzés a szociometriából indult, de annál bonyolultabb, idõben is változó, nagyobb közösségek vizsgálatára alkalmas módszertan. A kapcsolatháló elemzési módszerek alkalmasak egy nagyobb csoport klikkjeinek és alcsoportjainak felrajzolására és megjelenítésére is. A kapcsolathálózati megközelítés kevésbé hangsúlyozza az egyéni cselekvés szerepét a struktúrák létrehozásában, nem az egyéni szándékból, hanem a struktúrák belsõ feszültségeibõl jön létre a cselekvés mozgástere. A struktúra - pl. egy elterjed trend - e szemléletmód számára nem egy közvetlenül megmutatkozó adottság, hanem sokkal inkább a kapcsolatok hálójából bonyolultan kibontható szervezõdés.
 
-A hálózati megközelítés elõnye, hogy az adott hálózati struktúrákat, közösségeken belül kialakuló attribútumokat dinamikus módon, a változásokon keresztül is képes vizsgálni: a kapcsolatok és a környezet folytonosan változó mozgása mentén. A hálózat elemzéssel komplex módon tudjuk leírni vizsgált közösségi hálózatok mûködését \cite{Csaba_Pal}.\\
+	A hálózati megközelítés elõnye, hogy az adott hálózati struktúrákat, közösségeken belül kialakuló attribútumokat dinamikus módon, a változásokon keresztül is képes vizsgálni: a kapcsolatok és a környezet folytonosan változó mozgása mentén. A hálózat elemzéssel komplex módon tudjuk leírni vizsgált közösségi hálózatok mûködését \cite{Csaba_Pal}.\\
 
-A trend- vagy divatterjedés egy szociális hálóban lehetséges, ahol az egyik csomóponttal szimbolizált egyén felvesz egy szokást, elkezd hordani egy bizonyos ruhadarabot (vagy márkát), vagy bármi olyat tesz, amit ,,az átlag'' nem. Ha az ismerõsei - a kapcsolati hálóban szomszédos csomópontok - észreveszik ezt az újdonságot és megtetszik nekik is, átveszik a forrástól. A problémakör alapvetõ kérdése, hogy mi határozza meg, hogy elterjed-e egy trend és divattá válik-e az egész hálózatban, vagy sem. Malcolm T. Gladwell brit-kanadai újságíró, író 2000-ben megjelent könyvében \cite{The_Tipping_Point} számos példát olvashatunk, hogy egyes szituációkban mikor érkezett el a fordulópont, mikor vált általános divattá valami. Ilyen példa a Hush Puppy cipõgyártó cég, mely egyik pillanatról a másikra a csõd szélérõl világszerte ismert márkává vált. Gladwell azt állítja, hogy a kulcs az úgynevezett \emph{Összekötõkön} múlik. Egy összekötõ tipikusan hatalmas társasági kapcsolatrendszerrel rendelkezik, mely kapcsolatok többnyire gyenge kötelék csupán, emellett több mikrovilágba és szubkultúrába bejáratos. Az ilyen összekötõket kell megnyernie egy terméknek és ennek szinte automatikus következménye, hogy elterjed a termék és divattá válik. Duncan Watts ausztrál fizikus-matematikus-szociológus megkérdõjelezte Gladwell állítását, szerinte ugyanis nem az a meghatározó, hogy egy divat az összekötõktõl indul-e, hanem az, hogy a közösség (akár az egész társadalom, akár csak egy szûkebb baráti kör) készen áll-e az adott divat elterjedésére. Tehát nem a forrás számít és annak befolyása, hanem az, hogy általánosságban a közösség egésze akarja-e a terméket.\\
+	A trend- vagy divatterjedés egy szociális hálóban lehetséges, ahol az egyik csomóponttal szimbolizált egyén felvesz egy szokást, elkezd hordani egy bizonyos ruhadarabot (vagy márkát), vagy bármi olyat tesz, amit ,,az átlag'' nem. Ha az ismerõsei - a kapcsolati hálóban szomszédos csomópontok - észreveszik ezt az újdonságot és megtetszik nekik is, átveszik a forrástól. A problémakör alapvetõ kérdése, hogy mi határozza meg, hogy elterjed-e egy trend és divattá válik-e az egész hálózatban, vagy sem. Malcolm T. Gladwell brit-kanadai újságíró, író 2000-ben megjelent könyvében \cite{The_Tipping_Point} számos példát olvashatunk, hogy egyes szituációkban mikor érkezett el a fordulópont, mikor vált általános divattá valami. Ilyen példa a Hush Puppy cipõgyártó cég, mely egyik pillanatról a másikra a csõd szélérõl világszerte ismert márkává vált. Gladwell azt állítja, hogy a kulcs az úgynevezett \emph{Összekötõkön} múlik. Egy összekötõ tipikusan hatalmas társasági kapcsolatrendszerrel rendelkezik, mely kapcsolatok többnyire gyenge kötelék csupán, emellett több mikrovilágba és szubkultúrába bejáratos. Az ilyen összekötõket kell megnyernie egy terméknek és ennek szinte automatikus következménye, hogy elterjed a termék és divattá válik. Duncan Watts ausztrál fizikus-matematikus-szociológus megkérdõjelezte Gladwell állítását, szerinte ugyanis nem az a meghatározó, hogy egy divat az összekötõktõl indul-e, hanem az, hogy a közösség (akár az egész társadalom, akár csak egy szûkebb baráti kör) készen áll-e az adott divat elterjedésére. Tehát nem a forrás számít és annak befolyása, hanem az, hogy általánosságban a közösség egésze akarja-e a terméket.\\
 
-%----------------------------------------------------------------------------
-\subsection{Trendterjedés, mint útvonalválasztási probléma}
-%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{Trendterjedés, mint útvonalválasztási probléma}
+		%----------------------------------------------------------------------------
 
-A trendterjedés nagyon hasonlít a vírusterjedésre, hiszen maga a két eredeti modell is szinte egy az egyben megfeleltethetõ egymásnak. Természetesen a vírusterjedés esetén említett kiegészítéseket nem lehet egy az egyben átültetni és a trendterjedés terminológiájával leírni, de az alapmodell három csoportját ($S$, $I$, $R$) itt is azonosíthatjuk. Világos, hogy az optimalizálás lokalizáltsága erre a modellre is jellemzõ, hiszen nincs olyan divat, ami egy bizonyos emberre akar csak hatni, sokkal inkább mindenkire. Így ennek a problémakörnek is jellemzõ policy-ja lehet az \emph{Unió-fedés}.
+		A trendterjedés nagyon hasonlít a vírusterjedésre, hiszen maga a két eredeti modell is szinte egy az egyben megfeleltethetõ egymásnak. Természetesen a vírusterjedés esetén említett kiegészítéseket nem lehet egy az egyben átültetni és a trendterjedés terminológiájával leírni, de az alapmodell három csoportját ($S$, $I$, $R$) itt is azonosíthatjuk. Világos, hogy az optimalizálás lokalizáltsága erre a modellre is jellemzõ, hiszen nincs olyan divat, ami egy bizonyos emberre akar csak hatni, sokkal inkább mindenkire. Így ennek a problémakörnek is jellemzõ policy-ja lehet az \emph{Unió-fedés}.
 
-Útvonalválasztási szempontból a lényeges különbség, hogy a trendterjedésnél a csomópontoknak van döntõ szerepe, nem az éleknek, azaz itt nem közös érdek, hogy egy divat elterjedjen (vagy akar az, hogy ne terjedjen el). Bárki mondhatja azt, hogy neki kifejezetten nem tetszik az elterjedõ divat, ezért pl. lebeszéli az ismerõseit róla, vagy csak egyszerûen nem veszi át, így megállítja a terjedést, legalábbis a közvetlen közelében. Nyilvánvaló, hogy - bár az elterjedés kulcsa az, hogy a társadalom készen áll-e - egy \emph{Összekötõ} nagyban hozzájárulhat a sikeres terjesztéshez, így preferálhatjuk ezen központi csomópontokat. Emellett az is szempont lehet, hogy nem a csomópontok befolyását vesszük alapul, hanem pusztán a mennyiségüket és egy adott útvonalválasztáskor minél hosszabb útra törekszünk. Egy másik alkalmazható heurisztika, hogy ha két csomópont közötti élen sok divat terjedt át, akkor ezt az élet érdemes felhasználni, illetve megfordítva, ha egy élen eddig kevés divat terjedt át, akkor valószínûleg nem olyan a két végpont kapcsolata, amin a divatok átterjedhetnek, így érdemes elkerülni az ilyen éleket. Ezek alapján a következõ policy-kat definiálom:
+		Útvonalválasztási szempontból a lényeges különbség, hogy a trendterjedésnél a csomópontoknak van döntõ szerepe, nem az éleknek, azaz itt nem közös érdek, hogy egy divat elterjedjen (vagy akar az, hogy ne terjedjen el). Bárki mondhatja azt, hogy neki kifejezetten nem tetszik az elterjedõ divat, ezért pl. lebeszéli az ismerõseit róla, vagy csak egyszerûen nem veszi át, így megállítja a terjedést, legalábbis a közvetlen közelében. Nyilvánvaló, hogy - bár az elterjedés kulcsa az, hogy a társadalom készen áll-e - egy \emph{Összekötõ} nagyban hozzájárulhat a sikeres terjesztéshez, így preferálhatjuk ezen központi csomópontokat. Emellett az is szempont lehet, hogy nem a csomópontok befolyását vesszük alapul, hanem pusztán a mennyiségüket és egy adott útvonalválasztáskor minél hosszabb útra törekszünk. Egy másik alkalmazható heurisztika, hogy ha két csomópont közötti élen sok divat terjedt át, akkor ezt az élet érdemes felhasználni, illetve megfordítva, ha egy élen eddig kevés divat terjedt át, akkor valószínûleg nem olyan a két végpont kapcsolata, amin a divatok átterjedhetnek, így érdemes elkerülni az ilyen éleket. Ezek alapján a következõ policy-kat definiálom:
 
-\begin{itemize}
-	\item Összekötõ-keresés: A nagy súlyú csomópontok felé irányító policy.
-	\item Korai-elfogadó-keresés: A mindent átvevõ csomópontok felé irányító policy.
-\end{itemize}
+		\begin{itemize}
+		  \item Összekötõ-keresés: A nagy súlyú csomópontok felé irányító policy.
+		  \item Korai-elfogadó-keresés: A mindent átvevõ csomópontok felé irányító policy.
+		\end{itemize}
 
-%----------------------------------------------------------------------------
-\subsubsection{Összekötõ-keresés}
-%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Összekötõ-keresés}
+			%----------------------------------------------------------------------------
 
-Ez a policy azon csomópontokat részesíti elõnyben, amelyeket a legbefolyásosabbnak ítélünk. A vírus- és trendterjedés hasonlóságából adódóan itt is lokális optimalizálásról beszélhetünk, így mindig azt a szomszédot fogjuk választani, aminek a legnagyobb a fokszáma. Az Összekötõ-keresés algebrája a $\mathcal{O}$ ($(1,d),~0,~max,~\geq$). Az élek súlya:
-$\forall u,v \in V:~w(u,v)~=~max(deg(u),deg(v))$, tehát az összekötött csomópontok fokszámai közül a nagyobb és nyilván a több jobb. Az átjárhatatlanságot a 0 súly jelzi, míg több él súlyát a maximumuk határozza meg.
+			Ez a policy azon csomópontokat részesíti elõnyben, amelyeket a legbefolyásosabbnak ítélünk. A vírus- és trendterjedés hasonlóságából adódóan itt is lokális optimalizálásról beszélhetünk, így mindig azt a szomszédot fogjuk választani, aminek a legnagyobb a fokszáma. Az Összekötõ-keresés algebrája a $\mathcal{O}$ ($(1,d),~0,~max,~\geq$). Az élek súlya:
+			$\forall u,v \in V:~w(u,v)~=~max(deg(u),deg(v))$, tehát az összekötött csomópontok fokszámai közül a nagyobb és nyilván a több jobb. Az átjárhatatlanságot a 0 súly jelzi, míg több él súlyát a maximumuk határozza meg.
 
-%----------------------------------------------------------------------------
-\subsubsection{Korai-elfogadó-keresés}
-%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Korai-elfogadó-keresés}
+			%----------------------------------------------------------------------------
 
-A Korai-elfogadó-keresés policy azon éleket részesíti elõnyben, melyeken az eddigi tapasztalat alapján sok divat átterjedt már. Ennek lényege nyilván az, hogy egy ilyen él olyan személyek közötti kapcsolatot jelöl, akik pl. megbíznak a másik ítéletében, vagy az egyikük felnéz a másikra, így átvesz tõle viselkedési formákat. A policy algebrája a $\mathcal{K}$ ($\mathbb{N},~-1,~+,~\geq$). Az élek súlya azt jelzi, hogy eddig mennyi divat terjedt át rajta, így a több a jobb, és nyilván a -1 súlyú élen nem tudunk átmenni. Több él összeillesztését az élsúlyok összegével súlyozunk.\newpage
+			A Korai-elfogadó-keresés policy azon éleket részesíti elõnyben, melyeken az eddigi tapasztalat alapján sok divat átterjedt már. Ennek lényege nyilván az, hogy egy ilyen él olyan személyek közötti kapcsolatot jelöl, akik pl. megbíznak a másik ítéletében, vagy az egyikük felnéz a másikra, így átvesz tõle viselkedési formákat. A policy algebrája a $\mathcal{K}$ ($\mathbb{N},~-1,~+,~\geq$). Az élek súlya azt jelzi, hogy eddig mennyi divat terjedt át rajta, így a több a jobb, és nyilván a -1 súlyú élen nem tudunk átmenni. Több él összeillesztését az élsúlyok összegével súlyozunk.\newpage
 
 
-%----------------------------------------------------------------------------
-\section{Útvonalválasztás az Interneten}
-%----------------------------------------------------------------------------
+	%----------------------------------------------------------------------------
+	\section{Útvonalválasztás az Interneten}
+	%----------------------------------------------------------------------------
 
-A útvonalválasztás kutatói rendszerint informatikai-, vagy számításelméleti szakemberek, ezért a kutatási célok legnagyobb része számítógépes hálózatok útvonalválasztásának vizsgálata, javítása. Ezen a területen általában az Internet gerinchálózatát szokták vizsgálni, hiszen ott jelentkeznek azok a skálázhatósági- és menedzsmentproblémák, amik az Internet 1970-es évekbeli tervezésébõl származnak és ami miatt azt mondhatjuk, hogy az Internet hibáinak toldozása-foldozása már nem elég és alapvetõen új megoldások szükségesek.\\
+	A útvonalválasztás kutatói rendszerint informatikai-, vagy számításelméleti szakemberek, ezért a kutatási célok legnagyobb része számítógépes hálózatok útvonalválasztásának vizsgálata, javítása. Ezen a területen általában az Internet gerinchálózatát szokták vizsgálni, hiszen ott jelentkeznek azok a skálázhatósági- és menedzsmentproblémák, amik az Internet 1970-es évekbeli tervezésébõl származnak és ami miatt azt mondhatjuk, hogy az Internet hibáinak toldozása-foldozása már nem elég és alapvetõen új megoldások szükségesek.\\
 
-Két alapvetõen eltérõ koncepció létezik a számítógépes hálózatok útvonalválasztásában, a tapasztalatok alapján elõre becsült forgalmi viszonyoknak megfelelõ centralizált kialakítás; illetve az aktuális forgalmi helyzet állandó figyelése alapján, az annak legjobban megfelelõ irányítás. Legtöbbször az utóbbit valósítják meg, méghozzá elosztott változatban. Az Internet tervezése során több olyan szempontot is figyelembe vettek, melyeket az elõzõ két alfejezetben nem tudunk tárgyalni. Ilyen például a routerekben lévõ útvonaltáblák minél kisebb mérete (kisebb tár, olcsóbb és gyorsabban mûködõ csomópont, illetve kisebb routingforgalom), emellett fontos szempont a routingforgalom minimalizálása, a robusztusság (hibás tábla esélyének minimalizálása: ,,fekete lyuk'', hurok, oszcilláció elkerülése) és végül az optimális útvonalak kijelölése (természetesen az út optimalitása az igénytõl függ). Az egyik legfontosabb igény az elosztott mûködés, a decentralizáltság volt azért, hogy az útvonalválasztást a csomópontok végezzék.\\
+	Két alapvetõen eltérõ koncepció létezik a számítógépes hálózatok útvonalválasztásában, a tapasztalatok alapján elõre becsült forgalmi viszonyoknak megfelelõ centralizált kialakítás; illetve az aktuális forgalmi helyzet állandó figyelése alapján, az annak legjobban megfelelõ irányítás. Legtöbbször az utóbbit valósítják meg, méghozzá elosztott változatban. Az Internet tervezése során több olyan szempontot is figyelembe vettek, melyeket az elõzõ két alfejezetben nem tudunk tárgyalni. Ilyen például a routerekben lévõ útvonaltáblák minél kisebb mérete (kisebb tár, olcsóbb és gyorsabban mûködõ csomópont, illetve kisebb routingforgalom), emellett fontos szempont a routingforgalom minimalizálása, a robusztusság (hibás tábla esélyének minimalizálása: ,,fekete lyuk'', hurok, oszcilláció elkerülése) és végül az optimális útvonalak kijelölése (természetesen az út optimalitása az igénytõl függ). Az egyik legfontosabb igény az elosztott mûködés, a decentralizáltság volt azért, hogy az útvonalválasztást a csomópontok végezzék.\\
 
-Ahogy fejlõdött a világ, újabb feladatok és problémák jelentek meg, amelyet a szakemberek a hálózat tervezésekor még nem láttak elõre. Olyan új technológiák jelentek meg, mint a mobiltelefonok és a hordozható számítógépek és velük együtt az igény a mobil routingra, azaz arra, hogy ne csak a számítógép, de az internet hozzáférés is legyen hordozható. Problémát jelent a multicast routing is, amikor egy adott csomagot több címzetthez szeretnénk eljuttatni. Ezen problémák hatékony megoldása kritikus feladat, alapvetõen új megoldásokat kívánnak.
+	Ahogy fejlõdött a világ, újabb feladatok és problémák jelentek meg, amelyet a szakemberek a hálózat tervezésekor még nem láttak elõre. Olyan új technológiák jelentek meg, mint a mobiltelefonok és a hordozható számítógépek és velük együtt az igény a mobil routingra, azaz arra, hogy ne csak a számítógép, de az internet hozzáférés is legyen hordozható. Problémát jelent a multicast routing is, amikor egy adott csomagot több címzetthez szeretnénk eljuttatni. Ezen problémák hatékony megoldása kritikus feladat, alapvetõen új megoldásokat kívánnak.
 
-Emellett pusztán a hálózat mérete is feszegeti az Internet teljesítõképességének jelenlegi határait. Mára az Internet óriásira nõtt és a 1990-es évek vége óta a mindennapi élet meghatározó részévé vált. 2000 és 2009 között 394 millióról 1,84 milliárd nõtt az Internet kapcsolattal rendelkezõk száma\footnote{Market Information and Statistics, International Telecommunications Union, \url{http://www.itu.int/ITU-D/ict/statistics/}}. Ma már több, mint 2,4 milliárd\footnote{2.405.518.376 - 2012. második negyedév, \url{http://www.internetworldstats.com/stats.htm} 2014. 05. 09} felhasználója van az Internetnek, és 2010-ben 12,5 milliárd Internetre csatlakoztatott eszköz volt. Ez azt jelenti, hogy minden élõ emberre jutott 1,84 készülék. 2020-ra az Internetre kapcsolt eszközök száma elérheti az 50 milliárdot \cite{The_Internet_of_Things}.\newpage
+	Emellett pusztán a hálózat mérete is feszegeti az Internet teljesítõképességének jelenlegi határait. Mára az Internet óriásira nõtt és a 1990-es évek vége óta a mindennapi élet meghatározó részévé vált. 2000 és 2009 között 394 millióról 1,84 milliárd nõtt az Internet kapcsolattal rendelkezõk száma\footnote{Market Information and Statistics, International Telecommunications Union, \url{http://www.itu.int/ITU-D/ict/statistics/}}. Ma már több, mint 2,4 milliárd\footnote{2.405.518.376 - 2012. második negyedév, \url{http://www.internetworldstats.com/stats.htm} 2014. 05. 09} felhasználója van az Internetnek, és 2010-ben 12,5 milliárd Internetre csatlakoztatott eszköz volt. Ez azt jelenti, hogy minden élõ emberre jutott 1,84 készülék. 2020-ra az Internetre kapcsolt eszközök száma elérheti az 50 milliárdot \cite{The_Internet_of_Things}.\newpage
 
-Útvonalválasztási szempontból az Internet routing egy klasszikus feladat, amikor a legszélesebb-, legrövidebb- és legmegbízhatóbb utakat keressük. Ezen policy-k algebráit már bemutattam, megtalálhatók a \aref{tab:table_algebrapeldak} táblázatban.
+	Útvonalválasztási szempontból az Internet routing egy klasszikus feladat, amikor a legszélesebb-, legrövidebb- és legmegbízhatóbb utakat keressük. Ezen policy-k algebráit már bemutattam, megtalálhatók a \aref{tab:table_algebrapeldak} táblázatban.
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=70mm,keepaspectratio=true]{./figures/BGP_iranyitatlan.png}\hspace{5mm}
-	% BGP_iranyitatlan.png: 425x369 pixel, 72dpi, 14.99x13.02 cm, bb=0 0 425 369
-	\includegraphics[width=70mm,keepaspectratio=true]{./figures/BGP_iranyitott_labeled.png}
-	% BGP_iranyitott_labeled.png: 425x369 pixel, 72dpi, 14.99x13.02 cm, bb=0 0 425 369
+	\begin{figure}[!ht]
+	  \centering
+	  \includegraphics[width=70mm,keepaspectratio=true]{./figures/BGP_iranyitatlan.png}\hspace{5mm}
+	  % BGP_iranyitatlan.png: 425x369 pixel, 72dpi, 14.99x13.02 cm, bb=0 0 425 369
+	  \includegraphics[width=70mm,keepaspectratio=true]{./figures/BGP_iranyitott_labeled.png}
+	  % BGP_iranyitott_labeled.png: 425x369 pixel, 72dpi, 14.99x13.02 cm, bb=0 0 425 369
 
-	\caption{A BGP egyszerûsített képe és a völgymentesség szerinti irányítás.}
-	\label{fig:figure_BGP}
-\end{figure}
+	  \caption{A BGP egyszerûsített képe és a völgymentesség szerinti irányítás.}
+	  \label{fig:figure_BGP}
+	\end{figure}
 
-Érdemes megvizsgálni a BGP szabályrendszerét: a BGP routing policy-ja többszintû. A legalsó szint, a legalapvetõbb policy a völgymentesség. Ez azt jelenti, hogy az útvonalválasztásnál elsõdleges szempont, hogy semelyik AS-nek ne kelljen fizetni olyan forgalomért, ami csak áthalad rajta. Ha a hierarchiában lefelé mutató éleket $l$-lel, a felfelé mutató éleket $f$-fel, a peering kapcsolatokat pedig $p$-vel jelöljük, akkor minden routing során kijelölt útvonal csak a következõ alakban írható le: néhány (akár nulla) $f$ él, aztán maximum egy $p$ él, utána pedig néhány (akár nulla) $l$ él.\\
+	Érdemes megvizsgálni a BGP szabályrendszerét: a BGP routing policy-ja többszintû. A legalsó szint, a legalapvetõbb policy a völgymentesség. Ez azt jelenti, hogy az útvonalválasztásnál elsõdleges szempont, hogy semelyik AS-nek ne kelljen fizetni olyan forgalomért, ami csak áthalad rajta. Ha a hierarchiában lefelé mutató éleket $l$-lel, a felfelé mutató éleket $f$-fel, a peering kapcsolatokat pedig $p$-vel jelöljük, akkor minden routing során kijelölt útvonal csak a következõ alakban írható le: néhány (akár nulla) $f$ él, aztán maximum egy $p$ él, utána pedig néhány (akár nulla) $l$ él.\\
 
-Emellett, ha felhasználjuk a gráfbeágyazás és kompakt routing eredményeit, akkor egy új távolságfüggvénnyel és a csomópontok koordinátázásával megvalósítható az Internet tartományszintû gráfjában is egy elakadásmentes mohó útvonalválasztás \cite{DobreiBScSzakdolgozat}. 
+	Emellett, ha felhasználjuk a gráfbeágyazás és kompakt routing eredményeit, akkor egy új távolságfüggvénnyel és a csomópontok koordinátázásával megvalósítható az Internet tartományszintû gráfjában is egy elakadásmentes mohó útvonalválasztás \cite{DobreiBScSzakdolgozat}. 
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=70mm]{./figures/3-reg_disk.png}\hspace{5mm}
-	% 3-reg_disk.png: 749x757 pixel, 96dpi, 19.81x20.03 cm, bb=0 0 562 568
-	\includegraphics[width=70mm,keepaspectratio=true]{./figures/3-reg_half_plane.png}
-	% 3-reg_half_plane.png: 1079x465 pixel, 96dpi, 28.54x12.30 cm, bb=0 0 809 349
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[width=70mm]{./figures/3-reg_disk.png}\hspace{5mm}
+	  % 3-reg_disk.png: 749x757 pixel, 96dpi, 19.81x20.03 cm, bb=0 0 562 568
+	  \includegraphics[width=70mm,keepaspectratio=true]{./figures/3-reg_half_plane.png}
+	  % 3-reg_half_plane.png: 1079x465 pixel, 96dpi, 28.54x12.30 cm, bb=0 0 809 349
 
-	\caption{A hiperbolikus sík Poincaré-féle diszk modellje és a felsõ félsík modellje \cite{Klein07}.}
-	\label{fig:figure_hiperbolikusabrak}
-\end{figure}
+	  \caption{A hiperbolikus sík Poincaré-féle diszk modellje és a felsõ félsík modellje \cite{Klein07}.}
+	  \label{fig:figure_hiperbolikusabrak}
+	\end{figure}
 
-A $\mathbb{H}$ hiperbolikus síknak többféle szemléltetõ modellje is van, ám a két legelterjedtebb a felsõ félsík modell és a Poincaré diszk modell, amiket \aref{fig:figure_hiperbolikusabrak} ábrán láthatunk is. A Poincaré modellben $\mathbb{H}$-t egy egységkörrel reprezentálják: $x^2~+~y^2~<~1$, a következõ metrikával:
-\begin{align}
-ds^2~=~\frac{4(dx^2~+~dy^2)}{(1~-~x^2~-~y^2)^2}.
-\end{align}
+	A $\mathbb{H}$ hiperbolikus síknak többféle szemléltetõ modellje is van, ám a két legelterjedtebb a felsõ félsík modell és a Poincaré diszk modell, amiket \aref{fig:figure_hiperbolikusabrak} ábrán láthatunk is. A Poincaré modellben $\mathbb{H}$-t egy egységkörrel reprezentálják: $x^2~+~y^2~<~1$, a következõ metrikával:
+	\begin{align}
+	ds^2~=~\frac{4(dx^2~+~dy^2)}{(1~-~x^2~-~y^2)^2}.
+	\end{align}
 
-A felsõ félsík modellben $\mathbb{H}$-t a $\{\langle x,y\rangle ~|~y~>~0\}$ ponthalmaz írja le, ahol a metrika:
+	A felsõ félsík modellben $\mathbb{H}$-t a $\{\langle x,y\rangle ~|~y~>~0\}$ ponthalmaz írja le, ahol a metrika:
 
-\begin{align}
-ds^2~=~\frac{dx^2~+~dy^2}{y^2}.
-\end{align}
+	\begin{align}
+	ds^2~=~\frac{dx^2~+~dy^2}{y^2}.
+	\end{align}
 
-Mindkét esetben a $\mathbb{H}$ pontjait komplex számokként kezeljük: $(x,y)~\in~\mathbb{R}^2:~z~=~x~+~yi$.
+	Mindkét esetben a $\mathbb{H}$ pontjait komplex számokként kezeljük: $(x,y)~\in~\mathbb{R}^2:~z~=~x~+~yi$.
 
-Ezek alapján két új policy-t mutatok be:
+	Ezek alapján két új policy-t mutatok be:
 
-\begin{itemize}
-	\item Hiperbolikus-távolság: Az elakadásmentes mohó útvonalválasztás policy-ja.
-	\item Völgymentesség: A BGP alapvetõ, elsõdleges policy-ja.
-\end{itemize}
+	\begin{itemize}
+	  \item Hiperbolikus-távolság: Az elakadásmentes mohó útvonalválasztás policy-ja.
+	  \item Völgymentesség: A BGP alapvetõ, elsõdleges policy-ja.
+	\end{itemize}
 
-%----------------------------------------------------------------------------
-\subsubsection{Hiperbolikus-távolság}
-%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Hiperbolikus-távolság}
+			%----------------------------------------------------------------------------
 
-A hiperbolikus síkra ágyazott Internet gráf minden pontja egy $(x,y)$ koordinátapárral leírható. A policy algebrája a $\mathcal{H}$ ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$), ahol $f_{\mathbb{H}}$ egy viszonylag bonyolult függvény, definiálásához szükséges lenne több, itt nem részletezett ismeret a hiperbolikus geometria témakörébõl (bõvebben ld. \cite{Thurston97} 2. fejezetét).
+			A hiperbolikus síkra ágyazott Internet gráf minden pontja egy $(x,y)$ koordinátapárral leírható. A policy algebrája a $\mathcal{H}$ ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$), ahol $f_{\mathbb{H}}$ egy viszonylag bonyolult függvény, definiálásához szükséges lenne több, itt nem részletezett ismeret a hiperbolikus geometria témakörébõl (bõvebben ld. \cite{Thurston97} 2. fejezetét).
 
-%----------------------------------------------------------------------------
-\subsubsection{Völgymentesség}
-%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Völgymentesség}
+			%----------------------------------------------------------------------------
 
-A völgymentesség policy-nak az algebrája a $\mathcal{V}$ ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$),  ahol a $\bigoplus_{\mathcal{V}}$ \aref{tab:szumma_tab} táblázat szerinti\footnote{ Egy adott súlyú (típusú) úthoz hozzá akarnánk venni egy élet, akkor az út milyen súlyúvá (típusúvá) válna.}. Az elõbbi szabály másik megfogalmazásban azt jelenti, hogy sem $l$-t, sem $p$-t nem követhet sem $p$, sem $f$.
+			A völgymentesség policy-nak az algebrája a $\mathcal{V}$ ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$),  ahol a $\bigoplus_{\mathcal{V}}$ \aref{tab:szumma_tab} táblázat szerinti\footnote{ Egy adott súlyú (típusú) úthoz hozzá akarnánk venni egy élet, akkor az út milyen súlyúvá (típusúvá) válna.}. Az elõbbi szabály másik megfogalmazásban azt jelenti, hogy sem $l$-t, sem $p$-t nem követhet sem $p$, sem $f$.
 
-\begin{table}[ht]
-  \footnotesize
-  \centering
-  \caption{A $\bigoplus_{\mathcal{V}}$ \cite{Compact_Policy_Routing}.}
-    \begin{tabular}{ c | c c c }
-      $\bigoplus$ & $f$ & $l$ & $p$\\
-      \hline
-      $f$ & $f$ & $l$ & $p$\\
-      $l$ & $\phi$ & $l$ & $\phi$\\
-      $p$ & $\phi$ & $p$ & $\phi$\\
-    \end{tabular}\label{tab:szumma_tab}
-\end{table}\newpage
+			\begin{table}[ht]
+			  \footnotesize
+			  \centering
+			  \caption{A $\bigoplus_{\mathcal{V}}$ \cite{Compact_Policy_Routing}.}
+				\begin{tabular}{ c | c c c }
+				  $\bigoplus$ & $f$ & $l$ & $p$\\
+				  \hline
+				  $f$ & $f$ & $l$ & $p$\\
+				  $l$ & $\phi$ & $l$ & $\phi$\\
+				  $p$ & $\phi$ & $p$ & $\phi$\\
+				\end{tabular}\label{tab:szumma_tab}
+			\end{table}\newpage
 
-%----------------------------------------------------------------------------
-\section{Egyéb algebrák}
-%----------------------------------------------------------------------------
+	%----------------------------------------------------------------------------
+	\section{Egyéb algebrák}
+	%----------------------------------------------------------------------------
 
-A minél részletesebb vizsgálat érdekében definiálok olyan policy-kat is, melyek vagy minden eddigi modellben használható lenne, vagy egyikben sem, így eddig nem volt lehetõségem bemutatni.
+	A minél részletesebb vizsgálat érdekében definiálok olyan policy-kat is, melyek vagy minden eddigi modellben használható lenne, vagy egyikben sem, így eddig nem volt lehetõségem bemutatni.
 
-A fejezet legelején felvázolt két dimenzió (optimalizálás, érdekek) mellett a harmadik karakterizálási lehetõség az idõbeli lefolyás. Ha egy útvonalválasztási probléma tárgyalása során figyelembe vesszük az idõt is, mint befolyásoló tényezõt, egy olyan új dimenziót ragadunk meg, mely minden modell routing-ját képes befolyásolni: ez az \emph{Idõfüggés} policy. A vírus-terjedésnél elég csak arra gondolni, hogy télen könnyebben tud terjedni a fertõzés, és hasonlóan nyáron nagyobb valószínûséggel terjed egy fürdõruhadivat. Fontos azonban, hogy ez csak egy mellékes faktor, azaz egy alap policy mellett van értelme figyelembe venni az idõpontot is. Az Internetes útvonalválasztás során idõfüggést tapasztalhatunk, ha pl. egy terheléselosztó rendszer egy adott kérést másodpercenként váltakozva egyszer kiszolgál, egyszer pedig újrapróbálkozásra szólít fel.\\
+	A fejezet legelején felvázolt két dimenzió (optimalizálás, érdekek) mellett a harmadik karakterizálási lehetõség az idõbeli lefolyás. Ha egy útvonalválasztási probléma tárgyalása során figyelembe vesszük az idõt is, mint befolyásoló tényezõt, egy olyan új dimenziót ragadunk meg, mely minden modell routing-ját képes befolyásolni: ez az \emph{Idõfüggés} policy. A vírus-terjedésnél elég csak arra gondolni, hogy télen könnyebben tud terjedni a fertõzés, és hasonlóan nyáron nagyobb valószínûséggel terjed egy fürdõruhadivat. Fontos azonban, hogy ez csak egy mellékes faktor, azaz egy alap policy mellett van értelme figyelembe venni az idõpontot is. Az Internetes útvonalválasztás során idõfüggést tapasztalhatunk, ha pl. egy terheléselosztó rendszer egy adott kérést másodpercenként váltakozva egyszer kiszolgál, egyszer pedig újrapróbálkozásra szólít fel.\\
 
-Másik érdekes policy, a trendterjedésnél említett leghosszabb út policy. Ennek olyan esetben van értelme, amikor nem a célba érkezés a legfontosabb, hanem maga az út. A vírus- és trendterjedésnél ez azért volt lényeges, hogy minél több embert elérjünk, de pl. a hangyák is így építik ki a bolyban az utakat, hogy egy esetleges betolakodó minél nagyobb valószínûséggel eltévedjen.
+	Másik érdekes policy, a trendterjedésnél említett leghosszabb út policy. Ennek olyan esetben van értelme, amikor nem a célba érkezés a legfontosabb, hanem maga az út. A vírus- és trendterjedésnél ez azért volt lényeges, hogy minél több embert elérjünk, de pl. a hangyák is így építik ki a bolyban az utakat, hogy egy esetleges betolakodó minél nagyobb valószínûséggel eltévedjen.
 
+			%----------------------------------------------------------------------------
+			\subsubsection{Leghosszabb-út}
+			%----------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------
-\subsubsection{Leghosszabb-út}
-%----------------------------------------------------------------------------
+			A leghosszabb-út policy adja az elérhetõ leghosszabb utat. Ebben az esetben az $\mathcal{L}$ algebra az $(1, 0,~+,~\geq)$ négyes. Ebben a policy-ban minden él konstans 1 súlyú, egy út súlya éppen az élszáma.
 
-A leghosszabb-út policy adja az elérhetõ leghosszabb utat. Ebben az esetben az $\mathcal{L}$ algebra az $(1, 0,~+,~\geq)$ négyes. Ebben a policy-ban minden él konstans 1 súlyú, egy út súlya éppen az élszáma.
+			%----------------------------------------------------------------------------
+			\subsubsection{Idõfüggés}
+			%----------------------------------------------------------------------------
+			Az Idõfüggés policy lényege, hogy az idõpontot\footnote{A lépték mértéke problémafüggõ: lehet naponkénti éves periódusokkal, lehet } figyelembe véve néha átjárhatatlan egy-egy él. Ehhez szükséges egy alap policy is, amelyet ez ki tud egészíteni: $\mathcal{A}$. Jelölje $T_{e_i}$ az idõpontok egy olyan halmazát, melyben $\mathcal{I}$ nem enged át forgalmat az $e_i$ élen. (A $T_{e_i}$ lehet akár egy $[t_0, \infty)$ intervallum is.) Így az $\mathcal{I}$ algebra: $(W_{\mathcal{A}},~\phi_{\mathcal{A}},~f,~\preceq_{\mathcal{A}})$, ahol
+			$$f(e_1,e_2,t)~=~
+			\begin{cases}
+			  \phi_{\mathcal{A}} & \text{ha } t \in T_{e_1} \cup T_{e_2}\\
+			  e_1 \bigoplus_{\mathcal{A}} e_2 & \text{különben}
+			\end{cases}$$
 
-%----------------------------------------------------------------------------
-\subsubsection{Idõfüggés}
-%----------------------------------------------------------------------------
-Az Idõfüggés policy lényege, hogy az idõpontot\footnote{A lépték mértéke problémafüggõ: lehet naponkénti éves periódusokkal, lehet } figyelembe véve néha átjárhatatlan egy-egy él. Ehhez szükséges egy alap policy is, amelyet ez ki tud egészíteni: $\mathcal{A}$. Jelölje $T_{e_i}$ az idõpontok egy olyan halmazát, melyben $\mathcal{I}$ nem enged át forgalmat az $e_i$ élen. (A $T_{e_i}$ lehet akár egy $[t_0, \infty)$ intervallum is.) Így az $\mathcal{I}$ algebra: $(W_{\mathcal{A}},~\phi_{\mathcal{A}},~f,~\preceq_{\mathcal{A}})$, ahol
-$$f(e_1,e_2,t)~=~
-\begin{cases}
-	\phi_{\mathcal{A}} & \text{ha } t \in T_{e_1} \cup T_{e_2}\\
-	e_1 \bigoplus_{\mathcal{A}} e_2 & \text{különben}
-\end{cases}$$
+			Azaz, alkalmas idõpontban teljes egészében az $\mathcal{A}$ policy érvényesül, azonban minden élen bizonyos idõpontokban nem lehet átmenni.\\
 
-Azaz, alkalmas idõpontban teljes egészében az $\mathcal{A}$ policy érvényesül, azonban minden élen bizonyos idõpontokban nem lehet átmenni.\\
+	%----------------------------------------------------------------------------
+	\section{Összefoglaló}
+	%----------------------------------------------------------------------------
 
+	Ebben a fejezetben megvizsgáltam a hálózatkutatás szempontjából alapvetõ modelleket, melyeket a lokális- vagy globális optimalizálás és a közös- vagy egyéni érdekek követése tulajdonságok alapján karakterizáltam. Bemutattam a fertõzõ betegségek vizsgálatára használt matematikai modellt, megvizsgáltam a témakör útvonalválasztási kérdéseit és kijelöltem a két, a problémakört jól jellemzõ policy-t: a Fertõzési-határ és az Unió-fedés policy-ket, illetve ezek algebráit: $\mathcal{F}$ = ($(0,1],~0,~max,~\geq$) és $\mathcal{U}$ = ($\mathbb{N},~\infty,~f,~\leq$).
 
+	Rávilágított a trend- és a vírusterjedés hasonlóságaira és különbségeire útvonalválasztási szempontból és definiáltam két policy-t, a Összekötõ-keresés-t és a Korai-elfogadó-keresés-t. Ezen policy-k algebrái: $\mathcal{O}$ = ($(1,d),~0,~max,~\geq$) és $\mathcal{K}$ = ($\mathbb{N},~-1,~+,~\geq$).
 
-
-\iffalse
-\fi
-
-%----------------------------------------------------------------------------
-\section{Összefoglaló}
-%----------------------------------------------------------------------------
-
-Ebben a fejezetben megvizsgáltam a hálózatkutatás szempontjából alapvetõ modelleket, melyeket a lokális- vagy globális optimalizálás és a közös- vagy egyéni érdekek követése tulajdonságok alapján karakterizáltam. Bemutattam a fertõzõ betegségek vizsgálatára használt matematikai modellt, megvizsgáltam a témakör útvonalválasztási kérdéseit és kijelöltem a két, a problémakört jól jellemzõ policy-t: a Fertõzési-határ és az Unió-fedés policy-ket, illetve ezek algebráit: $\mathcal{F}$ = ($(0,1],~0,~max,~\geq$) és $\mathcal{U}$ = ($\mathbb{N},~\infty,~f,~\leq$).
-
-Rávilágított a trend- és a vírusterjedés hasonlóságaira és különbségeire útvonalválasztási szempontból és definiáltam két policy-t, a Összekötõ-keresés-t és a Korai-elfogadó-keresés-t. Ezen policy-k algebrái: $\mathcal{O}$ = ($(1,d),~0,~max,~\geq$) és $\mathcal{K}$ = ($\mathbb{N},~-1,~+,~\geq$).
-
-Végül megvizsgáltam a már ismertetett policy-kon (ld. \aref{sect:section_algebrapeldak}. alfejezet) kívül az Internet tartományszintû gráfjának az alapszabályát, a Völgymentességet, illetve felvázoltam a hiperbolikus térbe ágyazás - általa pedig az elakadásmentes mohó útvonalválasztás - lehetõségét: $\mathcal{V}$ = ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$) és $\mathcal{H}$ = ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$).
+	Végül megvizsgáltam a már ismertetett policy-kon (ld. \aref{sect:section_algebrapeldak}. alfejezet) kívül az Internet tartományszintû gráfjának az alapszabályát, a Völgymentességet, illetve felvázoltam a hiperbolikus térbe ágyazás - általa pedig az elakadásmentes mohó útvonalválasztás - lehetõségét: $\mathcal{V}$ = ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$) és $\mathcal{H}$ = ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$).

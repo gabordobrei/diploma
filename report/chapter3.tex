@@ -1,156 +1,62 @@
 %----------------------------------------------------------------------------
-%\Aref{sect:chapter_test}. fejezetben több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitõl akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
+%\Aref{sect:chapter_framework}. fejezetben az elõzõ vizsgálatok alapján egy olyan modellezési keretrendszer dolgozok ki és mutatok be, melynek segítségével a nagyméretu valós hálózatokat jellemzõ útvonalkialakítási dinamikát vagyok képes strukturált módon jellemezni.
 %----------------------------------------------------------------------------
-\chapter{Tervek, a munka folytatása}\label{sect:chapter_test}
+\chapter{A modellezési keretrendszer}\label{sect:chapter_framework}
 %----------------------------------------------------------------------------
+	%----------------------------------------------------------------------------
+	\section{Specifikáció} % MILYENNEK KELL LENNIE
+	%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{A bemenet}
+		%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Az adatok elõfeldolgozása, tisztítása}
+			%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{A domain szûkítése}
+			%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{A szimuláció}
+		%----------------------------------------------------------------------------
+			%----------------------------------------------------------------------------
+			\subsubsection{Utak generálása}
+			%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{A kimenet}
+		%----------------------------------------------------------------------------
 
-\Aref{sect:chapter_examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésüket, hogy hogyan alakítanak ki utakat. Ezután tetszõleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
+	%----------------------------------------------------------------------------
+	\section{A szimulátor} % MIT KELL TUDNIA
+	%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{A matematikai struktúrák implementálása}
+		%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{A felhasznált algoritmusok elemzése}
+		%----------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------
-\section{Valós hálózatok vizsgálata}
-%----------------------------------------------------------------------------
-
-A valós hálózatokon kialakult útvonalak és a policy primitívek által meghatározott útvonalak összehasonlítására több megoldás is létezik, az egyik ilyen, hogy minden forrás-cél párra megvizsgálom, hogy a valós és a szimulált út mennyire hasonlít a lépésszám és az érintett köztes csomópontok alapján, illetve az adott p. primitív út nevezhetõ-e jobbnak az adott problémakörben, esetleg egy alternatív útnak, vagy akár rosszabb-e, mint az eredeti útvonal.
-
-Emellett a hálózatok egészét is összehasonlítom statisztikai módszerekkel: fokszámeloszlás, élek száma, összefüggõség. Ezzel feltárhatóak olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, pl. lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Az Internet tervezésekor fontos szempont volt a robusztusság, amit a gráf pont- ill. él-összefüggõségével tudunk mérni, nyilván egy olyan hálózat, amiben a routing táblák mérete kicsi, de nagy a szétszakadás veszélye, nem jobb, mint az eredeti, valós hálózat, sõt ez egy indok is lehet, hogy miért éppen azokat a szabályokat használták az AS-k, amiket titkolnak a nyilvánosság elõl.
-
-%----------------------------------------------------------------------------
-\section{A repülési hálózat vizsgálata}
-%----------------------------------------------------------------------------
-
-Az \href{http://openflights.org/}{openflights.org} oldalon elérhetõ repülési adatbázis feldolgozása és szimulációs elemzése az egyik olyan feladat, amit a következõ félév végéig fogok elvégezni. Az oldal lehetõséget biztosít interaktív keresésre, regisztráció után pedig statisztikákat készíthetünk saját utazásainkról. Emellett elérhetõ a teljes adatbázisa is, amit többek között hivatalos forrásokból, illetve a felhasználóktól gyûjt.
-
-%----------------------------------------------------------------------------
-\subsection{Az adatok}
-%----------------------------------------------------------------------------
-
-Az openflights-on elérhetõ adatbázis világszerte mindenhonnan gyûjt és tárol reptéri, repülési társasági és repülési út adatokat. Közel 8000 reptér, 6000 társaság és 60000 repülési út érhetõ el. Részletes adatok \aref{tab:table_repterek},~\aref{tab:table_repulesitarsasagok}, és a \aref{tab:table_repulesiutvonalak} táblázatokban.
-
-%----------------------------------------------------------------------------
-\subsubsection{Repterek}
-%----------------------------------------------------------------------------
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=150mm,keepaspectratio=true]{./figures/airports-2048.png}
-	% airports-2048.png: 2048x1025 pixel, 96dpi, 54.18x27.12 cm
+	%----------------------------------------------------------------------------
+	\section{A szimulációs eredmények kiértékelése} % MIT KEZDEK AZ EREDMÉNNYEL
+	%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{Az eredmények validálása}
+		%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{Gráfok összehasonlítása}
+		%----------------------------------------------------------------------------
+		%----------------------------------------------------------------------------
+		\subsection{Az adatok megjelenítése}
+		%----------------------------------------------------------------------------
 	
-	\caption{Az OpenFights adatbázisában szereplõ repterek.}
-	\label{fig:figure_repterek}
-\end{figure}
-
-A rendszer tárolja a repterek \emph{nevét}; a \emph{várost}, ahol található; a \emph{szélességi}- és \emph{hosszúsági fokokat}, illetve a \emph{tengerszint feletti magasságot}. Emellett elérhetõ a repülési hatóságok által használt 3 karakter hosszú \emph{IATA\footnote{International Air Transport Association: Nemzetközi Légi Szállítási Szövetség}/FAA\footnote{Federal Aviation Administration: Szövetségi Légügyi Hivatal (USA)} azonosító} is és az OpenFlights által használt decimális \emph{azonosító} is. A legutolsó, 2014 januári frissítéskor az OpenFlights adatbázisa 7733 repteret tartalmazott világszerte, ezt mutatja \aref{fig:figure_repterek} ábra.
-
-\begin{table}[ht]
-	\footnotesize
-	\centering
-	\caption{Az OpenFlights adatbázisában elérhetõ reptéri adatok.}
-	\begin{tabular}{ | l | l |}
-	\hline
-	Attribútum & Leírás \\ \hline
-	Airport ID & Egyedi OpenFlights azonosító.\\
-	Name & A reptér neve.\\
-	City & Az a város, amit a reptér ,,kiszolgál''.\\
-	Country & Az ország vagy terület neve, ahol reptér található.\\
-	IATA/FAA & 3 betûs FAA kód az USA-beli reptereknek vagy 3 betûs IATA kód, minden más esetben.\\
-	ICAO\footnote{International Civil Aviation Organization: Nemzetközi Polgári Repülési Szervezet} & 4 betûs ICAO kód.\\
-	Latitude & A reptér szélességi foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
-	& A Déli féltekén negatív, az Északin pozitív.\\
-	Longitude & A reptér hosszúsági foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
-	& A Nyugati féltekén negatív, a Keletin pozitív.\\
-	Altitude & A tengerszint feletti magasság, lábban mérve (1 láb $\sim$ 0.30 méter).\\
-	\hline
-	\end{tabular}
-	\label{tab:table_repterek}
-\end{table}\newpage
-
-%----------------------------------------------------------------------------
-\subsubsection{Repülési útvonalak}
-%----------------------------------------------------------------------------
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=150mm,keepaspectratio=true]{./figures/routes-2048.png}
-	% routes-2048.png: 2048x1025 pixel, 96dpi, 54.18x27.12 cm
+	%----------------------------------------------------------------------------
+	\section{Valós hálózatok vizsgálata a keretrendszer segítségével}
+	%----------------------------------------------------------------------------
+	\Aref{sect:chapter_examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésüket, hogy hogyan alakítanak ki utakat. Ezután tetszõleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
 	
-	\caption{Az OpenFights adatbázisában szereplõ repülési útvonalak.}
-	\label{fig:figure_repulesiutvonalak}
-\end{figure}
+	A valós hálózatokon kialakult útvonalak és a policy primitívek által meghatározott útvonalak összehasonlítására több megoldás is létezik, az egyik ilyen, hogy minden forrás-cél párra megvizsgálom, hogy a valós és a szimulált út mennyire hasonlít a lépésszám és az érintett köztes csomópontok alapján, illetve az adott p. primitív út nevezhetõ-e jobbnak az adott problémakörben, esetleg egy alternatív útnak, vagy akár rosszabb-e, mint az eredeti útvonal.
 
-A repülési útvonalak leírása öt attribútumot tartalmaz: az \emph{üzemeltetõ repülési társaság} (név és OpenFlights azonosító); a \emph{forrás reptér}; a \emph{cél reptér}. Emellett feljegyzik a \emph{megállások számát}\footnote{Az összesen 59637 bejegyzésbõl 6 esetében van 1 megállás és 1 esetben 2 megállás.}, illetve az ebben a viszonylatban használt \emph{repülõgép típusokat}. Ha két reptér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 reptér és 531 társaság\footnote{Ugyan a légitársaság és reptér adatbázisokban ennél jelentõsen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repterek.} között világszerte, ahogy \aref{fig:figure_repulesiutvonalak} ábra is mutatja.
+	Emellett a hálózatok egészét is összehasonlítom statisztikai módszerekkel: fokszámeloszlás, élek száma, összefüggõség. Ezzel feltárhatóak olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, pl. lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Az Internet tervezésekor fontos szempont volt a robusztusság, amit a gráf pont- ill. él-összefüggõségével tudunk mérni, nyilván egy olyan hálózat, amiben a routing táblák mérete kicsi, de nagy a szétszakadás veszélye, nem jobb, mint az eredeti, valós hálózat, sõt ez egy indok is lehet, hogy miért éppen azokat a szabályokat használták az AS-k, amiket titkolnak a nyilvánosság elõl.
 
-\begin{table}[ht]
-	\footnotesize
-	\centering
-	\caption{Az OpenFlights adatbázisában elérhetõ adatok a repülési útvonalakról.}
-	\begin{tabular}{ | l | l |}
-	\hline
-	Attribútum & Leírás \\ \hline
-	Airline & Az üzemeltetõ társaság 2 betûs (IATA) vagy 3 betûs (ICAO) kódja.\\
-	Airline ID & Az üzemeltetõ társaság egyedi OpenFlights azonosítója.\\
-	Source airport & A forrás reptér 3 betûs (IATA) vagy 4 betûs (ICAO) kódja.\\
-	Source airport ID & A forrás reptér egyedi OpenFlights azonosítója.\\
-	Destination airport & A cél reptér 3 betûs (IATA) vagy 4 betûs (ICAO) kódja.\\
-	Destination airport ID & A cél reptér egyedi OpenFlights azonosítója.\\
-	Codeshare & Igaz, ha a járat ,,codeshare'', azaz nem utasszállító járat, különben üres.\\
-	Stops & A megállások szám (nem az átszállásokat jelenti, a ,,0'' jelenti a direkt járatot).\\
-	Equipment & A viszonylatban használt repülõgép típusok 3 betûs kódjai.\\
-	\hline
-	\end{tabular}
-	\label{tab:table_repulesiutvonalak}
-\end{table}\newpage
-
-%----------------------------------------------------------------------------
-\subsubsection{Repülési társaságok}
-%----------------------------------------------------------------------------
-
-A repülési társaságokról tárolt adatok többek között tartalmazzák a hivatalos \emph{IATA azonosítót}; a cég \emph{nevét}; az \emph{országot}, ahol be van jegyezve; illetve, hogy \emph{aktív-e} még a társaság. Emellett természetesen itt is definiáltak egy saját (OpenFlights) \emph{azonosítót}.
-
-\begin{table}[ht]
-	\footnotesize
-	\centering
-	\caption{Az OpenFlights adatbázisában elérhetõ adatok a repülési társaságokról.}
-	\begin{tabular}{ | l | l |}
-	\hline
-	Attribútum & Leírás \\ \hline
-	Airport ID & Egyedi OpenFlights azonosító.\\
-	Name & A társaság neve.\\
-	Alias & A társaság egyéb megnevezése.\\
-	IATA & 2 betûs IATA kód.\\
-	ICAO & 3 betûs ICAO kód.\\
-	Callsign & A társaság hívójele.\\
-	Country & Az ország vagy terület neve, ahol a társaság be van jegyezve.\\
-	Active & Igaz, ha a társaság jelenleg is, vagy nemrég még mûködött (nem megbízható).\\
-	\hline
-	\end{tabular}
-	\label{tab:table_repulesitarsasagok}
-\end{table}
-
-%----------------------------------------------------------------------------
-\subsection{A szimuláció}
-%----------------------------------------------------------------------------
-
-%----------------------------------------------------------------------------
-\subsubsection{Az adatok elõfeldolgozása}
-%----------------------------------------------------------------------------
-
-A modellezendõ hálózat elsõ megközelítésben az összes csomópontból alkotott $K_{7733}$ teljes gráf. Ez természetesen feleslegesen nagy vizsgálandó hálózatot jelentene ($7733 \choose 2$ = 29.895.778 élû gráf.), emellett az olyan, leíró jellegû jellemzõk, mint a valódi hálózat átmérõje, vagy pont- és él-összefüggõségei elvesznének. Lévén a repülési hálózat skálafüggetlen - sok olyan csomópont van, ahova csak adott, kis számú, közeli csomópontokból indulnak járatok, így nem érdemes összekötni távoli csomópontokkal. Ezenkívül a repülésnél vannak olyan szempontok, amelyeket az útvonalválasztásnál figyelembe vesznek, ám én ezek pontos információk hiányában nem tudom kezelni - pl. csak adott hosszúságú utat tehet meg egy adott típusú repülõgép az üzemanyagtartálya méretétõl függõen.
-
-%----------------------------------------------------------------------------
-\subsubsection{A szimuláció megtervezése}
-%----------------------------------------------------------------------------
-
-A fentiek miatt a szimulált hálózatot a következõképpen határozom meg: pontjai a repterek, élei pedig, az adatbázisban szereplõ össze, megállás nélküli repülõút. Így magától értetõdõen csak olyan élek lesznek a szimulációban, amelyek ,,átrepülhetõk'', hiszen volt már, hogy átrepülték. Emellett pedig ez a hálózat hûen tükrözi a valóságot, hiszen feltehetjük, hogy csak azon élek nincsenek behúzva, amelyeket repüléstechnikai okokból nem is lehet, különben valaki, valamikor már repült volna azon az úton.\\
-
-Az útvonalválasztást a 10 legjelentõsebb légitársaság alapján szimulálom, mert a 10 legtöbb járatot üzemeltetõ társaság az utak 24\%-át adják. A policy vezérelt útvonalválasztást az összes olyan pontpár között lefuttatom, amely ezen 10 társaság célpontja.
-
-% 5209 (2417), 4296 (2186), 2009 (1520), 24 (1513), 5265 (1381), 751 (1227), 1767 (1152), 1758 (1097), 4547 (1018), 3320 (931), 
-
-
-%----------------------------------------------------------------------------
-\subsubsection{A vizsgálandó metrikák, az élek súlyozása}
-%----------------------------------------------------------------------------
-
-A fejezet elején említett két megközelítést fogom alkalmazni, azaz a pont-pont kapcsolatokat is összehasonlítom és a globális hálózat mutatóit is. Az élek súlya annak megfelelõen változik, hogy milyen policy algebráját szimulálom. Emellett a repterek GPS koordinátái alapján meghatározom az összekötött repterek fizikai távolságát. Mivel a légtérben nincsen torlódás az út szélességének definiálásának nincs értelme.\\
-
-A globális hálózati metrikák közül a fokszámeloszlást fogom vizsgálni, illetve a hálózat átmérõjét és a pont- és él-összefüggõségét. A fokszámeloszlás és az átmérõ összehasonlításra azért van szükség, mert ezek alapvetõ karakterisztikáját adják a hálózatnak. A pont- és él-összefüggõséget pedig azért, mert ezek lehetnek olyan tényezõk, amik a repülõtársaságok útvonalválasztása mögött meghúzódhatnak.
+	%----------------------------------------------------------------------------
+	\section{Összefoglaló}
+	%----------------------------------------------------------------------------
