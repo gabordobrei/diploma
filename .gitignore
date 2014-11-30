@@ -5,5 +5,7 @@
 *.gz
 *.thm
 *.ini
+*.lof
+*.toc
 
 simulation/

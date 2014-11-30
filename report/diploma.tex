@@ -3,7 +3,7 @@
 
 %\PassOptionsToPackage{chapternumber=Huordinal}{magyar.ldf}
 \usepackage{t1enc}
-\usepackage[latin2]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumerate}
@@ -24,12 +24,12 @@
 %--------------------------------------------------------------------------------------
 % Main variables
 %--------------------------------------------------------------------------------------
-\newcommand{\vikszerzo}{Dˆbrei G·bor}
-\newcommand{\vikkonzulens}{dr. Heszberger Zal·n}
-\newcommand{\vikcim}{Szab·ly alap˙ ˙tvonalÈpÌtÈsi stratÈgi·k nagy h·lÛzatokban}
-\newcommand{\viktanszek}{T·vkˆzlÈsi Ès MÈdiainformatikai TanszÈk}
+\newcommand{\vikszerzo}{D√∂brei G√°bor}
+\newcommand{\vikkonzulens}{dr. Heszberger Zal√°n}
+\newcommand{\vikcim}{Szab√°ly alap√∫ √∫tvonal√©p√≠t√©si strat√©gi√°k nagy h√°l√≥zatokban}
+\newcommand{\viktanszek}{T√°vk√∂zl√©si √©s M√©diainformatikai Tansz√©k}
 \newcommand{\vikdoktipus}{Diplomaterv}
-\newcommand{\vikdepartmentr}{Dˆbrei G·bor}
+\newcommand{\vikdepartmentr}{D√∂brei G√°bor}
 
 %--------------------------------------------------------------------------------------
 % Page layout setup
@@ -40,10 +40,10 @@
 % (like the ToC, the References, and the Chapter pages)remain in plane style
 
 \pagestyle{plain}
-%\setlength{\parindent}{0pt} % ·ttekinthetıbb, angol nyelv˚ dokumentumokban jellemzı
-%\setlength{\parskip}{8pt plus 3pt minus 3pt} % ·ttekinthetıbb, angol nyelv˚ dokumentumokban jellemzı
-\setlength{\parindent}{12pt} % magyar nyelv˚ dokumentumokban jellemzı
-\setlength{\parskip}{0pt}    % magyar nyelv˚ dokumentumokban jellemzı
+%\setlength{\parindent}{0pt} % √°ttekinthet≈ëbb, angol nyelv≈± dokumentumokban jellemz≈ë
+%\setlength{\parskip}{8pt plus 3pt minus 3pt} % √°ttekinthet≈ëbb, angol nyelv≈± dokumentumokban jellemz≈ë
+\setlength{\parindent}{12pt} % magyar nyelv≈± dokumentumokban jellemz≈ë
+\setlength{\parskip}{0pt}    % magyar nyelv≈± dokumentumokban jellemz≈ë
 
 \marginsize{35mm}{25mm}{15mm}{15mm} % anysize package
 \setcounter{secnumdepth}{0}
@@ -57,7 +57,7 @@
 %--------------------------------------------------------------------------------------
 \hypersetup{
     bookmarks=true,            % show bookmarks bar?
-    unicode=false,             % non-Latin characters in Acrobatís bookmarks
+    unicode=false,             % non-Latin characters in Acrobat‚Äôs bookmarks
     pdftitle={\vikcim},        % title
     pdfauthor={\vikszerzo},    % author
     pdfsubject={\vikdoktipus}, % subject of the document
@@ -110,18 +110,18 @@
 \author{\vikszerzo}
 \title{\viktitle}
 \includeonly{
-  titlepage,%
-  declaration,%
-  acknowledgement,%
-  abstract,%
-  introduction,%
-  chapter1,%
-  chapter2,%
-  chapter3,%
-  chapter4,%
-  summary,%
-  bibliography,
-  appendices,%
+  content/titlepage,%
+  content/declaration,%
+  content/acknowledgement,%
+  content/abstract,%
+  content/introduction,%
+  content/chapter1,%
+  content/chapter2,%
+  content/chapter3,%
+  content/chapter4,%
+  content/summary,%
+  content/bibliography,
+  content/appendices,%
 }
 %--------------------------------------------------------------------------------------
 %  Setup captions
@@ -142,27 +142,27 @@ aboveskip=10pt}
 \begin{document}
 \pagenumbering{arabic}
 \onehalfspacing
-\include{titlepage}
-\include{declaration}
-\include{acknowledgement}
+\include{content/titlepage}
+\include{content/declaration}
+\include{content/acknowledgement}
 \tableofcontents\vfill
-\include{abstract}
-\include{introduction}
-\include{chapter1}
-\include{chapter2}
-\include{chapter3}
-\include{chapter4}
-\include{summary}
+\include{content/abstract}
+\include{content/introduction}
+\include{content/chapter1}
+\include{content/chapter2}
+\include{content/chapter3}
+\include{content/chapter4}
+\include{content/summary}
 
-\listoffigures\addcontentsline{toc}{chapter}{¡br·k jegyzÈke}
-%\listoftables\addcontentsline{toc}{chapter}{T·bl·zatok jegyzÈke}
+\listoffigures\addcontentsline{toc}{chapter}{√Åbr√°k jegyz√©ke}
+%\listoftables\addcontentsline{toc}{chapter}{T√°bl√°zatok jegyz√©ke}
 
 %\bibliography{mybib}
-%\addcontentsline{toc}{chapter}{IrodalomjegyzÈk}
+%\addcontentsline{toc}{chapter}{Irodalomjegyz√©k}
 %\bibliographystyle{plain}
-\include{bibliography}
+\include{content/bibliography}
 
-\include{appendices}
+\include{content/appendices}
 
 \label{page:last}
 \end{document}

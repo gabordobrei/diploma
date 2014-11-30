@@ -1,0 +1,62 @@
+%----------------------------------------------------------------------------
+%\Aref{sect:chapter_framework}. fejezetben az előző vizsgálatok alapján egy olyan modellezési keretrendszer dolgozok ki és mutatok be, melynek segítségével a nagyméretu valós hálózatokat jellemző útvonalkialakítási dinamikát vagyok képes strukturált módon jellemezni.
+%----------------------------------------------------------------------------
+\chapter{A modellezési keretrendszer}\label{sect:chapter_framework}
+%----------------------------------------------------------------------------
+  %----------------------------------------------------------------------------
+  \section{Specifikáció} % MILYENNEK KELL LENNIE
+  %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{A bemenet}
+    %----------------------------------------------------------------------------
+      %----------------------------------------------------------------------------
+      \subsubsection{Az adatok előfeldolgozása, tisztítása}
+      %----------------------------------------------------------------------------
+      %----------------------------------------------------------------------------
+      \subsubsection{A domain szűkítése}
+      %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{A szimuláció}
+    %----------------------------------------------------------------------------
+      %----------------------------------------------------------------------------
+      \subsubsection{Utak generálása}
+      %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{A kimenet}
+    %----------------------------------------------------------------------------
+
+  %----------------------------------------------------------------------------
+  \section{A szimulátor} % MIT KELL TUDNIA
+  %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{A matematikai struktúrák implementálása}
+    %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{A felhasznált algoritmusok elemzése}
+    %----------------------------------------------------------------------------
+
+  %----------------------------------------------------------------------------
+  \section{A szimulációs eredmények kiértékelése} % MIT KEZDEK AZ EREDMÉNNYEL
+  %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{Az eredmények validálása}
+    %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{Gráfok összehasonlítása}
+    %----------------------------------------------------------------------------
+    %----------------------------------------------------------------------------
+    \subsection{Az adatok megjelenítése}
+    %----------------------------------------------------------------------------
+
+  %----------------------------------------------------------------------------
+  \section{Valós hálózatok vizsgálata a keretrendszer segítségével}
+  %----------------------------------------------------------------------------
+  \Aref{sect:chapter_examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésüket, hogy hogyan alakítanak ki utakat. Ezután tetszőleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
+
+  A valós hálózatokon kialakult útvonalak és a policy primitívek által meghatározott útvonalak összehasonlítására több megoldás is létezik, az egyik ilyen, hogy minden forrás-cél párra megvizsgálom, hogy a valós és a szimulált út mennyire hasonlít a lépésszám és az érintett köztes csomópontok alapján, illetve az adott p. primitív út nevezhető-e jobbnak az adott problémakörben, esetleg egy alternatív útnak, vagy akár rosszabb-e, mint az eredeti útvonal.
+
+  Emellett a hálózatok egészét is összehasonlítom statisztikai módszerekkel: fokszámeloszlás, élek száma, összefüggőség. Ezzel feltárhatóak olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, pl. lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Az Internet tervezésekor fontos szempont volt a robusztusság, amit a gráf pont- ill. él-összefüggőségével tudunk mérni, nyilván egy olyan hálózat, amiben a routing táblák mérete kicsi, de nagy a szétszakadás veszélye, nem jobb, mint az eredeti, valós hálózat, sőt ez egy indok is lehet, hogy miért éppen azokat a szabályokat használták az AS-k, amiket titkolnak a nyilvánosság elől.
+
+  %----------------------------------------------------------------------------
+  \section{Összefoglaló}
+  %----------------------------------------------------------------------------
