@@ -5,3 +5,5 @@
 *.gz
 *.thm
 *.ini
+
+simulation/
