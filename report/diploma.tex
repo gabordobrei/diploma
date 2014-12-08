@@ -5,6 +5,8 @@
 \usepackage{t1enc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 \usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage[thmmarks]{ntheorem}
@@ -21,6 +23,8 @@
 \usepackage{setspace}  % Ettol a tablazatok, abrak, labjegyzetek maradnak 1-es sorkozzel!
 \usepackage[hang]{caption}
 \usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{cite}
 
 %--------------------------------------------------------------------------------------
 % Main variables
@@ -99,8 +103,18 @@
 \newcommand{\figref}[1]{\ref{fig:#1}.}
 \renewcommand{\eqref}[1]{(\ref{eq:#1})}
 \newcommand{\listref}[1]{\ref{listing:#1}.}
-\newcommand{\sectref}[1]{\ref{sect:#1}}
 \newcommand{\tabref}[1]{\ref{tab:#1}.}
+
+\newcommand\TODO[1]{\textcolor{red}{ TODO #1}}
+\newcommand\todo[0]{\textcolor{red}{ TODO \newline}}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\makeatletter
+\renewcommand*{\ALG@name}{Algoritmus}
+\makeatother
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 %\DeclareMathOperator*[1]{\floor}{arg\,max}
@@ -158,10 +172,10 @@ aboveskip=10pt}
 \listoffigures\addcontentsline{toc}{chapter}{Ábrák jegyzéke}
 %\listoftables\addcontentsline{toc}{chapter}{Táblázatok jegyzéke}
 
-%\bibliography{mybib}
-%\addcontentsline{toc}{chapter}{Irodalomjegyzék}
-%\bibliographystyle{plain}
-\include{bibliography}
+\bibliography{content/mybib}{}
+\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+\bibliographystyle{my_bibtex_style}
+%\include{bibliography}
 
 \include{content/appendices}
 
