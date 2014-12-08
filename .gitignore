@@ -7,5 +7,7 @@
 *.ini
 *.lof
 *.toc
+*.bbl
+*.blg
 
 simulation/
