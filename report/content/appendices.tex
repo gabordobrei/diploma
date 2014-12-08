@@ -31,34 +31,28 @@
     A nagy ordós jelölésből szokás kihagyni a $logn$-es szorzót, minthogy egy decimális számot mindenképpen át kell konvertálni $logn$ bitre, így egy algoritmus lépésszámánál vagy (lokális / globális) memóriaigénynél biztosan nem tudjuk megspórolni: $\tilde{O}(n)~=~O(nlogn)$.
   \end{note}
 
-  \begin{definition} [k-szorosan pont-összefüggő gráf 1.]
+  \begin{definition} [K-szorosan pont-összefüggő gráf 1.]
     Egy G gráf k-szorosan pont-összefüggő, ha tetszőleges $k$-nál kisebb elemszámú csúcshalmazát elhagyva összefüggő gráfot kapunk, és $|V(G)| \geq k$.
   \end{definition}
-  \begin{definition} [k-szorosan él-összefüggő gráf 1.]
+  \begin{definition} [K-szorosan él-összefüggő gráf 1.]
     Egy G gráf k-szorosan él-összefüggő, ha tetszőleges $k$-nál kisebb elemszámú élhalmazát elhagyva összefüggő gráfot kapunk.
   \end{definition}
 
-  %--- block comment ---
-  \iffalse
   Két alternatív definíció:
-  \begin{definition} [k-szorosan pont-összefüggő gráf 2.]
+  \begin{definition} [K-szorosan pont-összefüggő gráf 2.]
     Egy G gráf k-szorosan pont-összefüggő, ha tetszőleges $k$-nál kisebb elemszámú csúcshalmazát elhagyva összefüggő gráfot kapunk, és $|V(G)| \geq k$.
   \end{definition}
-  \begin{definition} [k-szorosan él-összefüggő gráf 2.]
+
+  \begin{definition} [K-szorosan él-összefüggő gráf 2.]
     Egy G gráf k-szorosan él-összefüggő, ha tetszőleges $k$-nál kisebb elemszámú élhalmazát elhagyva összefüggő gráfot kapunk.
   \end{definition}
-  \fi
-  %--- block comment ---
 
-  \begin{definition} [összefüggő gráf átmérője]
+  \begin{definition} [Összefüggő gráf átmérője]
     A $G$ összefüggő gráf átmérője a két legtávolabbi csúcsának távolsága, azaz az összes csúcspár közötti legrövidebb utak közül a leghosszabbnak a hossza. Jelölje $P(u, v)$ az $u$ és $v$ csúcsok közötti utak halmazát, és $l(p)$ a $p$ út hosszát, ekkor a gráf átmérője:\\
     $$D_G = \max_{u,v \in V} \min_{p \in P(u,v)} l(p)$$
   \end{definition}
 
-  %--- block comment ---
-  \iffalse
-
-  \begin{definition} [k-reguláris gráf]
+  \begin{definition} [K-reguláris gráf]
     Egy irányítatlan $G~=~(V,E)$ gráfot k-regulárisnak nevezünk, ha minden csúcsa pontosan k-fokú:
     $d(v)~=~k,~\forall v~\in~V.$
   \end{definition}
@@ -75,17 +69,29 @@
     A $G=(V,E)$ egy irányított gráf. $G$ egy topologikus rendezése, a csúcsok egy olyan $v_{1},~v_{2},...,~v_{|V|}$ sorrendje, melyben $i~\rightarrow~j~\in~E$ esetén $v_i$ előbb van, mint $v_j$.
   \end{definition}
 
-  \begin{theorem}
+  \begin{theorem} [Topologikus rendezés létezése]
     Egy irányított gráfnak akkor és csak akkor van topologikus rendezése, ha DAG.
   \end{theorem}
-  \fi
-  %--- block comment ---
+
+  \begin{theorem} [Maximális út létezése]\label{max_route}
+    Egy irányított, súlyozott gráfban akkor lehet maximális út $u$ és $v$ között, ha a gráf DAG.
+  \end{theorem}
+
+  \begin{definition} [Gráfok izomorfiája]\label{grafizo}
+    A gráfizomorfizmusok gráfok közötti bijektív struktúratartó leképezések, értve ezalatt azt, hogy a függvény és az inverz függvény egyaránt szomszédos csúcsokat szomszédos csúcsokra képez le:
+    Adott $G(V,E)$ és $G'(V',E')$ gráfok. Egy $f:V \rightarrow V'$ bijektív függvény gráfizomorfizmus, ha $\{u,v\}\in E \Leftrightarrow \{f(u),f(v)\}\in E'$. Ilyenkor azt mondjuk, hogy $G(V,E)$ és $G'(V',E')$ izomorf.
+  \end{definition}
+
+  \begin{definition} [Eldöntési probléma]\label{eldontesi_def}
+    Egy eldöntési problémához tartozó $L$ nyelv azoknak a bemeneteknek a halmaza, amelyekre a válasz IGEN. A lehetséges bemeneteket (amik tehát vagy beletartoznak $L$-be vagy nem), szavaknak hívjuk. Egy $X$ eldöntési probléma és $x$ bemenet esetén $x~\in~X$ jelöli, hogy az $x$ bemenetre a válasz IGEN.
+  \end{definition}
+
   \newpage
 
   %----------------------------------------------------------------------------
-  \section{Az útvonalválasztás teljes modellje }\label{sect:appendix_routingmodell}
+  \section{Az útvonalválasztás teljes modellje }\label{routingmodell}
   %----------------------------------------------------------------------------
-  Ahhoz, hogy felépíthessük a routing teljes modelljét, a routing algebrákon (\aref{sect:section_routingalgebrak}. rész) kívül egy routing függvényre van szükség. Ebben a modellben a csomagok (ahogyan a valóságban is) hasznos teherből (payload) és egy header-ből állnak. Ha adott az $\mathcal{A}$ routing algebra és a G gráf, akkor a policy routing függvény az $R:~ \mathbb{N} \times \mathbb{N}~\mapsto~\mathbb{N} \times \mathbb{N}$ leképezés, a csúcsok $L_{V}:~V~\mapsto~\mathbb{N}$ címkézésével és az élek $L_{E}:~E~\mapsto~\mathbb{N}$ címkézésével, a következőképpen: minden $s,~t$ pontpárra egymás után alkalmazva R-t:
+  Ahhoz, hogy felépíthessük a routing teljes modelljét, a routing algebrákon (\aref{section_routingalgebrak}. rész) kívül egy routing függvényre van szükség. Ebben a modellben a csomagok (ahogyan a valóságban is) hasznos teherből (payload) és egy header-ből állnak. Ha adott az $\mathcal{A}$ routing algebra és a G gráf, akkor a policy routing függvény az $R:~ \mathbb{N} \times \mathbb{N}~\mapsto~\mathbb{N} \times \mathbb{N}$ leképezés, a csúcsok $L_{V}:~V~\mapsto~\mathbb{N}$ címkézésével és az élek $L_{E}:~E~\mapsto~\mathbb{N}$ címkézésével, a következőképpen: minden $s,~t$ pontpárra egymás után alkalmazva R-t:
   $$(h_{i+1},~l_{i+1})~=~R(v_{i},~h_{i}),~\forall i~=~1, ..., k-1$$
   megadja a preferált $p_{st}^{*}~=~(s=) v_{1}, v_{2}, ..., v_{k}(=t)$ utat $\mathcal{A}$ szerint a megfelelő $l_{i+1}~=~(v_{i},v_{i+1})$ él-címkékkel, ahol $h_{1}$ egy alkalmas kezdő header. Azt mondjuk, hogy $R$ megvalósítja az $\mathcal{A}$ policy-t $G$-n. Még néhány óvintézkedést meg kell tennünk, hogy a címkékkel nehogy több routing információt kelljen kódolni a szükségesnél, azaz $c log n$\footnote{ Ez a címek kódolásához szükséges információ.}, valamilyen alkalmas $c$ konstanssal.
 
@@ -96,26 +102,26 @@
   \end{definition}
 
   %----------------------------------------------------------------------------
-  \section{Tételek a routing algebrák témakörében}\label{sect:appendix_algebratetelek}
+  \section{Tételek a routing algebrák témakörében}\label{algebratetelek}
   %----------------------------------------------------------------------------
-  \begin{theorem}\label{eq:appendix_algebratetel1}
+  \begin{theorem} [Tömöríthetőség 1]\label{eq:algebratetel1}
     Ha $\mathcal{A}$ algebra kiválasztó (S) és monoton (M), akkor tömöríthető.
   \end{theorem}
 
-  \begin{theorem}\label{eq:appendix_algebratetel2}
+  \begin{theorem} [Tömöríthetőség 2]\label{eq:algebratetel2}
     Ha $\mathcal{A}$ algebra szigorúan monoton (SM), akkor nem tömöríthető.
   \end{theorem}
 
   Ennél egy általánosabb tétel, aminek következménye az előző tétel:
-  \begin{theorem}\label{eq:appendix_algebratetel3}
+  \begin{theorem} [Tömöríthetőség 3]\label{eq:algebratetel3}
     Ha $\mathcal{A}$ algebra tartalmaz egy delimitált (D), szigorúan monoton (SM) subalgebrát, akkor $\mathcal{A}$ nem tömöríthető.
   \end{theorem}
   \newpage
 
   %----------------------------------------------------------------------------
-  \section{A szimulátor technikai részletei}\label{sect:appendix_simulator}
+  \section{A szimulátor technikai részletei}\label{simulator}
   %----------------------------------------------------------------------------
-  A szimulátort Java nyelven fejlesztettem, mivel semmilyen megkötés nem volt a \aref{sect:chapter_framework}. fejezet specifikációjában, ami alapján ne lett volna alkalmas ez a megoldás. Azért, hogy ne csak a szimulációs eredményeket tudjam felhasználni a diplomamunkában, illetve ne csak egy elméleti megoldás legyen a keretrendszerem, törekedtem a szép, tiszta, érthető kód írására. Így mellékletként ez is értékelhető, a további munka során felhasználható.\\
+  A szimulátort Java nyelven fejlesztettem, mivel semmilyen megkötés nem volt a \aref{framework}. fejezet specifikációjában, ami alapján ne lett volna alkalmas ez a megoldás. Azért, hogy ne csak a szimulációs eredményeket tudjam felhasználni a diplomamunkában, illetve ne csak egy elméleti megoldás legyen a keretrendszerem, törekedtem a szép, tiszta, érthető kód írására. Így mellékletként ez is értékelhető, a további munka során felhasználható.\\
 
   A fejlesztés során kér külső függvénykönyvtárat használtam fel: a Google Guava\footnote{A Google Guava forrása: \href{https://github.com/google/guava}{https://github.com/google/guava}} 18-as verzióját az adatszerkezetek és bejárásukra, illetve a Google Gson\footnote{A Google Gson forrása: \href{https://code.google.com/p/google-gson/}{https://code.google.com/p/google-gson/}} 2.2.4-es verzióját az eredmények JSON formátumban való mentéséhez és visszaállításukhoz.
 
@@ -130,3 +136,8 @@
   A tervezéstől kezdve a fejlesztése során végig arra törekedtem, hogy moduláris, könnyen újrahasználható szoftvert fejlesszek, melyet később tovább lehet adni. Ennek érdekében a lehető legtisztább, legegyszerűbb megoldásokat alkalmaztam, illetve ahol csak tudtam, ragaszkodtam a clean code\footnote{Robert C. Martin: Clean Code - A Handbook of Agile Software Craftsmanship} elveihez.\\
 
   Összefoglalva elmondható, hogy sikerült elérni a célt a saját fejlesztésű szimulátorral: nem kellett másik szoftver használatát megtanulnom, teljesen biztos lehetek benne, hogy az útvonalválasztási algoritmus optimálisan van megírva és az algebrák implementálása pontos, egyszerű, de ésszerű. Emellett további speciális felhasználásra viszonylag egyszerűen lehet módosítani a meglévő kódbázist.
+
+    %----------------------------------------------------------------------------
+    \subsubsection{A módosított Dijkstra algoritmus az \textit{összes} minimális út megtalálásához}\label{dijkstra}
+    %----------------------------------------------------------------------------
+    sadf

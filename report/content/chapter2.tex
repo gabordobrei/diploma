@@ -2,7 +2,7 @@
 % Itt egy-egy alfejezetben nézném meg a BGP-hez és a vírus-/trendterjedéshez kapcsolódó policy-kat ill. egy harmadik alfejezetben néznék olyan extrákat, amiket nem tudok besorolni: ezek a tényleg elvontabbak. Tehát itt policy-kat sorolnék: BGP / vírus / extrák felosztásban. A 2.4 alfejezetben pedig írnék a szimulációról / a későbbi összehasonlításról, bár ezzel nagyon el vagyok csúszva (még semmit nem csináltam...)
 
 %----------------------------------------------------------------------------
-\chapter{A hálózatkutatás legfontosabb modelljei}\label{sect:chapter_examples}
+\chapter{A hálózatkutatás legfontosabb modelljei}\label{examples}
 %----------------------------------------------------------------------------
 \setcounter{note}{0}
 
@@ -14,7 +14,7 @@ asdf
 
 \fi
 
-Számos kutatás foglalkozik különböző hálózatokon terjedő információk vizsgálatával. Természetesen minden ilyen modellt le lehet írni az általánosított hálózati modellel, így a meghatározó policy-k azonosítása után vizsgálható \aref{sect:chapter_modell}. fejezetben bemutatott, vagy azokhoz hasonló algebrákkal. Ebben a fejezetben bemutatom a hálózatkutatás leggyakrabban vizsgált modelljeit, és leírom a modellekhez tartozó meghatározó policy-ket is.\\
+Számos kutatás foglalkozik különböző hálózatokon terjedő információk vizsgálatával. Természetesen minden ilyen modellt le lehet írni az általánosított hálózati modellel, így a meghatározó policy-k azonosítása után vizsgálható \aref{modell}. fejezetben bemutatott, vagy azokhoz hasonló algebrákkal. Ebben a fejezetben bemutatom a hálózatkutatás leggyakrabban vizsgált modelljeit, és leírom a modellekhez tartozó meghatározó policy-ket is.\\
 
 Az útvonalválasztás szempontjából alapvető különbség van a lokális- és a globális optimalizálás között. Míg globális optimalizálás esetén az egész hálózatot figyelembe véve választjuk meg a legjobb útvonalat, addig lokális optimalizálásnál csak a helyi viszonyok számítanak. Jelenleg a számítógépes hálózatokban a két legelterjedtebben használt policy kategória a ,,distance-vector''\footnote{Távolság-vektor módszerek, a Bellman-Ford algoritmusra épül.} és a ,,link-state''\footnote{Link-állapot módszerek, a Dijkstra algoritmusra épül.}. A módszerek abban különböznek, hogy a hálózatról milyen információkat gyűjtenek és hogyan, de abban megegyeznek, hogy globális optimumra törekszenek, tehát pl. a legrövidebb utat keresik meg. Ezzel szemben pl. a greedy routing\footnote{Mohó útvonalválasztás: A lokális helyzet optimumát választja.} csupán törekszik elérni globális optimumot, ám könnyen elakadhat, ha nem javítunk az alapalgoritmuson \cite{Routing_with_Guaranteed_Delivery_in_Adhoc_Wireless_Networks}. Könnyen belátható, hogy a vírusterjedés-jellegű feladatok lokális optimumra törekszenek, míg az Internetes útvonalválasztás globálisan optimalizál.
 
@@ -55,12 +55,12 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
 
     Néhány feltételezést tettünk az egyenletek felírásához: (1) minden egyedet ugyanakkora valószínűséggel fertőz meg egy $\beta$ kapcsolati rátájú betegség, így minden fertőzött egyed $\beta N$ egészséges egyedet fertőz meg egy időegység alatt, illetve az egyedeknek átlagosan $S/N$ megfertőzhető kapcsolata van. Tehát a fertőzési ráta: az új betegek száma $\beta N (S/N)$, azaz amennyivel változik (nyilván csökken) $S$: $\beta N (S/N)I~=~\beta SI$.
 
-    Ezután érthető a második és harmadik egyenlet: a fertőzöttek száma annyival nő, ahánnyal kevesebb egészséges lesz, illetve annyival fogy, ahány meghal vagy meggyógyul. A $\gamma$ jelöli az átlagos halálozási/felépülési rátát.
+    Ezután érthető a második és harmadik egyenlet: a fertőzöttek száma annyival nő, ahánnyal kevesebb egészséges lesz, illetve annyival fogy, ahány meghal vagy meggyógyul. A $\gamma$ jelöli az átlagos halálozási / felépülési rátát.
 
     Végül feltesszük, hogy a megfertőződés és a felépülés időben jóval gyorsabb folyamat, mint a születés és halálozás, így ezeket a faktorokat kihagyhatjuk a modellből.
 
     \begin{note}
-      Természetesen számos következő szempontot figyelembe lehet még venni a modell mélyítése érdekében, ilyen pl. az előbb említett születés és halálozás; az $R \rightarrow S$ átmenet, azaz a fertőzésből való meggyógyulás után újra meg lehet betegedni; figyelembe lehet venni az ún. lappangási időszakot, bevezetve egy újabb csoportot ($S \rightarrow \epsilon \rightarrow I \rightarrow R$); vagy a veleszületett betegséget is, azaz a fertőzött anyától elkapott betegséget is.\newline  
+      Természetesen számos következő szempontot figyelembe lehet még venni a modell mélyítése érdekében, ilyen például az előbb említett születés és halálozás; az $R \rightarrow S$ átmenet, azaz a fertőzésből való meggyógyulás után újra meg lehet betegedni; figyelembe lehet venni az úgynevezett lappangási időszakot, bevezetve egy újabb csoportot ($S \rightarrow \epsilon \rightarrow I \rightarrow R$); vagy a veleszületett betegséget is, azaz a fertőzött anyától elkapott betegséget is.\newline
       Jelen dolgozat szempontjából az alap SIR modell megfelelő.
     \end{note}
 
@@ -70,11 +70,11 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
 
     A fertőző betegségek terjedése nem látszik útvonalválasztási kérdésnek sőt, semmilyen policy-t nem veszünk észre első ránézésre, ezért talán némi magyarázatot igényel a problémakör vizsgálata. A diplomadolgozat végső célja rejtett szabályok felismerése előre definiált policy primitívek segítségével tetszőleges hálózatban, így világos, hogy a vírusterjedést sem zárhatom ki a vizsgálatból.\\
 
-    A fejezet bevezetőjében említett két tulajdonság közül az optimalizálás az, ami itt a legszembetűnőbb. Ha ugyanis nem úgy tekintünk a problémára, mint egy kétszereplős ,,háborúra'' (ember a vírus ellen), hanem úgy, mint a kis organizmusok egyéni útvonalválasztására, akkor látható, hogy lokális optimalizálásról van szó, hiszen minden egyes fertőző elem szeretne minél tovább élni újabb és újabb gazdatestet találva magának. Lévén itt nem a tipikus több lépésen keresztüli pont-pont routing-ról van szó, globális optimalizálási feladat legfeljebb az lehet, hogy minél több csomópont legyen fertőzött. Minden csomópontból arra fertőz tovább a vírus, amerre a legtöbb eséllyel fog továbbélni - ez nyilván függ az adott vírus-egyedtől is -, azaz pl. a leggyengébb immunrendszerű ember felé. Ez alapján két policy-t mutatok be:
+    A fejezet bevezetőjében említett két tulajdonság közül az optimalizálás az, ami itt a legszembetűnőbb. Ha ugyanis nem úgy tekintünk a problémára, mint egy kétszereplős ,,háborúra'' (ember a vírus ellen), hanem úgy, mint a kis organizmusok egyéni útvonalválasztására, akkor látható, hogy lokális optimalizálásról van szó, hiszen minden egyes fertőző elem szeretne minél tovább élni újabb és újabb gazdatestet találva magának. Lévén itt nem a tipikus több lépésen keresztüli pont-pont routing-ról van szó, globális optimalizálási feladat legfeljebb az lehet, hogy minél több csomópont legyen fertőzött. Minden csomópontból arra fertőz tovább a vírus, amerre a legtöbb eséllyel fog továbbélni - ez nyilván függ az adott vírus-egyedtől is -, azaz például a leggyengébb immunrendszerű ember felé. Ez alapján két policy-t mutatok be:
 
     \begin{itemize}
       \item Fertőzési-határ: A vírus-egyed legjobb továbbfertőzési policy-ja.
-      \item Unió-fedés: A globális fertőzés policy-ja. 
+      \item Unió-fedés: A globális fertőzés policy-ja.
     \end{itemize}
 
       %----------------------------------------------------------------------------
@@ -161,7 +161,7 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
 
   Érdemes megvizsgálni a BGP szabályrendszerét: a BGP routing policy-ja többszintű. A legalsó szint, a legalapvetőbb policy a völgymentesség. Ez azt jelenti, hogy az útvonalválasztásnál elsődleges szempont, hogy semelyik AS-nek ne kelljen fizetni olyan forgalomért, ami csak áthalad rajta. Ha a hierarchiában lefelé mutató éleket $l$-lel, a felfelé mutató éleket $f$-fel, a peering kapcsolatokat pedig $p$-vel jelöljük, akkor minden routing során kijelölt útvonal csak a következő alakban írható le: néhány (akár nulla) $f$ él, aztán maximum egy $p$ él, utána pedig néhány (akár nulla) $l$ él.\\
 
-  Emellett, ha felhasználjuk a gráfbeágyazás és kompakt routing eredményeit, akkor egy új távolságfüggvénnyel és a csomópontok koordinátázásával megvalósítható az Internet tartományszintű gráfjában is egy elakadásmentes mohó útvonalválasztás \cite{DobreiBScSzakdolgozat}. 
+  Emellett, ha felhasználjuk a gráfbeágyazás és kompakt routing eredményeit, akkor egy új távolságfüggvénnyel és a csomópontok koordinátázásával megvalósítható az Internet tartományszintű gráfjában is egy elakadásmentes mohó útvonalválasztás \cite{DobreiBScSzakdolgozat}.
 
   \begin{figure}[h]
     \centering
@@ -255,4 +255,4 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
 
   Rávilágított a trend- és a vírusterjedés hasonlóságaira és különbségeire útvonalválasztási szempontból és definiáltam két policy-t, a Összekötő-keresés-t és a Korai-elfogadó-keresés-t. Ezen policy-k algebrái: $\mathcal{O}$ = ($(1,d),~0,~max,~\geq$) és $\mathcal{K}$ = ($\mathbb{N},~-1,~+,~\geq$).
 
-  Végül megvizsgáltam a már ismertetett policy-kon (ld. \aref{sect:section_algebrapeldak}. alfejezet) kívül az Internet tartományszintű gráfjának az alapszabályát, a Völgymentességet, illetve felvázoltam a hiperbolikus térbe ágyazás - általa pedig az elakadásmentes mohó útvonalválasztás - lehetőségét: $\mathcal{V}$ = ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$) és $\mathcal{H}$ = ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$).
+  Végül megvizsgáltam a már ismertetett policy-kon (ld. \aref{section_algebrapeldak}. alfejezetet) kívül az Internet tartományszintű gráfjának az alapszabályát, a Völgymentességet, illetve felvázoltam a hiperbolikus térbe ágyazás - általa pedig az elakadásmentes mohó útvonalválasztás - lehetőségét: $\mathcal{V}$ = ($\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$) és $\mathcal{H}$ = ($\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq$).

@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------
-%\Aref{sect:chapter_test}. fejezetben több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitől akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
+%\Aref{test}. fejezetben több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitől akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
 %----------------------------------------------------------------------------
-\chapter{Repülési hálózat vizsgálata}\label{sect:chapter_test}
+\chapter{Repülési hálózat vizsgálata}\label{test}
 %----------------------------------------------------------------------------
 
 Az \href{http://openflights.org/}{openflights.org} oldalon elérhető repülési adatbázis feldolgozása és szimulációs elemzése az egyik olyan feladat, amit a következő félév végéig fogok elvégezni. Az oldal lehetőséget biztosít interaktív keresésre, regisztráció után pedig statisztikákat készíthetünk saját utazásainkról. Emellett elérhető a teljes adatbázisa is, amit többek között hivatalos forrásokból, illetve a felhasználóktól gyűjt.
@@ -9,18 +9,16 @@ Az \href{http://openflights.org/}{openflights.org} oldalon elérhető repülési
   %----------------------------------------------------------------------------
   \section{Az adatok}
   %----------------------------------------------------------------------------
-
-  Az openflights-on elérhető adatbázis világszerte mindenhonnan gyűjt és tárol reptéri, repülési társasági és repülési út adatokat. Közel 8000 reptér, 6000 társaság és 60000 repülési út érhető el. Részletes adatok \aref{tab:table_repterek},~\aref{tab:table_repulesitarsasagok}, és a \aref{tab:table_repulesiutvonalak} táblázatokban.
+  Az openflights-on elérhető adatbázis világszerte mindenhonnan gyűjt és tárol reptéri, repülőtársasági és repülési út adatokat. Közel 8000 reptér, 6000 társaság és 60000 repülési út érhető el. Részletes adatok \aref{tab:table_repterek},~\aref{tab:table_repulesitarsasagok}, és a \aref{tab:table_repulesiutvonalak} táblázatokban.
 
     %----------------------------------------------------------------------------
     \subsection{Repterek}
     %----------------------------------------------------------------------------
-
     \begin{figure}[!ht]
       \centering
       \includegraphics[width=150mm,keepaspectratio=true]{./figures/airports-2048.png}
       % airports-2048.png: 2048x1025 pixel, 96dpi, 54.18x27.12 cm
-      
+
       \caption{Az OpenFights adatbázisában szereplő repterek.}
       \label{fig:figure_repterek}
     \end{figure}
@@ -58,12 +56,12 @@ Az \href{http://openflights.org/}{openflights.org} oldalon elérhető repülési
       \centering
       \includegraphics[width=150mm,keepaspectratio=true]{./figures/routes-2048.png}
       % routes-2048.png: 2048x1025 pixel, 96dpi, 54.18x27.12 cm
-      
+
       \caption{Az OpenFights adatbázisában szereplő repülési útvonalak.}
       \label{fig:figure_repulesiutvonalak}
     \end{figure}
 
-    A repülési útvonalak leírása öt attribútumot tartalmaz: az \emph{üzemeltető repülési társaság} (név és OpenFlights azonosító); a \emph{forrás reptér}; a \emph{cél reptér}. Emellett feljegyzik a \emph{megállások számát}\footnote{Az összesen 59637 bejegyzésből 6 esetében van 1 megállás és 1 esetben 2 megállás.}, illetve az ebben a viszonylatban használt \emph{repülőgép típusokat}. Ha két reptér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 reptér és 531 társaság\footnote{Ugyan a légitársaság és reptér adatbázisokban ennél jelentősen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repterek.} között világszerte, ahogy \aref{fig:figure_repulesiutvonalak} ábra is mutatja.
+    A repülési útvonalak leírása öt attribútumot tartalmaz: az \emph{üzemeltető repülőtársaság} (név és OpenFlights azonosító); a \emph{forrás reptér}; a \emph{cél reptér}. Emellett feljegyzik a \emph{megállások számát}\footnote{Az összesen 59637 bejegyzésből 6 esetében van 1 megállás és 1 esetben 2 megállás.}, illetve az ebben a viszonylatban használt \emph{repülőgép típusokat}. Ha két reptér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 reptér és 531 társaság\footnote{Ugyan a légitársaság és reptér adatbázisokban ennél jelentősen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repterek.} között világszerte, ahogy \aref{fig:figure_repulesiutvonalak} ábra is mutatja.
 
     \begin{table}[ht]
       \footnotesize
@@ -87,15 +85,15 @@ Az \href{http://openflights.org/}{openflights.org} oldalon elérhető repülési
     \end{table}\newpage
 
     %----------------------------------------------------------------------------
-    \subsection{Repülési társaságok}
+    \subsection{Repülőtársaságok}
     %----------------------------------------------------------------------------
 
-    A repülési társaságokról tárolt adatok többek között tartalmazzák a hivatalos \emph{IATA azonosítót}; a cég \emph{nevét}; az \emph{országot}, ahol be van jegyezve; illetve, hogy \emph{aktív-e} még a társaság. Emellett természetesen itt is definiáltak egy saját (OpenFlights) \emph{azonosítót}.
+    A repülőtársaságokról tárolt adatok többek között tartalmazzák a hivatalos \emph{IATA azonosítót}; a cég \emph{nevét}; az \emph{országot}, ahol be van jegyezve; illetve, hogy \emph{aktív-e} még a társaság. Emellett természetesen itt is definiáltak egy saját (OpenFlights) \emph{azonosítót}.
 
     \begin{table}[ht]
       \footnotesize
       \centering
-      \caption{Az OpenFlights adatbázisában elérhető adatok a repülési társaságokról.}
+      \caption{Az OpenFlights adatbázisában elérhető adatok a repülőtársaságokról.}
       \begin{tabular}{ | l | l |}
       \hline
       Attribútum & Leírás \\ \hline
@@ -129,17 +127,13 @@ Az \href{http://openflights.org/}{openflights.org} oldalon elérhető repülési
 
     Az útvonalválasztást a 10 legjelentősebb légitársaság alapján szimulálom, mert a 10 legtöbb járatot üzemeltető társaság az utak 24\%-át adják. A policy vezérelt útvonalválasztást az összes olyan pontpár között lefuttatom, amely ezen 10 társaság célpontja.
 
-    % 5209 (2417), 4296 (2186), 2009 (1520), 24 (1513), 5265 (1381), 751 (1227), 1767 (1152), 1758 (1097), 4547 (1018), 3320 (931), 
+    % 5209 (2417), 4296 (2186), 2009 (1520), 24 (1513), 5265 (1381), 751 (1227), 1767 (1152), 1758 (1097), 4547 (1018), 3320 (931),
 
 
     %----------------------------------------------------------------------------
-    \subsection{A vizsgálandó metrikák, az élek súlyozása}
+    \subsection{Az élek súlyozása}
     %----------------------------------------------------------------------------
 
-    A fejezet elején említett két megközelítést fogom alkalmazni, azaz a pont-pont kapcsolatokat is összehasonlítom és a globális hálózat mutatóit is. Az élek súlya annak megfelelően változik, hogy milyen policy algebráját szimulálom. Emellett a repterek GPS koordinátái alapján meghatározom az összekötött repterek fizikai távolságát. Mivel a légtérben nincsen torlódás az út szélességének definiálásának nincs értelme.\\
-
-    A globális hálózati metrikák közül a fokszámeloszlást fogom vizsgálni, illetve a hálózat átmérőjét és a pont- és él-összefüggőségét. A fokszámeloszlás és az átmérő összehasonlításra azért van szükség, mert ezek alapvető karakterisztikáját adják a hálózatnak. A pont- és él-összefüggőséget pedig azért, mert ezek lehetnek olyan tényezők, amik a repülőtársaságok útvonalválasztása mögött meghúzódhatnak.
-    
   %----------------------------------------------------------------------------
   \section{Az eredmények}
   %----------------------------------------------------------------------------

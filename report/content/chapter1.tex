@@ -25,7 +25,7 @@
 
 
 %----------------------------------------------------------------------------
-\chapter{Általánosított hálózatok és útvonalválasztási szabályok}\label{sect:chapter_modell}
+\chapter{Általánosított hálózatok és útvonalválasztási szabályok}\label{modell}
 %----------------------------------------------------------------------------
 
 Az Internet gerinchálózatát kialakító szabályrendszert nagy vonalaiban ismerjük. Az Internet AS-szintű topológiáját a BGP\footnote{Border Gateway Protocol} határozza meg. Különböző eljárásokat ismerünk az Autonóm Rendszerek közti kapcsolatok feltárására a BGP-s routing táblák alapján, illetve az Internet router-szintű topológiájából, sőt az AS-ek routing-policy\footnote{Útvonalválasztási szabályrendszer}-ját is tudjuk becsülni, ugyanakkor arra a kérdésre eddig még senki sem tudott választ adni, hogy miért éppen így alakultak ki a kommunikációs utak.\\
@@ -33,7 +33,7 @@ Az Internet gerinchálózatát kialakító szabályrendszert nagy vonalaiban ism
 Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános hálózati- és routing modellt mutatok be. Az útvonalválasztás szabályrendszerét egy jól definiált matematikai struktúrával - a routing algebrákkal - írom le, és definiálom a policy-k közti műveleteket, amelyekkel össze is tudunk kapcsolni policy-kat. Emellett egy alfejezet foglalkozik a policy-k különböző tulajdonságaival, melyek figyelembevétele fontos szempont a szimulációk megtervezésénél.
 
   %----------------------------------------------------------------------------
-  \section{Történeti áttekintés}\label{sect:section_tortenelem}
+  \section{Történeti áttekintés}\label{section_tortenelem}
   %----------------------------------------------------------------------------
 
   Az 1990-es évek végére a kutatók felismerték a tényt, hogy a BGP szintű Internet hálózatról nem tudunk szinte semmit. Rendelkezésükre állt néhány szolgáltató BGP-s routing táblája, de ez nagyon kevésnek bizonyult, hiszen a legtöbb AS közötti kapcsolat titkos gazdasági döntés révén született, így pontos képük nem lehetett a hálózatról. Ekkor kezdték el vizsgálni a különböző lehetőségeket, hogy hogyan lehetne feltárni ezt a rejtett hálózatot. Nem tűnt reménytelennek a helyzet, hiszen hálózat széle - a végpontok - nem tartoznak a szolgáltatókhoz, így egy tetszőleges számítógépről indított csomag útját végigkövetve értékes információkat nyerhettek. Természetesen a \emph{traceroute}\footnote{Egy számítógép-hálózati diagnosztikai eszköz, amivel az IP (Internet Protokoll) hálózaton haladó csomagok útját lehet követni.} futási eredményeit elemezve egy halom adatot kapunk, amit nehezen lehet csak feldolgozni, annál is inkább, mert az egyes a mérések ismétlése során más és más útvonalon haladt át a követendő csomag. Készültek szimulátorok, amik ügyesen kezelték a nehézségeket, és különböző heurisztikákat használtak, hogy csökkentsék a szükséges mérések számát \cite{Heuristics_for_Internet_Map_Discovery}, ugyanakkor még mindig nagy szakadék volt az eredmények és az elvárások között. Nem volt egyértelmű, hogy egy csomag miért épp az adott AS-eken keresztül ért célba.\\
@@ -61,7 +61,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
   Jelen Diplomaterv keretében egy olyan megoldást mutatok be, amely képes megbecsülni, hogy miért - milyen szabályszerűségek figyelembevételével - hoztak meg egyes döntéseket. Azzal a feltételezéssel élek, hogy minden policy-t fel lehet építeni jól meghatározott, egyszerű primitívekből, illetve ezen primitívek azonosítása és változatos összekapcsolása révén meg fogjuk tudni mondani, hogy egy már kialakult hálózatot milyen komplex policy határoz meg.\\
 
   %----------------------------------------------------------------------------
-  \section{Útvonalválasztás, routing algebrák}\label{sect:section_routingalgebrak}
+  \section{Útvonalválasztás, routing algebrák}\label{section_routingalgebrak}
   %----------------------------------------------------------------------------
 
   Az általános hálózati modellben egy véges, egyszerű és összefüggő $G(V;E)$ gráfot használunk a hálózat megadására, ahol $|V| = n$ és $|E| = m$. Az élek irányítottsága és súlyozása az adott problémától függ, minden kombináció megengedett. Legyen $deg(v)$ a $v \in V$ csúcs fokszáma és legyen $d = max_{v \in V} deg(v)$. Egy $s-t$ séta a csúcsoknak egy $p = (s =)v_1, v_2, ..., v_k(= t)$ sorozata, ahol $k$ a séta hossza és $(v_i, v_{i+1}) \in E$ : $\forall i = 1,...,k-1$. Ezenkívül egy kör olyan séta, ahol $s = t$.
@@ -132,7 +132,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
   Ezek után könnyen ellenőrizhető, hogy a legáltalánosabban használt routing policy, a shortest path routing (legrövidebb utak) algebrája a ($\mathbb{R}^{+},~\infty,~+,~\leq$), míg egy másik policy, a widest-path routing (legszélesebb utak) algebrája a ($\mathbb{R}^{+},~0,~min,~\geq$).
 
   %----------------------------------------------------------------------------
-  \section{Routing algebrák tulajdonságai}\label{sect:section_algebratulajdonsagok}
+  \section{Routing algebrák tulajdonságai}\label{section_algebratulajdonsagok}
   %----------------------------------------------------------------------------
 
   A routing algebráknak, mint matematikai struktúrának számos érdekes tulajdonsága van. Ezek közül vannak olyanok, melyek alapvetően befolyásolják az algebra felhasználhatóságát, hiszen az algebra olyan minőségbeli tulajdonságát határozzák meg, mint például az útvonalválasztás algoritmikus lépésszáma. Vannak pusztán leíró jellegű tulajdonságok is, melyek segítenek az algebrák összehasonlításában, az egyes policy-primitívek kiválasztásában is.
@@ -155,7 +155,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
 
     Az izotonitás (I) azt jelenti, hogy adott $\preceq$ relációban álló éleket ugyanazzal az éllel elölről, vagy hátulról meghosszabbítunk, akkor a relációs viszony nem változik (Az itt leírtak igazak élek helyett utakra is).\\
 
-    \Aref{sect:appendix_routingmodell}. függelékben megtalálható a routing teljes modellje, melyet a routing algebrák tervezésekor használtak \cite{Sobrinho_Network_routing}. Ez a modell a lokális memóriaigényre koncentrál, és azt mondja, hogy egy $\mathcal{A}$ routing algebra tömöríthetetlen, ha az $\mathcal{M_{\mathcal{A}}}$ lokális memóriaigény $\Omega(n)$, különben $\mathcal{A}$ tömöríthető. Egy tömöríthetetlen routing algebra nyilván nem skálázódik jól, viszont a tömöríthető algebrák igen. A reguláris algebrák ,,jól viselkednek'', hisz a monotonitás és izotonitás garantálja, hogy a preferált út megkapható polinom időben az általánosított Dijkstra algoritmussal. Ez lehetővé teszi, hogy legfeljebb $\tilde{O}(n)$ bit információt tároljunk lokálisan, így nem csak az elméletben, hanem a valóságban is használható algebrákat kaphatunk \cite{Sobrinho_Network_routing, Sobrinho_Metarouting}.\\
+    \Aref{routingmodell}. függelékben megtalálható a routing teljes modellje, melyet a routing algebrák tervezésekor használtak \cite{Sobrinho_Network_routing}. Ez a modell a lokális memóriaigényre koncentrál, és azt mondja, hogy egy $\mathcal{A}$ routing algebra tömöríthetetlen, ha az $\mathcal{M_{\mathcal{A}}}$ lokális memóriaigény $\Omega(n)$, különben $\mathcal{A}$ tömöríthető. Egy tömöríthetetlen routing algebra nyilván nem skálázódik jól, viszont a tömöríthető algebrák igen. A reguláris algebrák ,,jól viselkednek'', hisz a monotonitás és izotonitás garantálja, hogy a preferált út megkapható polinom időben az általánosított Dijkstra algoritmussal. Ez lehetővé teszi, hogy legfeljebb $\tilde{O}(n)$ bit információt tároljunk lokálisan, így nem csak az elméletben, hanem a valóságban is használható algebrákat kaphatunk \cite{Sobrinho_Network_routing, Sobrinho_Metarouting}.\\
 
     A teljesség igénye nélkül felsorolok még néhány tulajdonságot \cite{Lexicographic_products_in_metarouting}:
     \begin{itemize}
@@ -168,7 +168,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
     A fentiek közül talán csak a delimitáltság (D) szorul magyarázatra. Ez a tulajdonság garantálja, hogy az éleket bármilyen önkényesen választott sorrendben is kombinálva járható utat kapunk. Általában az intra-domain\footnote{Intra-domain: AS-n belüli.} routing policy-k rendelkeznek ezzel a tulajdonsággal, de vegyük csak példának a BGP völgymentességét: ha egy csomag a hierarchiában fentebbi AS-től érkezik, akkor azt már csak lefelé mutató, vagy peer kapcsolaton keresztül lehet továbbítani.
 
   %----------------------------------------------------------------------------
-  \section{Műveletek routing algebrák között}\label{sect:section_algebramuveletek}
+  \section{Műveletek routing algebrák között}\label{section_algebramuveletek}
   %----------------------------------------------------------------------------
 
   A routing algebrák megadási módja igen változatos policy-k leírására ad lehetőséget, de - annak érdekében, hogy teljes rendezés lehessen $\preceq$ - mindig csak egy metrika szerint tudunk optimalizálni. Ha szeretnénk több szempontot is figyelembe venni, amire van is példa a routing policy-k között, akkor ezt az algebrák egymásutáni alkalmazásával tudjuk megtenni, így néhány egyszerű policy algebrájával meglepően bonyolult és a valóságot nagyon jól leíró algebrákat tudunk létrehozni \cite{Sobrinho_Metarouting}. Két ilyen műveletet igen fontos szerepet kap, az egyik a lexikografikus szorzat, ami az összeillesztő-, és a subalgebra, ami a szétválasztó operátor \cite{Lexicographic_products_in_metarouting}.
@@ -201,7 +201,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
   \end{definition}
 
     %----------------------------------------------------------------------------
-    \subsection{A műveletek hatása a tulajdonságokra}\label{sect:section_algebramuveletek_tulajdonsagok}
+    \subsection{A műveletek hatása a tulajdonságokra}\label{section_algebramuveletek_tulajdonsagok}
     %----------------------------------------------------------------------------
 
     A routing algebrák kompozíciójaként létrejött új algebrák tulajdonságai levezethetők az alkotó algebrákéból.
@@ -219,7 +219,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
     Az \eqref{lexi} tétel szerint annak, hogy reguláris algebrákat hozzunk létre, szükséges feltétele, hogy csakis izonton algebrákat használjunk fel, sőt a monotonitás is megkövetelt mindkét tagra vagy az első tag szigorú monotonitása.
 
   %----------------------------------------------------------------------------
-  \section{Példák algebrákra és kombinálásukra}\label{sect:section_algebrapeldak}
+  \section{Példák algebrákra és kombinálásukra}\label{section_algebrapeldak}
   %----------------------------------------------------------------------------
 
   \Aref{tab:table_algebrapeldak} táblázatban néhány példát látunk a leginkább kutatott intra-domain routing policy-kra az algebráikkal és a legfontosabb tulajdonságaikkal. Az utolsót leszámítva az összes felsorolt algebra delimitált és reguláris (D, M, I).
@@ -241,17 +241,17 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
     \end{tabular}\label{tab:table_algebrapeldak}
   \end{table}
 
-  A $\mathcal{W}$ a widest-path routing algebrát jelenti \cite{Quality_of_service_routing_for_supporting_multimedia_applications}. Ennél az algebránál egy él súlya a kapacitása adja, és nyilván egy több élből álló úton az út kapacitása megegyezik az útmenti legkisebb kapacitással. Emellett nyilván minél nagyobb egy út globális kapacitása, annál inkább preferált. A $\mathcal{W}$ algebra kiválasztó is és megadható a $(\mathbb{R}^{+},~\infty,~min,~\geq)$ négyessel (az \eqref{appendix_algebratetel1} tétel értelmében pedig tömöríthető is).
+  A $\mathcal{W}$ a widest-path routing algebrát jelenti \cite{Quality_of_service_routing_for_supporting_multimedia_applications}. Ennél az algebránál egy él súlya a kapacitása adja, és nyilván egy több élből álló úton az út kapacitása megegyezik az útmenti legkisebb kapacitással. Emellett nyilván minél nagyobb egy út globális kapacitása, annál inkább preferált. A $\mathcal{W}$ algebra kiválasztó is és megadható a $(\mathbb{R}^{+},~\infty,~min,~\geq)$ négyessel (az \eqref{algebratetel1} tétel értelmében pedig tömöríthető is).
 
   A legmegbízhatóbb út algebra ($\mathcal{R}$) úgy értelmezhetjük, hogy az élek súlyát az a valószínűség adja, hogy az adott élen a csomag hibátlanul át tud menni, így nagyobb érték a jobb. Nyilvánvaló, hogy $\mathcal{R}$ tartalmaz egy szigorúan monoton (SM) subalgebrát: ha nem engedjük meg a biztos valószínűséget, akkor minden út biztosan romlik, ha hozzáveszünk egy újabb élet, azaz az értéke csökken, mert egy 1-nél kisebb számmal szorozzuk az eddig súlyt: $\hat{\mathcal{R}}~=~((0,1),~0,~*,~\geq)$.
 
   A legszélesebb-legrövidebb út (widest-shortest path) $\mathcal{WS}$ routing esetén a legrövidebb utak közül a legnagyobb kapacitásút választjuk \cite{Quality_of_service_based_routing_A_performance_perspective}, míg a legrövidebb-legszélesebb út (shortest-widest path) $\mathcal{SW}$ (\cite{Quality_of_service_routing_for_supporting_multimedia_applications, On_path_selection_for_traffic_with_bandwidth_guarantees}) routing esetén, éppen fordítva, a legnagyobb kapacitású utak közül a legrövidebbet választjuk. Ezeket az algebrákat megkaphatjuk a $\mathcal{S}$ és a $\mathcal{W}$ algebrák lexikografikus szorzataként \cite{Lexicographic_products_in_metarouting}.
   \begin{note}
-    $\mathcal{SW}$ nem izotón. Az \eqref{appendix_algebratetel2} tétel áll a nem izotón algebrákra is, így $\Omega(n)$ bit lokális memóriát igényel a $\mathcal{SW}$ algebra is. Jelenleg még nyitott kérdés, hogy ez a határ szoros-e. Nem tudjuk, hogy van-e jobb megoldás, mint a triviális, azaz hogy minden router tárol egy-egy routing tábla bejegyzést minden forrás-cél párra, ami $O(n^2 log d)$ ($d$ a maximális fokszám) bit per router memóriaigényű.
+    $\mathcal{SW}$ nem izotón. Az \eqref{algebratetel2} tétel áll a nem izotón algebrákra is, így $\Omega(n)$ bit lokális memóriát igényel a $\mathcal{SW}$ algebra is. Jelenleg még nyitott kérdés, hogy ez a határ szoros-e. Nem tudjuk, hogy van-e jobb megoldás, mint a triviális, azaz hogy minden router tárol egy-egy routing tábla bejegyzést minden forrás-cél párra, ami $O(n^2 log d)$ ($d$ a maximális fokszám) bit per router memóriaigényű.
   \end{note}
 
   %----------------------------------------------------------------------------
-  \section{Összefoglaló}\label{sect:section_osszefoglalo1}
+  \section{Összefoglaló}\label{section_osszefoglalo1}
   %----------------------------------------------------------------------------
 
   Ebben a fejezetben áttekintettem a szakirodalmat, összeszedve a legfontosabb állomásokat. Az 1990-es évek végétől egyre többet foglalkoztak a kutatók a BGP hálózatának feltárásával, amivel el is jutottak addig, hogy van egy viszonylag pontos kép a hálózatról, de arra, hogy miért egy adott policy-t használnak az AS-ek, nem tudnak válaszolni. Rámutattam, hogy az Internet AS-szintű topológiáján kívül, a más tudományterületekről származó problémák útvonalválasztásáról sem tudunk sok mindent és ezért van szükség egy olyan eszközre, ami a policy-feltárás feladatát - általános esetben is - hatékonyan el tudja látni. Ehhez definiáltam a routing algebrát, bemutattam a legfontosabb tulajdonságait és műveleteit, emellett a legszélesebb körben használt policy-k algebráit is ismertettem.
