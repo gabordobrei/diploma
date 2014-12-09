@@ -63,7 +63,7 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
   %----------------------------------------------------------------------------
   \section{A szimulátor}\label{section_simulator}
   %----------------------------------------------------------------------------
-  A szimulációs algoritmus a fent leírt irányított, súlyozott gráfon, mint bemeneten fut. Először meghatározzuk, hogy a konkrét probléma vizsgálata mekkora csúcshalmazt jelent, amelyből előáll egy $G(V=n, E=n*(n-1))$ méretű gráf\footnote{Minden csúcsot minden csúccsal összekötünk és mindkét irányban irányítunk.}. Ezután meghatározzuk azon éleket, melyet ezen a gráfon az útvonalválasztási szabályrendszer akármilyen két pont között legalább egyszer használt. Ezt természetesen meg tudjuk tenni, hiszen a kialakult utakat megfigyelni képesek vagyunk. Miután meghatároztuk a felhasznált élhalmazt, minden olyan élet, amelyet nem tartalmaz ez a halmaz, kitöröljük a gráfból (Az élek törlésével nem eshet szét a gráf, hiszen a ponthalmazt a megfigyeléssel kaptuk, így biztos, hogy összefüggő marad a gráf.). A megmaradó éleket súlyozzuk.\\
+  A szimulációs algoritmus a fent leírt irányított, súlyozott gráfon, mint bemeneten fut. Először meghatározzuk, hogy a konkrét probléma vizsgálata mekkora csúcshalmazt jelent, amelyből előáll egy $G(V=n, E=n*(n-1))$ méretű gráf\footnote{Minden csúcsot minden csúccsal összekötünk és mindkét irányban irányítunk.}. Ezután meghatározzuk azon éleket, melyet ezen a gráfon az útvonalválasztási szabályrendszer akármilyen két pont között legalább egyszer használt. Ezt természetesen meg tudjuk tenni, hiszen a kialakult utakat megfigyelni képesek vagyunk. Miután meghatároztuk a felhasznált élhalmazt, minden olyan élet, amelyet nem tartalmaz ez a halmaz, kitöröljük a gráfból (Az élek törlésével nem eshet szét a gráf, hiszen a ponthalmazt megfigyeléssel kaptuk, így biztos, hogy összefüggő marad a gráf.). A megmaradó éleket súlyozzuk.\\
 
   A szimuláció menete ezután a következő: Minden pontpárra és minden vizsgált algebrára meghatározzuk (a módosított Dijkstra algoritmussal), hogy milyen ut(ak)at jelölnek ki. Az így meghatározott ut(ak)at feljegyezzük. Ezzel előállítunk két gráfot: az első az eredetileg vizsgált gráf, a másik a feljegyzett utakból felépülő. Ezután ezen két gráfot hasonlítjuk össze.
 
@@ -101,7 +101,7 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
 
     A pontpárok közötti összehasonlítása során megvizsgálom, hogy a megfigyelt és a szimulált út mennyire hasonlít a lépésszám és az érintett köztes csomópontok alapján, és ez alapján inkább jobb vagy inkább rosszabb a szimulált út, esetleg nem eldönthető (ez mindig függ a problémától, ezért a kiértékelésnél is szükség van probléma-specifikus tudásra).\\
 
-    A globális hálózati metrikák közül a fokszámeloszlást fogom vizsgálni, az élek számát, a hálózat átmérőjét, illetve a pont- és élösszefüggőségét. A fokszámeloszlás és az átmérő összehasonlításra azért van szükség, mert ezek alapvető karakterisztikáját adják a hálózatnak. Ezzel feltárhatók olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, pl. lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Hasonlóan fontos a pont- és élösszefüggőség, mellyel a gyakorlati használhatóságot mérhetjük, hiszen az eredetinél a szétesésre jóval érzékenyebb gráf esetén nem érdekes, hogy a többi szempont szerint jól teljesít az adott algebra.\\
+    A globális hálózati metrikák közül a fokszámeloszlást fogom vizsgálni, az élek számát, a hálózat átmérőjét, illetve az élösszefüggőségét. A fokszámeloszlás és az átmérő összehasonlításra azért van szükség, mert ezek alapvető karakterisztikáját adják a hálózatnak. Ezzel feltárhatók olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, pl. lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Hasonlóan fontos az élösszefüggőség, mellyel a gyakorlati használhatóságot mérhetjük, hiszen az eredetinél a szétesésre jóval érzékenyebb gráf esetén nem érdekes, hogy a többi szempont szerint jól teljesít az adott algebra.\\
 
     Minden fent említett összehasonlítási szempontot pontozok a következő részekben meghatározottak szerint és így minden szimulációs eredményt (algebrát) egy pontszámmal fogok tudni mérni, melyben a több a jobb, így könnyen meg tudom mondani, hogy az algebrák hogyan teljesítenek egymáshoz képest. A szempontoknál jellemzően háromféle pont adható: a legtöbb pont arra jár, ha szimulált eredmény a megfigyelttel megegyezik, ennél kicsivel kevesebb pontot ér, ha az adott szempont szerint jobb, illetve a legkevesebb (akár negatív pont is lehetséges), ha rosszabb annál.\\
     Készítek keresztvalidációs vizsgálatokat is, melyek során olyan szimulációkat futtatok, melynél az ,,eredeti'' útvonalválasztási szabályt én adom meg, így meg tudom mondani, hogy milyen pontszám az, ami már elég pontosnak számít.
@@ -130,7 +130,15 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
     %----------------------------------------------------------------------------
     A fokszámeloszlás már globális mutató, melyet $DD$-vel ($D$egree$D$istribution) jelölök. Ez a tulajdonság olyan alapvető, hogy nem különböztetek meg ,,pontos'', jobb és rosszabb esetet, csak \textit{hasonló}t és \textit{különböző}t, melyek pontértéke rendre 1 és 0. A $DD$ mutatót nem is összegezve számítom bele a végpontszámba, hanem szorzótényezőként, így az, hogy hasonlítson a szimulált hálózat fokszámeloszlása a megfigyeltéhez egy szükséges feltétele annak, hogy értékelhető megoldást kapjunk.\\
 
-    Mivel a fokszámeloszlás egy hisztogram, nincs értelme pontos egyezőséget vizsgálni, de több jó módszer is létezik két hisztogram összehasonlítására. Ilyen módszer a $\chi^2$ távolság mérése. \TODO{histogram}
+    Mivel a fokszámeloszlás egy hisztogram, nincs értelme pontos egyezőséget vizsgálni, de több jó módszer is létezik két hisztogram összehasonlítására. Ilyen módszer a $\chi^2$ távolság mérése. Ezutén a $DD$ értéke a következő:
+
+    $$ DD = \left\{
+    \begin{array}{l l}
+      1 & \quad \text{ha megegyezik a fokszámeloszlás}\\
+      0 & \quad \text{különben}
+    \end{array} \right.$$
+
+    \TODO{histogram}
 
     %----------------------------------------------------------------------------
     \subsubsection{A hálózat-átmérő pontozása}
@@ -139,23 +147,28 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
     Ennek fényében a $GD$ ($G$raph$D$iameter) jelölésű pontérték megegyezik a hálózat tényleges átmérőjével.
 
     %----------------------------------------------------------------------------
-    \subsubsection{A pont- és élösszefüggőség pontozása}
+    \subsubsection{Az élösszefüggőség pontozása}\label{elossze}
     %----------------------------------------------------------------------------
-    Egy gráf pont- illetve élösszefüggősége kiszámítható legfeljebb $\binom{n}{2}$ maximális folyam keresésével. Nagamochi és Ibaraki megmutatta, hogy a probléma megoldására elegendő $O(mn)$ idő is\cite{Nagamochi96}. A pontösszefüggőségi számot $\kappa(G)$-vel, az élösszefüggőségi számot pedig $\lambda(G)$-vel jelölve felírhatjuk azt az egyszerű észrevételt, miszerint legalább annyi élet kéne elhagyni a gráf széteséséhez, mint pontot: $$\kappa(G) \leq \lambda(G)$$ azaz egy $k$ pontösszefüggőségből következik a legalább $k$ élösszeföggőség.
+    Egy gráf pont- illetve élösszefüggősége kiszámítható legfeljebb $\binom{n}{2}$ maximális folyam keresésével. Nagamochi és Ibaraki megmutatta, hogy a probléma megoldására elegendő $O(mn)$ idő is\cite{Nagamochi96}. A pontösszefüggőségi számot $\kappa(G)$-vel, az élösszefüggőségi számot pedig $\lambda(G)$-vel jelölve felírhatjuk azt az egyszerű észrevételt, miszerint legalább annyi élet kéne elhagyni a gráf széteséséhez, mint pontot: $\kappa(G) \leq \lambda(G)$ azaz egy $k$ pontösszefüggőségből következik a legalább $k$ élösszefüggőség. Emellett fontos megjegyezni, hogy a szimulációs eredmények kiértékelése folyamán a pontösszefüggőséget nem fogom külön vizsgálni, mert a legtöbb probléma vagy úgy áll elő, vagy olyan alakra transzformálható, ahol nem lehet értelmezni egy csomópont törlését. Természetesen azon speciális esetekben, ahol ez nem így van és tényleges jelentést is hordoz a $\kappa(G)$, ott ezt a mutatót is vizsgálni kell.\\
 
-     $VC$ ($V$ertex$C$onnectivity), $EC$ ($E$dge$C$onnectivity)
-    \todo
+    Mivel az élösszefüggőséget könnyen el lehet torzítani, nem tisztán a $\lambda(G)$-t határozom meg. A valóságban megfigyelhető hálózatok túlnyomó többsége skálafüggetlen, és mint olyan, sok alacsony fokszámú csúcsot tartalmaz, jellemzőn elsőfokúakat is, amikor $\lambda(G)$ = 1, de a gráf ,,mag''-járól, annak tömörségéről nem ad információt. Ezért a $C$ (Edge$C$onnectivity) pontérték a csomópontok fokszámeloszlás szerinti felső 20\%-nak minimális fokszáma lesz. Ez megegyezik ezen 20\% élösszefüggőségével, hiszen az a csomópont, aminek pontosan ennyi a fokszáma, egy ekkora vágással eltávolítható a gráfból.
 
     %----------------------------------------------------------------------------
     \subsubsection{Az élszám pontozása}
     %----------------------------------------------------------------------------
-    Az élszám pontozását $EC$-vel ($E$dge$C$ount) jelölöm. A $EC$ olyan a $DD$-nek, mint a $HC$ az $AL$-nek, azaz a hasonló típusú mutatók közül ez inkább a mennyiségi, a $DD$ a minőségi mutató. Éppen ezért kevesebb értékkel, jelentéssel bír az $EC$. Ha pontosan ugyanannyi élet használ a szimulált gráf, mint a megfigyelt, akkor $EC$ = 500, ha nem, akkor $EC~=~f(C)$, azaz függ az összefüggőségtől, méghozzá \TODO{közgázos deriváltas megadás}.
+    Az élszám pontozását $EC$-vel ($E$dge$C$ount) jelölöm. A $EC$ olyan a $DD$-nek, mint a $HC$ az $AL$-nek, azaz a hasonló típusú mutatók közül ez inkább a mennyiségi, a $DD$ a minőségi mutató. Éppen ezért kevesebb értékkel, jelentéssel bír az $EC$. Ha pontosan ugyanannyi élet használ a szimulált gráf, mint a megfigyelt, akkor $EC$ = 500, ha nem, akkor $EC~=~f(C)$, azaz függ az összefüggőségtől, méghozzá úgy, hogy
+    $$0 > \frac{\partial EC}{\partial C}$$
+    Ez azt jelenti, hogy az élösszefüggőség pontértékének növekedésével csökken az élszám pontértéke. Erre azért van szükség, mert az élösszefüggőség magas értékéből következik a magas élszám, és ugyanazt a jelenséget (sok él van a gráfban) nem szeretnénk duplán értékelni.
 
     %----------------------------------------------------------------------------
     \subsubsection{A globális mutatók egymásra hatása, együttes értékük}
     %----------------------------------------------------------------------------
     Az összes globális mutatóról elmondható, hogy tényleges értéket, értelmezhető jelentést csak akkor hordoznak, ha egymással kapcsolatban vannak értelmezve, mégpedig a megfelelő hatások és ellenhatások szerinti képletbe rendezve. A $GV$ ($G$lobal$V$alue) értéket a következő összefüggések befolyásolják:
-    \todo
+    $$0 < \frac{\partial GV}{\partial GD}$$
+    $$0 < \frac{\partial GV}{\partial C}$$
+    $$0 > \frac{\partial GV}{\partial EC}$$
+    Egy ilyen függvény a következő:
+    $$GV = \frac{DD * GD * C}{EC}$$
 
 
   %----------------------------------------------------------------------------

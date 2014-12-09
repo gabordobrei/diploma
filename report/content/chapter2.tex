@@ -121,14 +121,14 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
     \end{itemize}
 
       %----------------------------------------------------------------------------
-      \subsubsection{Összekötő-keresés}
+      \subsubsection{Összekötő-keresés}\label{osszekoto_kereses}
       %----------------------------------------------------------------------------
 
       Ez a policy azon csomópontokat részesíti előnyben, amelyeket a legbefolyásosabbnak ítélünk. A vírus- és trendterjedés hasonlóságából adódóan itt is lokális optimalizálásról beszélhetünk, így mindig azt a szomszédot fogjuk választani, aminek a legnagyobb a fokszáma. Az Összekötő-keresés algebrája a $\mathcal{O}$ ($(1,d),~0,~max,~\geq$). Az élek súlya:
       $\forall u,v \in V:~w(u,v)~=~max(deg(u),deg(v))$, tehát az összekötött csomópontok fokszámai közül a nagyobb és nyilván a több jobb. Az átjárhatatlanságot a 0 súly jelzi, míg több él súlyát a maximumuk határozza meg.
 
       %----------------------------------------------------------------------------
-      \subsubsection{Korai-elfogadó-keresés}
+      \subsubsection{Korai-elfogadó-keresés}\label{korai_elfogado_kereses}
       %----------------------------------------------------------------------------
 
       A Korai-elfogadó-keresés policy azon éleket részesíti előnyben, melyeken az eddigi tapasztalat alapján sok divat átterjedt már. Ennek lényege nyilván az, hogy egy ilyen él olyan személyek közötti kapcsolatot jelöl, akik pl. megbíznak a másik ítéletében, vagy az egyikük felnéz a másikra, így átvesz tőle viselkedési formákat. A policy algebrája a $\mathcal{K}$ ($\mathbb{N},~-1,~+,~\geq$). Az élek súlya azt jelzi, hogy eddig mennyi divat terjedt át rajta, így a több a jobb, és nyilván a -1 súlyú élen nem tudunk átmenni. Több él összeillesztését az élsúlyok összegével súlyozunk.\newpage
@@ -176,13 +176,13 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
 
   A $\mathbb{H}$ hiperbolikus síknak többféle szemléltető modellje is van, ám a két legelterjedtebb a felső félsík modell és a Poincaré diszk modell, amiket \aref{fig:figure_hiperbolikusabrak} ábrán láthatunk is. A Poincaré modellben $\mathbb{H}$-t egy egységkörrel reprezentálják: $x^2~+~y^2~<~1$, a következő metrikával:
   \begin{align}
-  ds^2~=~\frac{4(dx^2~+~dy^2)}{(1~-~x^2~-~y^2)^2}.
+    ds^2~=~\frac{4(dx^2~+~dy^2)}{(1~-~x^2~-~y^2)^2}.
   \end{align}
 
   A felső félsík modellben $\mathbb{H}$-t a $\{\langle x,y\rangle ~|~y~>~0\}$ ponthalmaz írja le, ahol a metrika:
 
   \begin{align}
-  ds^2~=~\frac{dx^2~+~dy^2}{y^2}.
+    ds^2~=~\frac{dx^2~+~dy^2}{y^2}.
   \end{align}
 
   Mindkét esetben a $\mathbb{H}$ pontjait komplex számokként kezeljük: $(x,y)~\in~\mathbb{R}^2:~z~=~x~+~yi$.
@@ -250,7 +250,6 @@ Mivel ezen két tulajdonság nem zárja ki egymást, a legtöbbször azzal az es
   %----------------------------------------------------------------------------
   \section{Összefoglaló}
   %----------------------------------------------------------------------------
-
   Ebben a fejezetben megvizsgáltam a hálózatkutatás szempontjából alapvető modelleket, melyeket a lokális- vagy globális optimalizálás és a közös- vagy egyéni érdekek követése tulajdonságok alapján karakterizáltam. Bemutattam a fertőző betegségek vizsgálatára használt matematikai modellt, megvizsgáltam a témakör útvonalválasztási kérdéseit és kijelöltem a két, a problémakört jól jellemző policy-t: a Fertőzési-határ és az Unió-fedés policy-ket, illetve ezek algebráit: $\mathcal{F}$ = ($(0,1],~0,~max,~\geq$) és $\mathcal{U}$ = ($\mathbb{N},~\infty,~f,~\leq$).
 
   Rávilágított a trend- és a vírusterjedés hasonlóságaira és különbségeire útvonalválasztási szempontból és definiáltam két policy-t, a Összekötő-keresés-t és a Korai-elfogadó-keresés-t. Ezen policy-k algebrái: $\mathcal{O}$ = ($(1,d),~0,~max,~\geq$) és $\mathcal{K}$ = ($\mathbb{N},~-1,~+,~\geq$).
