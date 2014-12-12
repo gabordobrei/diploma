@@ -40,12 +40,11 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}A vizsg\IeC {\'a}land\IeC {\'o} metrik\IeC {\'a}k}{33}{subsection.3.3.1}
 \select@language {magyar} \contentsline {subsubsection}{Az algebra szerinti t\IeC {\'a}vols\IeC {\'a}g pontoz\IeC {\'a}sa}{34}{section*.18}
 \select@language {magyar} \contentsline {subsubsection}{A l\IeC {\'e}p\IeC {\'e}ssz\IeC {\'a}m szerinti t\IeC {\'a}vols\IeC {\'a}g pontoz\IeC {\'a}sa}{34}{section*.19}
-\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'u}t sor\IeC {\'a}n \IeC {\'e}rintett k\IeC {\"o}ztes csom\IeC {\'o}pontok pontoz\IeC {\'a}sa}{35}{section*.20}
-\select@language {magyar} \contentsline {subsubsection}{A foksz\IeC {\'a}meloszl\IeC {\'a}s pontoz\IeC {\'a}sa}{35}{section*.21}
-\select@language {magyar} \contentsline {subsubsection}{A h\IeC {\'a}l\IeC {\'o}zat-\IeC {\'a}tm\IeC {\'e}r\IeC {\H o} pontoz\IeC {\'a}sa}{35}{section*.22}
-\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}l\IeC {\"o}sszef\IeC {\"u}gg\IeC {\H o}s\IeC {\'e}g pontoz\IeC {\'a}sa}{35}{section*.23}
-\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}lsz\IeC {\'a}m pontoz\IeC {\'a}sa}{36}{section*.24}
-\select@language {magyar} \contentsline {subsubsection}{A glob\IeC {\'a}lis mutat\IeC {\'o}k egym\IeC {\'a}sra hat\IeC {\'a}sa, egy\IeC {\"u}ttes \IeC {\'e}rt\IeC {\'e}k\IeC {\"u}k}{36}{section*.25}
+\select@language {magyar} \contentsline {subsubsection}{A foksz\IeC {\'a}meloszl\IeC {\'a}s pontoz\IeC {\'a}sa}{35}{section*.20}
+\select@language {magyar} \contentsline {subsubsection}{A h\IeC {\'a}l\IeC {\'o}zat-\IeC {\'a}tm\IeC {\'e}r\IeC {\H o} pontoz\IeC {\'a}sa}{35}{section*.21}
+\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}l\IeC {\"o}sszef\IeC {\"u}gg\IeC {\H o}s\IeC {\'e}g pontoz\IeC {\'a}sa}{35}{section*.22}
+\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}lsz\IeC {\'a}m pontoz\IeC {\'a}sa}{36}{section*.23}
+\select@language {magyar} \contentsline {subsubsection}{A glob\IeC {\'a}lis mutat\IeC {\'o}k egym\IeC {\'a}sra hat\IeC {\'a}sa, egy\IeC {\"u}ttes \IeC {\'e}rt\IeC {\'e}k\IeC {\"u}k}{36}{section*.24}
 \select@language {magyar} \contentsline {section}{\numberline {3.4}Val\IeC {\'o}s h\IeC {\'a}l\IeC {\'o}zatok vizsg\IeC {\'a}lata a keretrendszer seg\IeC {\'\i }ts\IeC {\'e}g\IeC {\'e}vel}{37}{section.3.4}
 \select@language {magyar} \contentsline {section}{\numberline {3.5}\IeC {\"O}sszefoglal\IeC {\'o}}{37}{section.3.5}
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Rep\IeC {\"u}l\IeC {\'e}si h\IeC {\'a}l\IeC {\'o}zat vizsg\IeC {\'a}lata}{38}{chapter.4}
@@ -55,16 +54,16 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.3}Rep\IeC {\"u}l\IeC {\H o}t\IeC {\'a}rsas\IeC {\'a}gok}{40}{subsection.4.1.3}
 \select@language {magyar} \contentsline {section}{\numberline {4.2}A szimul\IeC {\'a}ci\IeC {\'o}}{40}{section.4.2}
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Az adatok el\IeC {\H o}feldolgoz\IeC {\'a}sa}{40}{subsection.4.2.1}
-\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}ls\IeC {\'u}lyok meghat\IeC {\'a}roz\IeC {\'a}sa}{41}{section*.31}
+\select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}ls\IeC {\'u}lyok meghat\IeC {\'a}roz\IeC {\'a}sa}{41}{section*.30}
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}A szimul\IeC {\'a}ci\IeC {\'o} menete}{41}{subsection.4.2.2}
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Az eredm\IeC {\'e}nyek}{42}{section.4.3}
 \select@language {magyar} \contentsline {section}{\numberline {4.4}\IeC {\"O}sszefoglal\IeC {\'o}}{42}{section.4.4}
 \select@language {magyar} \contentsline {chapter}{\numberline {5}\IeC {\"O}sszefoglal\IeC {\'a}s}{43}{chapter.5}
-\select@language {magyar} \contentsline {chapter}{\IeC {\'A}br\IeC {\'a}k jegyz\IeC {\'e}ke}{45}{chapter*.32}
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\IeC {\'e}k}{48}{chapter*.33}
-\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{49}{appendix*.34}
+\select@language {magyar} \contentsline {chapter}{\IeC {\'A}br\IeC {\'a}k jegyz\IeC {\'e}ke}{45}{chapter*.31}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\IeC {\'e}k}{48}{chapter*.32}
+\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{49}{appendix*.33}
 \select@language {magyar} \contentsline {section}{\numberline {F.1}Sz\IeC {\'a}m\IeC {\'\i }t\IeC {\'a}selm\IeC {\'e}leti alapok}{49}{section.F.1}
 \select@language {magyar} \contentsline {section}{\numberline {F.2}Az \IeC {\'u}tvonalv\IeC {\'a}laszt\IeC {\'a}s teljes modellje }{51}{section.F.2}
 \select@language {magyar} \contentsline {section}{\numberline {F.3}T\IeC {\'e}telek a routing algebr\IeC {\'a}k t\IeC {\'e}mak\IeC {\"o}r\IeC {\'e}ben}{51}{section.F.3}
 \select@language {magyar} \contentsline {section}{\numberline {F.4}A szimul\IeC {\'a}tor technikai r\IeC {\'e}szletei}{52}{section.F.4}
-\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{52}{section*.35}
+\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{52}{section*.34}
