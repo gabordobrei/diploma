@@ -1,0 +1,114 @@
+\newcommand\TODO[1]{\textcolor{red}{ TODO #1}}
+\newcommand\todo[0]{\textcolor{red}{ TODO \newline}}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\makeatletter
+\renewcommand*{\ALG@name}{Algoritmus}
+\makeatother
+
+\pgfplotsset{
+  /pgfplots/colormap={coldredux}{
+    [1cm]
+    rgb255(0cm)=(255,255,255)
+    rgb255(2cm)=(0,192,255)
+    rgb255(4cm)=(0,0,255)
+    rgb255(6cm)=(0,0,0)
+  }
+}
+
+\newcommand{\Histo}[3]{
+  \begin{figure}[tbh]
+    \centering
+      \begin{subfigure}[b]{1\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={A csomópont befoka},
+            ylabel={A csomópont kifoka},
+            enlarge x limits=0.02,
+            enlarge y limits=0.02,
+            colorbar,
+            colorbar style={
+              ylabel=A csomópontok aránya,
+              yticklabel style={
+                text width=2.5em,
+                align=right,
+                /pgf/number format/.cd,
+                fixed,
+                fixed zerofill
+              }
+            }
+          ]
+          \addplot[scatter, scatter src=explicit, only marks, mark=square*]
+          file{sim/#1.csv};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{10-es csoportosítás}
+    \end{subfigure} \begin{subfigure}[b]{1\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={A csomópont befoka},
+            ylabel={A csomópont kifoka},
+            enlarge x limits=0.02,
+            enlarge y limits=0.02,
+            colorbar,
+            colorbar style={
+              ylabel=A csomópontok aránya,
+              yticklabel style={
+                text width=2.5em,
+                align=right,
+                /pgf/number format/.cd,
+                fixed,
+                fixed zerofill
+              }
+            }
+          ]
+          \addplot[scatter, scatter src=explicit, only marks, mark=square*]
+          file{sim/#1-zoom.csv};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{Csoportosítás nélkül, a maximum 30 ki- és befokú csúcsok.}
+    \end{subfigure}
+    \caption{#2 \label{#3}}
+  \end{figure}
+}
+\newcommand{\AvgPlot}[3]{
+  \begin{figure}[tbh]
+    \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          xlabel={A csomópont átlagfokszám},
+          ylabel={A csomópontok aránya},
+          enlarge x limits=0.02,
+          enlarge y limits=0.02,
+          legend pos=north west
+        ]
+        \addplot[smooth,color=blue]
+        file{sim/#1-avg.csv};
+        \end{axis}
+      \end{tikzpicture}
+    \caption{#2 \label{#3}}
+  \end{figure}
+}
+\newcommand{\AvgPlotZoom}[3]{
+  \begin{figure}[tbh]
+    \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          xlabel={A csomópont átlagfokszám},
+          ylabel={A csomópontok aránya},
+          enlarge x limits=0.02,
+          enlarge y limits=0.02,
+          legend pos=north west
+        ]
+        \addplot[smooth,color=blue]
+        file{sim/#1-avg-zoom.csv};
+        \end{axis}
+      \end{tikzpicture}
+    \caption{#2 \label{#3}}
+  \end{figure}
+}

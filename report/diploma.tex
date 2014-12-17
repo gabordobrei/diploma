@@ -25,6 +25,10 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{cite}
+\usepackage{subcaption}
+\usepackage{tikz, tikz-3dplot, pgfplots}
+\pgfplotsset{compat=newest}
+
 
 %--------------------------------------------------------------------------------------
 % Main variables
@@ -105,16 +109,7 @@
 \newcommand{\listref}[1]{\ref{listing:#1}.}
 \newcommand{\tabref}[1]{\ref{tab:#1}.}
 
-\newcommand\TODO[1]{\textcolor{red}{ TODO #1}}
-\newcommand\todo[0]{\textcolor{red}{ TODO \newline}}
-
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
-
-\makeatletter
-\renewcommand*{\ALG@name}{Algoritmus}
-\makeatother
+\include{helper}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 %\DeclareMathOperator*[1]{\floor}{arg\,max}

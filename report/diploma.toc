@@ -58,12 +58,12 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}A szimul\IeC {\'a}ci\IeC {\'o} menete}{41}{subsection.4.2.2}
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Az eredm\IeC {\'e}nyek}{42}{section.4.3}
 \select@language {magyar} \contentsline {section}{\numberline {4.4}\IeC {\"O}sszefoglal\IeC {\'o}}{42}{section.4.4}
-\select@language {magyar} \contentsline {chapter}{\numberline {5}\IeC {\"O}sszefoglal\IeC {\'a}s}{43}{chapter.5}
-\select@language {magyar} \contentsline {chapter}{\IeC {\'A}br\IeC {\'a}k jegyz\IeC {\'e}ke}{45}{chapter*.31}
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\IeC {\'e}k}{48}{chapter*.32}
-\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{49}{appendix*.33}
-\select@language {magyar} \contentsline {section}{\numberline {F.1}Sz\IeC {\'a}m\IeC {\'\i }t\IeC {\'a}selm\IeC {\'e}leti alapok}{49}{section.F.1}
-\select@language {magyar} \contentsline {section}{\numberline {F.2}Az \IeC {\'u}tvonalv\IeC {\'a}laszt\IeC {\'a}s teljes modellje }{51}{section.F.2}
-\select@language {magyar} \contentsline {section}{\numberline {F.3}T\IeC {\'e}telek a routing algebr\IeC {\'a}k t\IeC {\'e}mak\IeC {\"o}r\IeC {\'e}ben}{51}{section.F.3}
-\select@language {magyar} \contentsline {section}{\numberline {F.4}A szimul\IeC {\'a}tor technikai r\IeC {\'e}szletei}{52}{section.F.4}
-\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{52}{section*.34}
+\select@language {magyar} \contentsline {chapter}{\numberline {5}\IeC {\"O}sszefoglal\IeC {\'a}s}{47}{chapter.5}
+\select@language {magyar} \contentsline {chapter}{\IeC {\'A}br\IeC {\'a}k jegyz\IeC {\'e}ke}{49}{chapter*.39}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\IeC {\'e}k}{52}{chapter*.40}
+\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{53}{appendix*.41}
+\select@language {magyar} \contentsline {section}{\numberline {F.1}Sz\IeC {\'a}m\IeC {\'\i }t\IeC {\'a}selm\IeC {\'e}leti alapok}{53}{section.F.1}
+\select@language {magyar} \contentsline {section}{\numberline {F.2}Az \IeC {\'u}tvonalv\IeC {\'a}laszt\IeC {\'a}s teljes modellje }{55}{section.F.2}
+\select@language {magyar} \contentsline {section}{\numberline {F.3}T\IeC {\'e}telek a routing algebr\IeC {\'a}k t\IeC {\'e}mak\IeC {\"o}r\IeC {\'e}ben}{55}{section.F.3}
+\select@language {magyar} \contentsline {section}{\numberline {F.4}A szimul\IeC {\'a}tor technikai r\IeC {\'e}szletei}{56}{section.F.4}
+\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{56}{section*.42}
