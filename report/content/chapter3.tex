@@ -53,7 +53,7 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
 
       Természetesen ez a függvény nem implementálható ebben a formában, hiszen nincs részletezve, hogy hogyan működik a $\Call{getAllPathsBetween}{u,~v}$, de az általános felhasználhatósága látszódik az 5. sorban: az összes út közül a legjobbakat kiválasztani csupán az aktuális algebra alapján is képesek vagyunk. (Itt jól látszik egy algebra ,,jól viselkedése'', hiszen a $\Call{getAllPathsBetween}$ függvény akár a gráf méretében exponenciális méretű úthalmazzal is visszatérhet.)\\
 
-      A konkrét implementálás előtt gondoljuk meg, hogy érdemes az összes út előállítása, majd a minimálisak kiválasztása helyett csak a minimális utak megtalálását megpróbálni. Egy minimális út keresésére számtalan \textit{mohó} megoldás ismert, melyek optimálisak és a gráf méretéhez képest polinom időben futnak. Nem triviális probléma azonban az \textit{összes} ilyen út megtalálása. Erre a problémára használható egy módosított Dijkstra algoritmus, melyet a Függelékben részletezek (lásd \aref{dijkstra}. rész).
+      A konkrét implementálás előtt gondoljuk meg, hogy érdemes az összes út előállítása, majd a minimálisak kiválasztása helyett csak a minimális utak megtalálását megpróbálni. Egy minimális út keresésére számtalan \textit{mohó} megoldás ismert, melyek optimálisak és a gráf méretéhez képest polinom időben futnak. Nem triviális probléma azonban az \textit{összes} ilyen út megtalálása. Erre a problémára használható egy módosított Dijkstra algoritmus.
 
     %----------------------------------------------------------------------------
     \subsection{A kimenet}
@@ -75,12 +75,6 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
 
     A másik absztrakt fogalom, amit a szimuláció során használok, az a gráf, csúcsaival és éleivel. Mivel itt a csúcsoknak már biztosan nem tulajdonítunk semmilyen információhordozó szerepet (lásd a csúcsok adataink élekre való átírását \aref{prep}. szakaszban), egy egyszerű (egész) azonosítóval jelöljük, míg az élek -- összetettségük miatt -- már bonyolultabb modellt igényelnek, melyek azonban mindig az adott problémától függenek és algebra-súly párokat tartalmaznak (adott algebra szerint mi a súlya az élnek).\\
     A gráfot ezután vagy éllistával, vagy szomszédossági mátrixszal jeleníthetjük meg. A szomszédossági mátrix a sűrű gráfoknál hatékonyabb, de az itt vizsgált problémák általában ritka gráfokkal modellezhetők\footnote{Ha elfogadjuk, hogy \textit{valamilyen} elv szerint optimális az útvonalválasztás, akkor nem lehet sok párhuzamos út $u$ és $v$ között, hiszen a redundancia nem hatékony az élszámok tekintetében.}. Mégis a módosított Dijkstra algoritmust a mátrixos megadásra készítettem fel pusztán a programozástechnikai egyszerűsége miatt (természetesen a mátrixos megadásnak az optimalizált formáját használom, azaz csak a létező éleknél tárolok adatot).
-
-    %----------------------------------------------------------------------------
-    \subsection{A felhasznált algoritmus elemzése}
-    %----------------------------------------------------------------------------
-
-                \todo
 
   %----------------------------------------------------------------------------
   \section{A szimulációs eredmények kiértékelése}

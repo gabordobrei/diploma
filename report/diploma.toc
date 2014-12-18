@@ -35,7 +35,6 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {3.1.3}A kimenet}{31}{subsection.3.1.3}
 \select@language {magyar} \contentsline {section}{\numberline {3.2}A szimul\IeC {\'a}tor}{32}{section.3.2}
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}A matematikai strukt\IeC {\'u}r\IeC {\'a}k implement\IeC {\'a}l\IeC {\'a}sa}{32}{subsection.3.2.1}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}A felhaszn\IeC {\'a}lt algoritmus elemz\IeC {\'e}se}{33}{subsection.3.2.2}
 \select@language {magyar} \contentsline {section}{\numberline {3.3}A szimul\IeC {\'a}ci\IeC {\'o}s eredm\IeC {\'e}nyek ki\IeC {\'e}rt\IeC {\'e}kel\IeC {\'e}se}{33}{section.3.3}
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}A vizsg\IeC {\'a}land\IeC {\'o} metrik\IeC {\'a}k}{33}{subsection.3.3.1}
 \select@language {magyar} \contentsline {subsubsection}{Az algebra szerinti t\IeC {\'a}vols\IeC {\'a}g pontoz\IeC {\'a}sa}{34}{section*.18}
@@ -73,4 +72,3 @@
 \select@language {magyar} \contentsline {section}{\numberline {F.2}Az \IeC {\'u}tvonalv\IeC {\'a}laszt\IeC {\'a}s teljes modellje }{58}{section.F.2}
 \select@language {magyar} \contentsline {section}{\numberline {F.3}T\IeC {\'e}telek a routing algebr\IeC {\'a}k t\IeC {\'e}mak\IeC {\"o}r\IeC {\'e}ben}{58}{section.F.3}
 \select@language {magyar} \contentsline {section}{\numberline {F.4}A szimul\IeC {\'a}tor technikai r\IeC {\'e}szletei}{59}{section.F.4}
-\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{59}{section*.43}
