@@ -12,37 +12,15 @@ Ha körbenézünk a világban, az informatikától távol eső területeken is r
 
 A Diplomatervben a végső cél olyan policy primitíveket meghatározni, melyek összekapcsolásával jól lehet közelíteni a valós hálózatokat. Jelenleg sok megválaszolatlan kérdés van a BGP hálózat útvonalválasztásáról, melyek jó része onnan ered, hogy a hálózat csomópontjai, az AS-k nem fedik fel szabályrendszerüket. Ezen kérdésekre tudnánk válaszolni úgy, hogy nem a pontos szabályokat adjuk meg, hanem megmutatjuk, hogy adott policy primitívek felhasználásával majdnem ugyanolyan utakat kapunk, mint egy adott AS. Ez azért is lenne egy jó megoldás, mert lehet, hogy egy AS viszonylag bonyolult, sok erőforrást felemésztő szabályokat alkalmaz, pedig nagyon hasonló eredményeket érhetne el úgy is, ha az itt bemutatott p. primitíveket használná.\\
 
-\Aref{modell}. fejezetben a számítógépes hálózatok policy-felderítésével foglalkozó szakirodalom áttekintés után egy általános hálózati- és routing modellt írok le, amely képes kezelni más tudományterületekről származó hasonló problémákat is. Az útvonalválasztás szabályrendszerét egy jól definiált matematikai struktúrával kell meghatározni, hogy definiálni lehessen policy-k közti műveleteket, amelyekkel össze is tudunk kapcsolni policy-ket és tudjuk vizsgálni az kölcsönhatásukat.
+\Aref{modell}. fejezetben a számítógépes hálózatok policy-felderítésével foglalkozó szakirodalom áttekintés után egy általános hálózati- és routing modellt írok le, amely képes kezelni más tudományterületekről származó hasonló problémákat is. Az útvonalválasztás szabályrendszerét egy jól definiált matematikai struktúrával kell meghatározni, hogy definiálni lehessen policy-k közti műveleteket, amelyekkel össze is tudunk kapcsolni policy-ket és tudjuk vizsgálni az kölcsönhatásukat.\\
 
-\Aref{examples}. fejezetben változatos problémákat és a hozzájuk tartozó routing policy-ket definiálok és leírom a hozzájuk tartozó matematikai struktúrákat.
+\Aref{examples}. fejezetben változatos problémákat és a hozzájuk tartozó routing policy-ket definiálok és leírom a hozzájuk tartozó matematikai struktúrákat, különös tekintettel olyan szabályrendszerekre, amelyeket a későbbi szimulációs vizsgálatoknál fel tudok használni.\\
 
-\Aref{test}. fejezetben szimulációs módszerekkel elemzem, hogy egyes teszt-hálózatokban milyen utakat határoznak meg \aref{modell}. fejezetben definiált policy-k, és javaslatot teszek, hogy egy valós hálózat útvonalválasztását melyik policy-k keverékével lehet legpontosabban modellezni. Ezután több valós hálózatot vizsgálok meg az addigra meghatározott saját policy-k segítségével, és megvizsgálom a keverék policy pontosságát, azaz azt, hogy mennyire térnének el a valós hálózatbeli utak a jelenlegitől akkor, ha az általam ismertetett policy-kel határoznánk meg azokat.
-\newline
-\newline
-A feladatok elvégzéséhez a NetLogo\footnote{\url{http://ccl.northwestern.edu/netlogo/}} nevű hálózati szimulátort fogom használni, a valós hálózatok a BGP hálózat és egy repülési útvonalakat tartalmazó hálózat lesz.
+\Aref{framework}. fejezetben specifikálok egy olyan szimulációs keretrendszert, melynek segítségével a valós életből származó, tipikusan nagyméretű hálózatok útvonalválasztási szabályrendszereit képes jellemezni. Ehhez kidolgozok egy alkalmas pontozási rendszert, amely segítségével a szimulációs eredményeket értékelni tudom. Ennek részeként beazonosítom azokat a legfontosabb globális- és útvonalfüggő metrikákat, amelyekkel a lehető legpontosabban tudom mérni egy szimuláció pontosságát, valamint azt, hogy milyen mértékben tudnánk javítani a megfigyelt hálózat útvonalválasztásán.\\
 
-%A Diplomatervben törekszem a szakmai közönség által érthető megfogalmazásra, általában a középiskolai matematikát meg nem haladó eszközrendszerrel dolgozom, az ennél komolyabb fogalmak, definíciók, tételek pedig megtalálhatók a függelékben. Mindazonáltal a számításelmélet, az algoritmuselmélet és egyéb magasabb szintű témakörök ismerete elengedhetetlen ennek a témának a tárgyalása során.
+\Aref{test}. fejezetben a szimulációs keretrendszerrel elemzem, hogy egy valós hálózatban (repülőtársaságok útvonalkialakítása) milyen utakat határoznak meg \aref{modell}. fejezetből alkalmasan választott policy-k, és javaslatot teszek, hogy repülőtársaságok útvonalválasztását melyik policy-k keverékével lehet legpontosabban modellezni, illetve javítani.\\
+
+
+A Diplomatervben törekszem a szakmai közönség által érthető megfogalmazásra, általában a középiskolai matematikát meg nem haladó eszközrendszerrel dolgozom, az ennél komolyabb fogalmak, definíciók, tételek pedig megtalálhatók a függelékben. Mindazonáltal a számításelmélet, az algoritmuselmélet és egyéb magasabb szintű témakörök ismerete elengedhetetlen ennek a témának a tárgyalása során.
 
 A számításelmélet, az algoritmuselmélet és egyéb magasabb szintű témakörök ismerete elengedhetetlen ennek a diplomamunkának a megértése során, ugyanakkor minden fontosabb matematikai tétel megtalálható a \hyperlink{appendix}{Függelék}ben.
-
-%??????????????? fedését (), illetve a pontosságát
-
-%A diplomaterv célja olyan szabályalapú útvonalépítési stratégiák kutatása (szintetizálása/elemzése), mely mindamellett, hogy alkalmas lehet valós kommunikációs hálózati alkalmazásra is, felhasználható más természetes vagy mesterséges/technológiai valós hálózatok működésének felderítésére, alapvető mozgatórugóinak megismerésére.
-
-
-% ???
-%Tekinthetünk erre a problémára úgy is, mint a számítástechnikában használt \emph{fekete doboz} modellre, amikor tudjuk, hogy mi a rendszer bemenete (), ismerjük a kimenetet, de a pontos működést nem. Természetesen
-% ???
-
-
-%Szabály alapú útvonalépítési stratégiák nagy hálózatokban
-%Az Internet rohamos fejlődésével az utóbbi időben mind nagyobb hangsúlyt kapnak a hagyományostól eltérő hálózatmenedzsment funkciókat megvalósító algoritmus kutatások. Ezek egyik legaktívabban művelt ága az útvonalválasztás kérdéseivel foglalkozik, és lényegében az erőforrások optimalizálást célzó klasszikus (főként legrövidebb utak megtalálására koncentráló) algoritmusok alternatíváinak kutatását tűzi ki célul. Az algoritmusok általános szabályok (policy) mentén alakítják ki a lehetséges kommunikációs vonalakat, a kapcsolódó irányadó paraméterek igen változatosak lehetnek. A terület ugyanakkor nem önálló diszciplínaként jelentkezik, lehetőség adódik számos az általános hálózatkutatásban kidolgozott eredmény felhasználására, ill. viszontalkalmazására is.
-%A diplomaterv célja olyan szabályalapú útvonalépítési stratégiák kutatása (szintetizálása/elemzése), mely mindamellett, hogy alkalmas lehet valós kommunikációs hálózati alkalmazásra is, felhasználható más természetes vagy mesterséges/technológiai valós hálózatok működésének felderítésére, alapvető mozgatórugóinak megismerésére.
-
-%Szakirodalom alapján tekintse át a modern hálózattudomány legfontosabb eredményeit! Az áttekintés során koncentráljon a hálózati folyamatokra, ezen belül is első sorban a navigálással kapcsolatos eredményekre!
-%Alkalmasan választott nagyméretű valós hálózat tanulmányozásán keresztül, elemezze azokat a módszereket, melyek a hálózatbeli általános értelemben vett kommunikációs folyamatokat alapvetően meghatározzák! Állítson össze egy olyan lehetőség szerint minimális primitív szabályrendszer halmazt, mely segítségével a működés jól modellezhető!
-%Az eredmények alapján specifikáljon és dolgozzon ki egy olyan modellezési keretrendszert, melynek segítségével nagyméretű valós hálózatokat jellemző útvonalkialakítási dinamikát képes strukturált módon jellemezni!
-%A tesztelés során mutassa be keretrendszer alkalmazását hálózati működést definiáló adathalmaz(ok)on!
-%Eredményeit részletesen dokumentálja!
-
-%A bevezető tartalmazza a diplomaterv-kiírás elemzését, történelmi előzményeit, a feladat indokoltságát (a motiváció leírását), az eddigi megoldásokat, és ennek tükrében a hallgató megoldásának összefoglalását. A bevezető szokás szerint a diplomaterv felépítésével záródik, azaz annak rövid leírásával, hogy melyik fejezet mivel foglalkozik.

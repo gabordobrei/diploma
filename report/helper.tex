@@ -22,93 +22,105 @@
 \newcommand{\Histo}[3]{
   \begin{figure}[tbh]
     \centering
-      \begin{subfigure}[b]{1\textwidth}
+      \begin{subfigure}[b]{0.49\textwidth}
       \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            xlabel={A csomópont befoka},
-            ylabel={A csomópont kifoka},
-            enlarge x limits=0.02,
-            enlarge y limits=0.02,
-            colorbar,
-            colorbar style={
-              ylabel=A csomópontok aránya,
-              yticklabel style={
-                text width=2.5em,
-                align=right,
-                /pgf/number format/.cd,
-                fixed,
-                fixed zerofill
+      \resizebox {\textwidth} {!} {
+        \begin{tikzpicture}
+          \begin{axis}[
+              xlabel={A csomópont befoka},
+              ylabel={A csomópont kifoka},
+              enlarge x limits=0.02,
+              enlarge y limits=0.02,
+              colorbar,
+              colorbar style={
+                %ylabel=A csomópontok aránya,
+                yticklabel style={
+                  text width=2.5em,
+                  align=right,
+                  /pgf/number format/.cd,
+                  fixed,
+                  %fixed zerofill
+                }
               }
-            }
-          ]
-          \addplot[scatter, scatter src=explicit, only marks, mark=square*]
-          file{sim/#1.csv};
-        \end{axis}
-      \end{tikzpicture}
+            ]
+            \addplot[scatter, scatter src=explicit, only marks, mark=square*]
+            file{sim/#1.csv};
+          \end{axis}
+        \end{tikzpicture}
+      }
       \caption{10-es csoportosítás}
-    \end{subfigure} \begin{subfigure}[b]{1\textwidth}
+    \end{subfigure} \begin{subfigure}[b]{0.49\textwidth}
       \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            xlabel={A csomópont befoka},
-            ylabel={A csomópont kifoka},
-            enlarge x limits=0.02,
-            enlarge y limits=0.02,
-            colorbar,
-            colorbar style={
-              ylabel=A csomópontok aránya,
-              yticklabel style={
-                text width=2.5em,
-                align=right,
-                /pgf/number format/.cd,
-                fixed,
-                fixed zerofill
+      \resizebox {\textwidth} {!} {
+        \begin{tikzpicture}
+          \begin{axis}[
+              xlabel={A csomópont befoka},
+              ylabel={A csomópont kifoka},
+              enlarge x limits=0.02,
+              enlarge y limits=0.02,
+              colorbar,
+              colorbar style={
+                %ylabel=A csomópontok aránya,
+                yticklabel style={
+                  text width=2.5em,
+                  align=right,
+                  /pgf/number format/.cd,
+                  fixed,
+                  fixed zerofill
+                  %{0, 0, , 0.1, , 0.2},
+                }
               }
-            }
-          ]
-          \addplot[scatter, scatter src=explicit, only marks, mark=square*]
-          file{sim/#1-zoom.csv};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{Csoportosítás nélkül, a maximum 30 ki- és befokú csúcsok.}
+            ]
+            \addplot[scatter, scatter src=explicit, only marks, mark=square*]
+            file{sim/#1-zoom.csv};
+          \end{axis}
+        \end{tikzpicture}
+      }
+      \caption{A maximum 30 ki- és befokú csúcsok.}
     \end{subfigure}
     \caption{#2 \label{#3}}
   \end{figure}
 }
+
 \newcommand{\AvgPlot}[3]{
   \begin{figure}[tbh]
     \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-          xlabel={A csomópont átlagfokszám},
-          ylabel={A csomópontok aránya},
-          enlarge x limits=0.02,
-          enlarge y limits=0.02,
-          legend pos=north west
-        ]
-        \addplot[smooth,color=blue]
-        file{sim/#1-avg.csv};
-        \end{axis}
-      \end{tikzpicture}
-    \caption{#2 \label{#3}}
-  \end{figure}
-}
-\newcommand{\AvgPlotZoom}[3]{
-  \begin{figure}[tbh]
-    \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-          xlabel={A csomópont átlagfokszám},
-          ylabel={A csomópontok aránya},
-          enlarge x limits=0.02,
-          enlarge y limits=0.02,
-          legend pos=north west
-        ]
-        \addplot[smooth,color=blue]
-        file{sim/#1-avg-zoom.csv};
-        \end{axis}
-      \end{tikzpicture}
+      \begin{subfigure}[b]{0.49\textwidth}
+      \centering
+      \resizebox {\textwidth} {!} {
+        \begin{tikzpicture}
+          \begin{axis}[
+            xlabel={A csomópont átlagfokszáma},
+            ylabel={A csomópontok aránya},
+            enlarge x limits=0.02,
+            enlarge y limits=0.02,
+            legend pos=north west
+          ]
+          \addplot[smooth,color=blue]
+          file{sim/#1-avg.csv};
+          \end{axis}
+        \end{tikzpicture}
+      }
+      \caption{Az átlagfokszám-eloszlás.}
+    \end{subfigure} \begin{subfigure}[b]{0.49\textwidth}
+      \centering
+      \resizebox {\textwidth} {!} {
+        \begin{tikzpicture}
+          \begin{axis}[
+            xlabel={A csomópont átlagfokszáma},
+            ylabel={A csomópontok aránya},
+            enlarge x limits=0.02,
+            enlarge y limits=0.02,
+            yticklabels={0, 0, , 0.1, , 0.2},
+            legend pos=north west
+          ]
+          \addplot[smooth,color=blue]
+          file{sim/#1-avg-zoom.csv};
+          \end{axis}
+        \end{tikzpicture}
+      }
+      \caption{A maximum 50 átlagfokszámú csomópontok.}
+    \end{subfigure}
     \caption{#2 \label{#3}}
   \end{figure}
 }

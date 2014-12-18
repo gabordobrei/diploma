@@ -82,7 +82,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
   A metrikák fontos szerepet játszanak az útvonalválasztásban, hiszen ez alapján tudjuk a hálózati utak közötti preferenciát megadni, másképp megfogalmazva megadja, hogy egy bizonyos tulajdonság alapján mekkora a költsége egy útnak. Az útvonalválasztás során a metrika lehet statikus, amikor egy előre rögzített elvet követünk végig, vagy lehet dinamikus, amikor a hálózat adott állapotától függően automatikusan változik. Azt, hogy milyen metrika szerint végezzük a routing-ot nevezzük \emph{routing policy}-nak:
 
   \begin{definition} [Routing policy]
-    A routing policy egy olyan $p_{st}^{*}=Pol(\mathcal{P}_{st})$ függvény, aminek az értelmezési tartománya a lehetséges $s -- t$ utak: $\mathcal{P}_{st}$ és az adott policy-nak megfelelő legkedvezőbb utat adja vissza.
+    A routing policy egy olyan $p_{st}^{*}=Pol(\mathcal{P}_{st})$ függvény, aminek az értelmezési tartománya a lehetséges $s - t$ utak: $\mathcal{P}_{st}$ és az adott policy-nak megfelelő legkedvezőbb utat adja vissza.
   \end{definition}
 
   Ahhoz, hogy ezentúl matematikailag is kényelmesen tudjuk kezelni a policy-kat, az ún. routing algebrák fogalmát kell használnunk, melyek az általános útvonalválasztó policy-k matematikai leírása \cite{Sobrinho_Algebra_and_Algorithms, Compact_Policy_Routing}.
@@ -147,7 +147,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
       Az $\mathcal{A}$ routing algebrát regulárisnak nevezzük, ha
       \begin{itemize}
       \item \emph{ Monoton (M):} $w_{1} \preceq w_{1} \bigoplus w_{2}, ~\forall w_{1}, w_{2} \in W$
-      \item \emph{ Izotón (I):} $w_{1} \preceq w_{2}~\Rightarrow~w_{3} \bigoplus w_{1} \preceq w_{3} \bigoplus w_{2},~\forall w_{1}, w_{2}, w_{3} \in W$
+      \item \emph{ Izoton (I):} $w_{1} \preceq w_{2}~\Rightarrow~w_{3} \bigoplus w_{1} \preceq w_{3} \bigoplus w_{2},~\forall w_{1}, w_{2}, w_{3} \in W$
       \end{itemize}
     \end{definition}
 
@@ -227,7 +227,6 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
   \begin{table}[ht]
     \footnotesize
     \centering
-    \caption{Routing policy-k, algebráik és fontosabb tulajdonságaik.}
     \begin{tabular}{ | l | c | c |}
     \hline
     Policy & Algebra & Tulajdonság\\
@@ -238,7 +237,9 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
     Legszélesebb-legrövidebb út & $\mathcal{WS}~=~\mathcal{S}~\times~\mathcal{W}$ & SM, I\\
     Legrövidebb-legszélesebb út & $\mathcal{SW}~=~\mathcal{W}~\times~\mathcal{S}$ & SM, $\neg$I\\
     \hline
-    \end{tabular}\label{tab:table_algebrapeldak}
+    \end{tabular}
+    \caption{Routing policy-k, algebráik és fontosabb tulajdonságaik.}
+    \label{tab:table_algebrapeldak}
   \end{table}
 
   A $\mathcal{W}$ a widest-path routing algebrát jelenti \cite{Quality_of_service_routing_for_supporting_multimedia_applications}. Ennél az algebránál egy él súlya a kapacitása adja, és nyilván egy több élből álló úton az út kapacitása megegyezik az útmenti legkisebb kapacitással. Emellett nyilván minél nagyobb egy út globális kapacitása, annál inkább preferált. A $\mathcal{W}$ algebra kiválasztó is és megadható a $(\mathbb{R}^{+},~\infty,~min,~\geq)$ négyessel (az \eqref{algebratetel1} tétel értelmében pedig tömöríthető is).
@@ -247,7 +248,7 @@ Ebben a fejezetben a szakirodalom rövid áttekintése után egy általános há
 
   A legszélesebb-legrövidebb út (widest-shortest path) $\mathcal{WS}$ routing esetén a legrövidebb utak közül a legnagyobb kapacitásút választjuk \cite{Quality_of_service_based_routing_A_performance_perspective}, míg a legrövidebb-legszélesebb út (shortest-widest path) $\mathcal{SW}$ (\cite{Quality_of_service_routing_for_supporting_multimedia_applications, On_path_selection_for_traffic_with_bandwidth_guarantees}) routing esetén, éppen fordítva, a legnagyobb kapacitású utak közül a legrövidebbet választjuk. Ezeket az algebrákat megkaphatjuk a $\mathcal{S}$ és a $\mathcal{W}$ algebrák lexikografikus szorzataként \cite{Lexicographic_products_in_metarouting}.
   \begin{note}
-    $\mathcal{SW}$ nem izotón. Az \eqref{algebratetel2} tétel áll a nem izotón algebrákra is, így $\Omega(n)$ bit lokális memóriát igényel a $\mathcal{SW}$ algebra is. Jelenleg még nyitott kérdés, hogy ez a határ szoros-e. Nem tudjuk, hogy van-e jobb megoldás, mint a triviális, azaz hogy minden router tárol egy-egy routing tábla bejegyzést minden forrás-cél párra, ami $O(n^2 log d)$ ($d$ a maximális fokszám) bit per router memóriaigényű.
+    $\mathcal{SW}$ nem izoton. Az \eqref{algebratetel2} tétel áll a nem izoton algebrákra is, így $\Omega(n)$ bit lokális memóriát igényel a $\mathcal{SW}$ algebra is. Jelenleg még nyitott kérdés, hogy ez a határ szoros-e. Nem tudjuk, hogy van-e jobb megoldás, mint a triviális, azaz hogy minden router tárol egy-egy routing tábla bejegyzést minden forrás-cél párra, ami $O(n^2 log d)$ ($d$ a maximális fokszám) bit per router memóriaigényű.
   \end{note}
 
   %----------------------------------------------------------------------------

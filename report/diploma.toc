@@ -57,13 +57,20 @@
 \select@language {magyar} \contentsline {subsubsection}{Az \IeC {\'e}ls\IeC {\'u}lyok meghat\IeC {\'a}roz\IeC {\'a}sa}{41}{section*.30}
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}A szimul\IeC {\'a}ci\IeC {\'o} menete}{41}{subsection.4.2.2}
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Az eredm\IeC {\'e}nyek}{42}{section.4.3}
-\select@language {magyar} \contentsline {section}{\numberline {4.4}\IeC {\"O}sszefoglal\IeC {\'o}}{42}{section.4.4}
-\select@language {magyar} \contentsline {chapter}{\numberline {5}\IeC {\"O}sszefoglal\IeC {\'a}s}{47}{chapter.5}
-\select@language {magyar} \contentsline {chapter}{\IeC {\'A}br\IeC {\'a}k jegyz\IeC {\'e}ke}{49}{chapter*.39}
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\IeC {\'e}k}{52}{chapter*.40}
-\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{53}{appendix*.41}
-\select@language {magyar} \contentsline {section}{\numberline {F.1}Sz\IeC {\'a}m\IeC {\'\i }t\IeC {\'a}selm\IeC {\'e}leti alapok}{53}{section.F.1}
-\select@language {magyar} \contentsline {section}{\numberline {F.2}Az \IeC {\'u}tvonalv\IeC {\'a}laszt\IeC {\'a}s teljes modellje }{55}{section.F.2}
-\select@language {magyar} \contentsline {section}{\numberline {F.3}T\IeC {\'e}telek a routing algebr\IeC {\'a}k t\IeC {\'e}mak\IeC {\"o}r\IeC {\'e}ben}{55}{section.F.3}
-\select@language {magyar} \contentsline {section}{\numberline {F.4}A szimul\IeC {\'a}tor technikai r\IeC {\'e}szletei}{56}{section.F.4}
-\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{56}{section*.42}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.1}A Shortest algebra}{42}{subsection.4.3.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.2}A LeastHop algebra}{44}{subsection.4.3.2}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}A ShortestLeastHop \IeC {\'e}s a LeastHopShortest algebr\IeC {\'a}k}{45}{subsection.4.3.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Az \IeC {\"O}sszek\IeC {\"o}t\IeC {\H o}-keres\IeC {\'e}s- \IeC {\'e}s Korai-elfogad\IeC {\'o}-keres\IeC {\'e}s-LeastHop algebr\IeC {\'a}k}{45}{subsection.4.3.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.5}Az \IeC {\"O}sszek\IeC {\"o}t\IeC {\H o}-keres\IeC {\'e}s-Shortest algebra}{45}{subsection.4.3.5}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.6}A Korai-elfogad\IeC {\'o}-keres\IeC {\'e}s-Shortest algebra}{46}{subsection.4.3.6}
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.7}Az algebr\IeC {\'a}k \IeC {\'e}rt\IeC {\'e}kel\IeC {\'e}se}{48}{subsection.4.3.7}
+\select@language {magyar} \contentsline {section}{\numberline {4.4}\IeC {\"O}sszefoglal\IeC {\'o}}{48}{section.4.4}
+\select@language {magyar} \contentsline {chapter}{\numberline {5}\IeC {\"O}sszefoglal\IeC {\'a}s}{50}{chapter.5}
+\select@language {magyar} \contentsline {chapter}{\IeC {\'A}br\IeC {\'a}k jegyz\IeC {\'e}ke}{52}{chapter*.40}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\IeC {\'e}k}{55}{chapter*.41}
+\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{56}{appendix*.42}
+\select@language {magyar} \contentsline {section}{\numberline {F.1}Sz\IeC {\'a}m\IeC {\'\i }t\IeC {\'a}selm\IeC {\'e}leti alapok}{56}{section.F.1}
+\select@language {magyar} \contentsline {section}{\numberline {F.2}Az \IeC {\'u}tvonalv\IeC {\'a}laszt\IeC {\'a}s teljes modellje }{58}{section.F.2}
+\select@language {magyar} \contentsline {section}{\numberline {F.3}T\IeC {\'e}telek a routing algebr\IeC {\'a}k t\IeC {\'e}mak\IeC {\"o}r\IeC {\'e}ben}{58}{section.F.3}
+\select@language {magyar} \contentsline {section}{\numberline {F.4}A szimul\IeC {\'a}tor technikai r\IeC {\'e}szletei}{59}{section.F.4}
+\select@language {magyar} \contentsline {subsubsection}{A m\IeC {\'o}dos\IeC {\'\i }tott Dijkstra algoritmus az \textit {\IeC {\"o}sszes} minim\IeC {\'a}lis \IeC {\'u}t megtal\IeC {\'a}l\IeC {\'a}s\IeC {\'a}hoz}{59}{section*.43}

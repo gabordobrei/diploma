@@ -29,7 +29,6 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
     \begin{table}[ht]
       \footnotesize
       \centering
-      \caption{Az OpenFlights adatbázisában elérhető reptéri adatok.}
       \begin{tabular}{ | l | l |}
       \hline
       Attribútum & Leírás \\ \hline
@@ -38,14 +37,15 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
       City & Az a város, amit a reptér ,,kiszolgál''.\\
       Country & Az ország vagy terület neve, ahol reptér található.\\
       IATA/FAA & 3 betűs FAA kód az USA-beli reptereknek vagy 3 betűs IATA kód, minden más esetben.\\
-      ICAO\footnote{International Civil Aviation Organization: Nemzetközi Polgári Repülési Szervezet} & 4 betűs ICAO kód.\\
+      ICAO & 4 betűs ICAO\footnote{International Civil Aviation Organization: Nemzetközi Polgári Repülési Szervezet} kód.\\
       Latitude & A reptér szélességi foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
       & A Déli féltekén negatív, az Északin pozitív.\\
       Longitude & A reptér hosszúsági foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
       & A Nyugati féltekén negatív, a Keletin pozitív.\\
-      Altitude & A tengerszint feletti magasság, lábban mérve (1 láb $\sim$ 0.30 méter).\\
+      Altitude & A tengerszint feletti magasság, lábban mérve (1 láb $\sim$ 0,30 méter).\\
       \hline
       \end{tabular}
+      \caption{Az OpenFlights adatbázisában elérhető reptéri adatok.}
       \label{tab:table_repterek}
     \end{table}
 
@@ -66,7 +66,6 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
     \begin{table}[ht]
       \footnotesize
       \centering
-      \caption{Az OpenFlights adatbázisában elérhető adatok a repülési útvonalakról.}
       \begin{tabular}{ | l | l |}
       \hline
       Attribútum & Leírás \\ \hline
@@ -81,6 +80,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
       Equipment & A viszonylatban használt repülőgép típusok 3 betűs kódjai.\\
       \hline
       \end{tabular}
+      \caption{Az OpenFlights adatbázisában elérhető adatok a repülési útvonalakról.}
       \label{tab:table_repulesiutvonalak}
     \end{table}
 
@@ -92,7 +92,6 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
     \begin{table}[ht]
       \footnotesize
       \centering
-      \caption{Az OpenFlights adatbázisában elérhető adatok a repülőtársaságokról.}
       \begin{tabular}{ | l | l |}
       \hline
       Attribútum & Leírás \\ \hline
@@ -106,6 +105,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
       Active & Igaz, ha a társaság jelenleg is, vagy nemrég még működött (nem megbízható).\\
       \hline
       \end{tabular}
+      \caption{Az OpenFlights adatbázisában elérhető adatok a repülőtársaságokról.}
       \label{tab:table_repulesitarsasagok}
     \end{table}
 
@@ -117,7 +117,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
     %----------------------------------------------------------------------------
     \subsection{Az adatok előfeldolgozása}
     %----------------------------------------------------------------------------
-    A modellezendő hálózat első megközelítésben az összes csomópontból alkotott $K_{9167}$ teljes gráf. Ez természetesen feleslegesen nagy hálózatot jelent ($9167 \choose 2$ = 42 012 361 élű gráf.), emellett az olyan, leíró jellegű jellemzők, mint a valódi hálózat átmérője, vagy az élösszefüggőség elvesznének. Lévén a repülési hálózat skálafüggetlen -- sok olyan csomópont van, ahova csak adott, kis számú, közeli csomópontokból indulnak járatok, így nem érdemes összekötni távoli csomópontokkal. Ezenkívül a repülésnél vannak olyan szempontok, amelyeket az útvonalválasztásnál figyelembe vesznek, ám én ezek pontos információk hiányában nem tudom kezelni -- pl. csak adott hosszúságú utat tehet meg egy adott típusú repülőgép az üzemanyagtartálya méretétől függően.\\
+    A modellezendő hálózat első megközelítésben a minden csomópontból alkotott $K_{9167}$ teljes gráf. Ez természetesen feleslegesen nagy hálózatot jelent ($9167 \choose 2$ = 42 012 361 élű gráf.), emellett az olyan, leíró jellegű jellemzők, mint a valódi hálózat átmérője, vagy az élösszefüggőség elvesznének. Lévén a repülési hálózat skálafüggetlen -- sok olyan csomópont van, ahova csak adott, kis számú, közeli csomópontokból indulnak járatok, így nem érdemes összekötni távoli csomópontokkal. Ezenkívül a repülésnél vannak olyan szempontok, amelyeket az útvonalválasztásnál figyelembe vesznek, ám én ezek pontos információk hiányában nem tudom kezelni -- pl. csak adott hosszúságú utat tehet meg egy adott típusú repülőgép az üzemanyagtartálya méretétől függően.\\
 
     A fentiek miatt a szimulált hálózatot a következőképpen határozom meg: pontjai a repterek, élei pedig, az adatbázisban szereplő össze, megállás nélküli repülőút. Így magától értetődően csak olyan élek lesznek a szimulációban, amelyek ,,átrepülhetők'', hiszen volt már, hogy átrepülték. Emellett pedig ez a hálózat hűen tükrözi a valóságot, hiszen feltehetjük, hogy csak azon élek nincsenek behúzva, amelyeket repüléstechnikai okokból nem is lehet, különben valaki, valamikor már repült volna azon az úton.
 
@@ -140,12 +140,117 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
   %----------------------------------------------------------------------------
   \section{Az eredmények}
   %----------------------------------------------------------------------------
+  A szimulációs eredmények kiértékelését közönséges táblázatkezelő szoftver segítségével végeztem. Minden algebra által generált gráfról kétféle adathalmazt dolgoztam fel: egy ,,útlistás'' és egy csúcshalmazos reprezentációt.\\
 
-        \todo
+  Az útlistás megadást a generált utak alapján állítottam elő, négy adatot tartalmaz: a \textit{forrás}- és \textit{cél} csomópontokat, valamint a lépésszámot és az algebra szerinti távolságot -- jelen esetben a repterek fizikai távolságát. Ezekből az adatokból közvetlenül számíthatók az $AL$ és a $HC$ mutatók.\\
+
+  A csúcshalmazos reprezentáció minden felhasznált csúcsra tartalmazza a csomópont ki- és befokát, valamint ezen mutatók átlagát. Azért volt célszerű előállítani ezt az adathalmazt is, mert innen egyszerűen meghatározható a csomópontok ki- és befoka alapján a kétdimenziós fokszámeloszlás, illetve az egydimenziós átlagfokszám-eloszlás. Ebből a forrásból egyszerűen számíthatók a $GD$, a $C$ és az $EC$ mutatók, amiből pedig a $GV$.\\
+
+  Ebben a részben elsőként a referenciaként szolgáló szimulációt mutatom be, majd bemutatom minden algebra szimulációs eredményét, a fejezet végén pedig egy táblázatban foglalom össze az eredményeket.
+
+        \iffalse
+        %----------------------------------------------------------------------------
+        \subsection{A referencia szimuláció}
+        %----------------------------------------------------------------------------
+        A referencia szimuláció célja az, hogy viszonyítási alapot adjon a pontrendszernek. Ebben az esetben
+        Értelemszerűen a pontpárok közötti mutatókat nem kell futtatni, hiszen
+        \Histo{referencia}{A referencia szimuláció során generált gráf fokszámeloszlása.}{fig:refer}
+        \AvgPlot{referencia}{A referencia szimuláció során generált gráf átlagfokszám-eloszlása.}{fig:refer-avg}
+        \fi
+
+  %----------------------------------------------------------------------------
+  \subsection{A Shortest algebra}
+  %----------------------------------------------------------------------------
+  A legrövidebb utakat előnyben részesítő policy algebrája áll várhatóan a legközelebb a valós hálózathoz, hiszen várhatóan a fizikai távolság az útvonalválasztást leginkább befolyásoló tényező.\\
+
+  A $\mathcal{S}$ algebra által generált gráfban 152 pontpár között sikerült javítani a távolságon. Az $AL$ = 152 és $HC$ = 182 így \aref{AL-HC} képlet szerint $$\text{AL-HC} = 48 \frac{1}{6}.$$\\
+
+  A globális mutatók közül a kétdimenziós fokszámeloszlás \aref{fig:S}. ábrán látható. \Aref{fig:S}. (a) diagramon tízesével csoportosítottam a fokszámokat, azaz az origóhoz legközelebbi jelölés a 10, vagy annál kevesebb fokszámú csúcsokat jelenti. \Aref{fig:S}. (b) ábrán egy ,,kinagyított'' kép látható, csoportosítás nélkül.
+  \Histo{shortest}{A $\mathcal{S}$ algebra által generált gráf fokszámeloszlása.}{fig:S}\\
+
+  Látható, hogy a csomópontok ki- és befoka minden pontra közel megegyezik. Az átlagfokszám-eloszlás \aref{fig:S-avg}. ábrán látható. Hasonlóan a másik diagramhoz, itt is egy csoportosított ((a) diagram) és egy kinagyított ((b) diagram) látható. Az ábráról leolvasható, hogy a generált gráf skálafüggetlen, így $DD$ = 1.
+  \AvgPlot{shortest}{A $\mathcal{S}$ algebra által generált gráf csomópontonkénti átlagfokszám-eloszlása.}{fig:S-avg}
+
+  A $GD$ (átmérő) mutató 3, mert a legmagasabb lépésszámú út 3 lépést tartalmaz. Az élösszefüggőségi mutatót a felső 20\%-ból számítva $C$ = 16. Az $EC$ (élszám) pontértéke 9,5872 ($ln(14578)$). Így a Shortest algebrára a $$GV = \frac{DD \cdot GD \cdot C}{ln(EC)} = \frac{1 \cdot 3 \cdot 16}{9,5872} \approx 5,006.$$.
+
+  %----------------------------------------------------------------------------
+  \subsection{A LeastHop algebra}
+  %----------------------------------------------------------------------------
+  Abban az esetben, ha a lépésszám szerint optimalizálunk, a fizikai távolságokon nem tudunk javítani, hiszen a megfigyelt utak közvetlen járatok, azaz egy lépésben elérik a céljukat, ennél pedig nem tudunk jobbat találni. Így $AL=HC$ = 0. Ez természetesen várható volt, nem is a fizikai távolságon javítás a célja a $\mathcal{L}$ algebrának. \Aref{fig:L}. ábrán látszódik a kétdimenziós fokszámeloszlás. Ennél az algebránál a csomópontok több, mint 73\%-a legfeljebb 10 fokú. Nyilván $DD$ = 1.
+  \Histo{least}{A $\mathcal{L}$ algebra által generált gráf fokszámeloszlása.}{fig:L}
+
+  Az erősebb skálafüggetlenségből következik, hogy a hálózat ,,magja'' tömörebb, jobban össze vannak fűződve a csomópontok, hiszen ahol csak lehet, közvetlen utat jelöl ki az algebra.
+  \AvgPlot{least}{A $\mathcal{L}$ algebra által generált gráf csomópontonkénti átlagfokszám-eloszlása.}{fig:L-avg}
+
+  A $\mathcal{L}$ algebra által generált gráf globális adatai: $GD$ = 1, hiszen minden út 1 lépésből áll. A $C$ = 16. $EC=ln(14396) \approx 9,574$ és így $$GV \approx 1,671.$$.
+
+  %----------------------------------------------------------------------------
+  \subsection{A ShortestLeastHop és a LeastHopShortest algebrák}
+  %----------------------------------------------------------------------------
+  Bár szimuláltam a ShortestLeastHop- és a LeastHopShortest algebrákat is, ám ezek eredménye rendre megegyeznek a LeastHop és a Shortest algebrák eredményeivel, ezért itt nem tüntetem fel. Ez azért lehetséges, mert pl. a Shortest algebra szimulációjával nem feltétlenül egyértelmű a generált gráf. Ha van több legrövidebb út is, akkor véletlenszerűen választunk a legrövidebb utak közül, hiszen a fontos szempont az út hossza, a lépésszám nem számít ebben az esetben. Azt az eljárást, hogy legrövidebb utak közül választunk egyet véletlenszerűen, le lehet egyszerűsíteni úgy, hogy az összes út közül az ,,elsőt'' választjuk (ezt szoftveresen úgyis valamilyen listában vagy tömbben tároljuk), ezzel megspórolhatjuk a véletlenszám-generálást. Így viszont előfordulhat, hogy a tárolt legrövidebb utak közül az ,,első'' éppen a másik algebra szerinti legjobb.
+
+  %----------------------------------------------------------------------------
+  \subsection{Az Összekötő-keresés- és Korai-elfogadó-keresés-LeastHop algebrák}
+  %----------------------------------------------------------------------------
+  Ezek az algebrák teljesen megegyeznek a LeastHop algebrával, ugyanis egy csomópontpár között 1 lépésben csak a közvetlen él van, amit a LeastHop algebra megtalál, így soha nem lesz szerepe az útvonalválasztásban sem az $\mathcal{O}$, sem a $\mathcal{K}$ algebráknak.
+
+  %----------------------------------------------------------------------------
+  \subsection{Az Összekötő-keresés-Shortest algebra}
+  %----------------------------------------------------------------------------
+  Az Összekötő-keresés-Shortest algebra egy pontpár közötti legrövidebb utak közül a legforgalmasabb repterek felé haladó utat fogja választani. Ezzel két alapvető tulajdonságot határoz meg, azaz a gráf ,,magja'' és az élszám nagy lesz, hiszen két alternatív út közül azt választja, amelyik a több repteret érinti.\\
+  \Histo{OS}{Az $\mathcal{OS}$ algebra által generált gráf fokszámeloszlása.}{fig:OS}
+
+  \Aref{fig:OS}. és \aref{fig:OS-avg} diagramokról leolvasható, hogy a generált gráf skálafüggetlen: $DD$ = 1.
+  \AvgPlot{OS}{Az $\mathcal{OS}$ algebra által generált gráf csomópontonkénti átlagfokszám-eloszlása.}{fig:OS-avg}
+
+  Az $AL$ = 152 és $HC$ = 185, így ezek a mutatók szinte megegyeznek a Shortest algebráéval, így $$\text{AL-HC}=47\frac{11}{12}.$$ A $GV$ globális mutató viszont romlott a $\mathcal{S}$ algebráéhoz képest: $$GV \approx 5,01.$$
+
+  A $C$ = 16 és az $EC = ln(14396) \approx 9,57$ értékek megegyeznek, viszont a $GD$ = 3. Az eloszlás szinte teljesen megegyezik a Shortest algebráéval, hiszen ,,azon alapszik'', viszont ez az algebra az összefüggőséget növeli, hiszen minél több csomópontot szeretne érinteni egy adott hosszú úton, így nő a gráf átmérője is. A skálafüggetlenség miatt a ,,mag'' annyira tömör, hogy nem látható az algebra összefüggőségnövelő hatása ($C$ = 16 nem változott).
+
+  %----------------------------------------------------------------------------
+  \subsection{A Korai-elfogadó-keresés-Shortest algebra}
+  %----------------------------------------------------------------------------
+  \Histo{KS}{A $\mathcal{KS}$ algebra által generált gráf fokszámeloszlása.}{fig:KS}
+  Ez az algebra a legrövidebb utakból azokat használja, amit előtte -- mások -- már sokan használtak. Ezt természetesen összefüggésben van az Összekötő-keresés algebrával ám itt nem számít a reptér tényleges népszerűsége.
+
+  \AvgPlot{KS}{A $\mathcal{KS}$ algebra által generált gráf csomópontonkénti átlagfokszám-eloszlása.}{fig:KS-avg}
+  \Aref{fig:KS}. ábrán látható a $\mathcal{KS}$ algebra által generált gráf fokszámeloszlása, \aref{fig:KS-avg}. ábrán pedig a gráf átlagfokszám-eloszlása. A diagramokról leolvasható, hogy $DD$ = 1.
+
+  A $\mathcal{KS}$ algebra mutatói természetesen nagyon hasonlítanak a $\mathcal{S}$ algebráéra, hiszen mindkét esetben a Shortest algebra adja az utakat, amiből választani kell egy legjobbat. Az $AL$ = 152 és $HC$ = 185 így \aref{AL-HC} képlet szerint $$\text{AL-HC} = 47,95.$$
+  A gráf átmérője 4, mert van egy 4 lépéses út a gráfban: $GD$ = 4. A $C$ = 4 megegyezik, ám az $EC=ln(14581) \approx 9,587$, ami valamivel több, mint az egyszerű Shortest algebra esetén, így $$GV \approx 6,67.$$
+  \newpage
+
+  %----------------------------------------------------------------------------
+  \subsection{Az algebrák értékelése}
+  %----------------------------------------------------------------------------
+  \renewcommand{\arraystretch}{1.2}
+  \begin{table}[ht]
+    \centering
+      \begin{tabular}{| c || c | c || c || c | c | c | c || c |}
+      \hline
+      \textbf{Algebra} & $AL$ & $HC$ & $AL-HC$ & $DD$ & $GD$ & $C$ & $EG$ & $GV$\\
+      \hline
+      Referencia & 0 & 0 & 0 & 1 & 1 & 16 & 9,574705669 & 1,671069645\\
+      $\mathcal{S}$ & 152 & 182 & 48,1$\dot{6}$ & 1 & 3 & 16 & 9,587268822 & 5,006639627\\
+      $\mathcal{L}$ & 0 & 0 & 0 & 1 & 1 & 16 & 9,574705669 & 1,671069645 \\
+      $\mathcal{OS}$ & 152 & 185 & 47,91$\dot{6}$ & 1 & 4 & 16 & 9,574705669 & 5,013208934\\
+      $\mathcal{KS}$ & 152 & 185 & 47,95 & 1 & 4 & 16 & 9,58747459 & 6,675376231\\
+      \hline
+      \end{tabular}
+    \caption{A szimulációs eredmények}
+    \label{tab:eredmenyek}
+  \end{table}
+
+  \Aref{tab:eredmenyek}. táblázatban foglaltam össze a szimulációs eredményeket. Ahogy \aref{metrikak}. részben kifejtettem, egy algebra által generált hálózat pontosságát két tényező határozza meg. Az egyik a $GV$, ami globális mutatókból tevődik össze és minél kisebb az abszolútértéke, annál jobban közelíti meg az eredeti problémát. A másik mutató az $AL-HC$, ami a pontpárokhoz kapcsolódó mutatókat kapcsolja össze és minél nagyobb, annál többet lehet javítani az eredeti hálózathoz képest. Természetesen ezen két mutatót egyszerre kell figyelembe venni, pontosabban a legjobb $GV$ értékű algebrák közül a legmagasabb $AL-HC$ értékű algebra a legjobb.\\
+
+  Az eredményekből arra lehet következtetni, hogy bár a lépésszám szerinti elgrövidebb utakat választó $\mathcal{L}$ LeastHop algebra közelíti meg a leginkább az eredeti hálózatot, ezzel az algebrával nem tudunk javítani. Ezzel szemben a fizikai távolság szerint optimalizáló $\mathcal{S}$ Shortest algebra szintén elég pontos közelítése az eredeti hálózatnak, de közel 150 úton lehet még javítani. Emellett meg kell jegyezni, hogy az is kiolvasható a táblázatból, hogy az $\mathcal{OS}$ algebra szinte megegyezik a $\mathcal{S}$ algebra eredményével, ugyanakkor bonyolultabb. Mivel mindkettő elég pontos becslés, feltehető, hogy a repülőtársaságok egy $\mathcal{OS}$ algebrához hasonló szabályrendszer szerint választják meg az útvonalaikat. Ebben az esetben érdemes lenne nekik áttérni az egyszerű $\mathcal{S}$ algebrára, hiszen a két hálózat szinte megegyezik, és a $\mathcal{S}$ útvonalválasztása jóval egyszerűbb.
 
   %----------------------------------------------------------------------------
   \section{Összefoglaló}
   %----------------------------------------------------------------------------
-  Ebben a fejezetben \aref{framework}. fejezetben leírt keretrendszert használva megvizsgáltam egy valós hálózatot az \href{http://openflights.org/}{openflights} repülési adatbázisát felhasználva. A szimulációs keretrendszerben meghatározott lépéseket elvégeztem, a szükséges módosításokat megtettem, ahol a probléma miatt erre muszáj volt. A repülési adatbázis alapján létrehoztam az irányított, vektor-súlyozott gráfot, az élsúlyokat a vizsgálandó algebrák alapján számítottam ki és rendeltem az élekhez.\\
+  Ebben a fejezetben \aref{framework}. fejezetben leírt keretrendszert használva megvizsgáltam egy valós hálózatot az \href{http://openflights.org/}{openflights} repülési adatbázisát felhasználva. A szimulációs keretrendszerben meghatározott lépéseket elvégeztem, a szükséges módosításokat megtettem, ahol a probléma miatt erre szükség volt. A repülési adatbázis alapján létrehoztam az irányított, vektor-súlyozott gráfot, az élsúlyokat a vizsgálandó algebrák alapján számítottam ki és rendeltem az élekhez.\\
 
-  A kész tervet a saját magam írt szimulátor szoftverrel hajtottam végre, az eredményeket közönséges táblázatkezelővel elemeztem ki. Megvizsgáltam a Shortest ($\mathcal{S}$), a LeastHop ($\mathcal{L}$), az Összekötő-keresés ($\mathcal{O}$) és a Korai-elfogadó-keresés ($\mathcal{K}$) algebrákat, illetve az Összekötő-keresés-Shortest ($\mathcal{OS}$), a Korai-elfogadó-keresés-Shortest ($\mathcal{KS}$), az Összekötő-keresés-LeastHop ($\mathcal{OL}$) és a Korai-elfogadó-keresés-LeastHop ($\mathcal{KL}$) lexikografikus szorzatként előálló összetett algebrákat is.
+  A kész tervet a saját magam írt szimulátor szoftverrel hajtottam végre, az eredményeket közönséges táblázatkezelővel elemeztem. Megvizsgáltam a Shortest ($\mathcal{S}$), a LeastHop ($\mathcal{L}$), az Összekötő-keresés ($\mathcal{O}$) és a Korai-elfogadó-keresés ($\mathcal{K}$) algebrákat. Mivel az utóbbi kettő nem jól viselkedő algebra, ezeket csak a Shortest és a LeastHop algebrákkal való lexikografikus szorzatukban vizsgáltam. Az Összekötő-keresés-LeastHop ($\mathcal{OL}$) és a Korai-elfogadó-keresés-LeastHop ($\mathcal{KL}$) algebrákat, valamint a Shortest-LeastHop ($\mathcal{SL}$) és LeastHop-Shortest ($\mathcal{LS}$) algebrákat nem kellett vizsgálnom. Az első kettőnek elméleti megfontolások alapján nincs új információtartalma, utóbbi kettő pedig előáll a külön-külön szimulált algebrák speciális alakjaként.\\
+
+  A korábban definiált pontrendszert felhasználva beazonosítottam a repülési adatok alapján legtöbb javítási lehetőséget nyújtó algebrát, a Shortest algebrát. Ez elég pontosan becsli az eredetei megfigyelt hálózatot, ugyanakkor megmutat olyan lehetőségeket, amik mentén javíthatunk a jelenlegi útvonalválasztáson.
+  Emellett rávilágítottam a tényre, hogy az $\mathcal{OS}$ algebrát akár használhatják is -- elég jó becslése az eredeti hálózatnak -- viszont a $\mathcal{S}$ algebra egyszerűbb és pontosabb becslés, azaz erre le lehetne cserélni a jelenleg alkalmazott szabályrendszert.
