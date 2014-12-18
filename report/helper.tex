@@ -44,7 +44,7 @@
               }
             ]
             \addplot[scatter, scatter src=explicit, only marks, mark=square*]
-            file{sim/#1.csv};
+            file{sim/#1.data};
           \end{axis}
         \end{tikzpicture}
       }
@@ -72,7 +72,7 @@
               }
             ]
             \addplot[scatter, scatter src=explicit, only marks, mark=square*]
-            file{sim/#1-zoom.csv};
+            file{sim/#1-zoom.data};
           \end{axis}
         \end{tikzpicture}
       }
@@ -97,7 +97,7 @@
             legend pos=north west
           ]
           \addplot[smooth,color=blue]
-          file{sim/#1-avg.csv};
+          file{sim/#1-avg.data};
           \end{axis}
         \end{tikzpicture}
       }
@@ -115,7 +115,7 @@
             legend pos=north west
           ]
           \addplot[smooth,color=blue]
-          file{sim/#1-avg-zoom.csv};
+          file{sim/#1-avg-zoom.data};
           \end{axis}
         \end{tikzpicture}
       }
