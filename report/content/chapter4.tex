@@ -3,28 +3,27 @@
 %----------------------------------------------------------------------------
 \chapter{Repülési hálózat vizsgálata}\label{test}
 %----------------------------------------------------------------------------
-
 Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon elérhető repülési adatbázis feldolgozását és ezen adatokon futtatott szimulációt mutatom be.
 
   %----------------------------------------------------------------------------
   \section{Az adatok}
   %----------------------------------------------------------------------------
   Az \href{http://openflights.org/}{openflights} lehetőséget biztosít különféle repülési adatok interaktív keresésére, regisztráció után pedig akár statisztikákat készíthetünk saját utazásainkról. Emellett elérhető a mindenkori aktuális, teljes adatbázisa is, amit többek között hivatalos forrásokból, illetve a felhasználóktól gyűjt.
-  Az oldalon elérhető adatbázis világszerte mindenhonnan gyűjt és tárol reptéri, repülőtársasági és repülési út adatokat. Több, mint 9000 reptér, 19000 társaság és közel 60000 repülési út érhető el. Részletes adatok \aref{tab:table_repterek},~\aref{tab:table_repulesitarsasagok}, és a \aref{tab:table_repulesiutvonalak} táblázatokban.
+  Az oldalon elérhető adatbázis világszerte mindenhonnan gyűjt és tárol repülőtéri, repülőtársasági és repülési út adatokat. Több, mint 9000 repülőtér, 19000 társaság és közel 60000 repülési út érhető el. Részletes adatok \aref{tab:table_repterek},~\aref{tab:table_repulesitarsasagok}, és a \aref{tab:table_repulesiutvonalak} táblázatokban.
 
     %----------------------------------------------------------------------------
-    \subsection{Repterek}
+    \subsection{Repülőterek}
     %----------------------------------------------------------------------------
     \begin{figure}[!ht]
       \centering
       \includegraphics[width=150mm,keepaspectratio=true]{./figures/airports-2048.png}
       % airports-2048.png: 2048x1025 pixel, 96dpi, 54.18x27.12 cm
 
-      \caption{Az OpenFights adatbázisában szereplő repterek.}
+      \caption{Az OpenFights adatbázisában szereplő repülőterek.}
       \label{fig:figure_repterek}
     \end{figure}
 
-    A rendszer tárolja a repterek \textit{nevét}; a \textit{várost}, ahol található; a \textit{szélességi}- és \textit{hosszúsági fokokat}, illetve a \textit{tengerszint feletti magasságot}. Emellett elérhető a repülési hatóságok által használt 3 karakter hosszú \textit{IATA\footnote{International Air Transport Association: Nemzetközi Légi Szállítási Szövetség}/FAA\footnote{Federal Aviation Administration: Szövetségi Légügyi Hivatal (USA)} azonosító} is és az OpenFlights által használt decimális \textit{azonosító} is. A legutolsó, 2014 januári frissítéskor az OpenFlights adatbázisa 9167 repteret tartalmazott világszerte, ezt mutatja \aref{fig:figure_repterek} ábra.
+    A rendszer tárolja a repülőterek \textit{nevét}; a \textit{várost}, ahol található; a \textit{szélességi}- és \textit{hosszúsági fokokat}, illetve a \textit{tengerszint feletti magasságot}. Emellett elérhető a repülési hatóságok által használt 3 karakter hosszú \textit{IATA\footnote{International Air Transport Association: Nemzetközi Légi Szállítási Szövetség}/FAA\footnote{Federal Aviation Administration: Szövetségi Légügyi Hivatal (USA)} azonosító} is és az OpenFlights által használt decimális \textit{azonosító} is. A legutolsó, 2014 januári frissítéskor az OpenFlights adatbázisa 9167 repülőteret tartalmazott világszerte, ezt mutatja \aref{fig:figure_repterek} ábra.
 
     \begin{table}[ht]
       \footnotesize
@@ -33,19 +32,19 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
       \hline
       Attribútum & Leírás \\ \hline
       Airport ID & Egyedi OpenFlights azonosító.\\
-      Name & A reptér neve.\\
-      City & Az a város, amit a reptér ,,kiszolgál''.\\
-      Country & Az ország vagy terület neve, ahol reptér található.\\
-      IATA/FAA & 3 betűs FAA kód az USA-beli reptereknek vagy 3 betűs IATA kód, minden más esetben.\\
+      Name & A repülőtér neve.\\
+      City & Az a város, amit a repülőtér ,,kiszolgál''.\\
+      Country & Az ország vagy terület neve, ahol repülőtér található.\\
+      IATA/FAA & 3 betűs FAA kód az USA-beli repülőtereknek vagy 3 betűs IATA kód, minden más esetben.\\
       ICAO & 4 betűs ICAO\footnote{International Civil Aviation Organization: Nemzetközi Polgári Repülési Szervezet} kód.\\
-      Latitude & A reptér szélességi foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
+      Latitude & A repülőtér szélességi foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
       & A Déli féltekén negatív, az Északin pozitív.\\
-      Longitude & A reptér hosszúsági foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
+      Longitude & A repülőtér hosszúsági foka: decimális szám (fokban mérve), általában 6 szignifikáns jegyig.\\
       & A Nyugati féltekén negatív, a Keletin pozitív.\\
       Altitude & A tengerszint feletti magasság, lábban mérve (1 láb $\sim$ 0,30 méter).\\
       \hline
       \end{tabular}
-      \caption{Az OpenFlights adatbázisában elérhető reptéri adatok.}
+      \caption{Az OpenFlights adatbázisában elérhető repülőtéri adatok.}
       \label{tab:table_repterek}
     \end{table}
 
@@ -61,7 +60,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
       \label{fig:figure_repulesiutvonalak}
     \end{figure}
 
-    A repülési útvonalak leírása öt attribútumot tartalmaz: az \textit{üzemeltető repülőtársaság} (név és OpenFlights azonosító); a \textit{forrás reptér}; a \textit{cél reptér}. Emellett feljegyzik a \textit{megállások számát}\footnote{Az összesen 59637 bejegyzésből 6 esetében van 1 megállás és 1 esetben 2 megállás, ezért ezt az adatot a szimuláció során semmilyen módon nem használom fel.}, illetve az ebben a viszonylatban használt \textit{repülőgép típusokat}. Ha két reptér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 reptér és 531 társaság\footnote{Ugyan a légitársaság és reptér adatbázisokban ennél jelentősen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repterek.} között világszerte, ahogy \aref{fig:figure_repulesiutvonalak} ábra is mutatja.
+    A repülési útvonalak leírása öt attribútumot tartalmaz: az \textit{üzemeltető repülőtársaság} (név és OpenFlights azonosító); a \textit{forrás repülőtér}; a \textit{cél repülőtér}. Emellett feljegyzik a \textit{megállások számát}\footnote{Az összesen 59637 bejegyzésből 6 esetében van 1 megállás és 1 esetben 2 megállás, ezért ezt az adatot a szimuláció során semmilyen módon nem használom fel.}, illetve az ebben a viszonylatban használt \textit{repülőgép típusokat}. Ha két repülőtér között oda-vissza is van járat, akkor ez az adathalmazban két bejegyzésként jelenik meg. Jelenleg az OpenFlights adatbázisa 59637 útvonalat tartalmazott 3285 repülőtér és 531 társaság\footnote{Ugyan a légitársaság és repülőtér adatbázisokban ennél jelentősen több bejegyzés van, ám azok között vannak nem aktív társaságok, illetve bezárt repülőterek.} között világszerte, ahogy \aref{fig:figure_repulesiutvonalak} ábra is mutatja.
 
     \begin{table}[ht]
       \footnotesize
@@ -71,10 +70,10 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
       Attribútum & Leírás \\ \hline
       Airline & Az üzemeltető társaság 2 betűs (IATA) vagy 3 betűs (ICAO) kódja.\\
       Airline ID & Az üzemeltető társaság egyedi OpenFlights azonosítója.\\
-      Source airport & A forrás reptér 3 betűs (IATA) vagy 4 betűs (ICAO) kódja.\\
-      Source airport ID & A forrás reptér egyedi OpenFlights azonosítója.\\
-      Destination airport & A cél reptér 3 betűs (IATA) vagy 4 betűs (ICAO) kódja.\\
-      Destination airport ID & A cél reptér egyedi OpenFlights azonosítója.\\
+      Source airport & A forrás repülőtér 3 betűs (IATA) vagy 4 betűs (ICAO) kódja.\\
+      Source airport ID & A forrás repülőtér egyedi OpenFlights azonosítója.\\
+      Destination airport & A cél repülőtér 3 betűs (IATA) vagy 4 betűs (ICAO) kódja.\\
+      Destination airport ID & A cél repülőtér egyedi OpenFlights azonosítója.\\
       Codeshare & Igaz, ha a járat ,,codeshare'', azaz nem utasszállító járat, különben üres.\\
       Stops & A megállások szám (nem az átszállásokat jelenti, a ,,0'' jelenti a direkt járatot).\\
       Equipment & A viszonylatban használt repülőgép típusok 3 betűs kódjai.\\
@@ -112,23 +111,23 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
   %----------------------------------------------------------------------------
   \section{A szimuláció}
   %----------------------------------------------------------------------------
-  \Aref{framework} fejezetben ismertetett keretrendszert használva fogom megvizsgálni a fent bemutatott adathalmazon a $\mathcal{S}$ (Shortest algebra), a $\mathcal{L}$ (LeastHop algebra: $\mathcal{L}$ = ($\mathbb{N},~\infty,~+,~\leq$), legkevesebb csomópontot érintő út), az $\mathcal{O}$ (Összekötő-keresés: \ref{osszekoto_kereses}. rész) és a $\mathcal{K}$ (Korai-elfogadó-keresés: \ref{korai_elfogado_kereses}. rész) algebrákat. Mivel az utolsó kettő algebra nem jól viselkedő\footnote{Világos, hogy $\geq$ operátorú algebrák maximumot keresnek, ami ezeknél a konkrét algebráknál maximális utak keresését jelenti. Viszont \aref{max_route}. tétel értelmében csak akkor tudunk maximális utakat keresni, ha a gráf DAG, ami nyilvánvalóan ebben az esetben nem áll fenn, hiszen ez azt jelentené, hogy egy reptérről indul soha nem juthatunk vissza ugyanoda.} (lásd \aref{jol_viselkedo}. részt.), ezért csak a $\mathcal{S}$, $\mathcal{L}$, $\mathcal{OS}$, $\mathcal{KS}$, $\mathcal{OL}$ és a $\mathcal{KL}$ algebrákat fogom ténylegesen szimulálni, mert a lexikografikus szorzatban már csak egy adott útvonalhalmazból kell kiválasztani a szorzat első tényezője szerinti legjobbat.
+  \Aref{framework} fejezetben ismertetett keretrendszert használva fogom megvizsgálni a fent bemutatott adathalmazon a $\mathcal{S}$ (Shortest algebra), a $\mathcal{L}$ (LeastHop algebra: $\mathcal{L}$ = ($\mathbb{N},~\infty,~+,~\leq$), legkevesebb csomópontot érintő út), az $\mathcal{O}$ (Összekötő-keresés: \ref{osszekoto_kereses}. rész) és a $\mathcal{K}$ (Korai-elfogadó-keresés: \ref{korai_elfogado_kereses}. rész) algebrákat. Mivel az utolsó kettő algebra nem jól viselkedő\footnote{Világos, hogy $\geq$ operátorú algebrák maximumot keresnek, ami ezeknél a konkrét algebráknál maximális utak keresését jelenti. Viszont \aref{max_route}. tétel értelmében csak akkor tudunk maximális utakat keresni, ha a gráf DAG, ami nyilvánvalóan ebben az esetben nem áll fenn, hiszen ez azt jelentené, hogy egy repülőtérről indul soha nem juthatunk vissza ugyanoda.} (lásd \aref{jol_viselkedo}. részt.), ezért csak a $\mathcal{S}$, $\mathcal{L}$, $\mathcal{OS}$, $\mathcal{KS}$, $\mathcal{OL}$ és a $\mathcal{KL}$ algebrákat fogom ténylegesen szimulálni, mert a lexikografikus szorzatban már csak egy adott útvonalhalmazból kell kiválasztani a szorzat első tényezője szerinti legjobbat.
 
     %----------------------------------------------------------------------------
     \subsection{Az adatok előfeldolgozása}
     %----------------------------------------------------------------------------
     A modellezendő hálózat első megközelítésben a minden csomópontból alkotott $K_{9167}$ teljes gráf. Ez természetesen feleslegesen nagy hálózatot jelent ($9167 \choose 2$ = 42 012 361 élű gráf.), emellett az olyan, leíró jellegű jellemzők, mint a valódi hálózat átmérője, vagy az élösszefüggőség elvesznének. Lévén a repülési hálózat skálafüggetlen -- sok olyan csomópont van, ahova csak adott, kis számú, közeli csomópontokból indulnak járatok, így nem érdemes összekötni távoli csomópontokkal. Ezenkívül a repülésnél vannak olyan szempontok, amelyeket az útvonalválasztásnál figyelembe vesznek, ám én ezek pontos információk hiányában nem tudom kezelni -- pl. csak adott hosszúságú utat tehet meg egy adott típusú repülőgép az üzemanyagtartálya méretétől függően.\\
 
-    A fentiek miatt a szimulált hálózatot a következőképpen határozom meg: pontjai a repterek, élei pedig, az adatbázisban szereplő össze, megállás nélküli repülőút. Így magától értetődően csak olyan élek lesznek a szimulációban, amelyek ,,átrepülhetők'', hiszen volt már, hogy átrepülték. Emellett pedig ez a hálózat hűen tükrözi a valóságot, hiszen feltehetjük, hogy csak azon élek nincsenek behúzva, amelyeket repüléstechnikai okokból nem is lehet, különben valaki, valamikor már repült volna azon az úton.
+    A fentiek miatt a szimulált hálózatot a következőképpen határozom meg: pontjai a repülőterek, élei pedig, az adatbázisban szereplő össze, megállás nélküli repülőút. Így magától értetődően csak olyan élek lesznek a szimulációban, amelyek ,,átrepülhetők'', hiszen volt már, hogy átrepülték. Emellett pedig ez a hálózat hűen tükrözi a valóságot, hiszen feltehetjük, hogy csak azon élek nincsenek behúzva, amelyeket repüléstechnikai okokból nem is lehet, különben valaki, valamikor már repült volna azon az úton.
 
       %----------------------------------------------------------------------------
       \subsubsection{Az élsúlyok meghatározása}
       %----------------------------------------------------------------------------
       Ahogy \aref{prep}. részben kifejtettem, a vizsgálni kívánt algebráktól függően határozom meg az élsúlyozást, valamint a súlyozás során az eredményt nem jelentősen befolyásoló és a futást gyorsító egyszerűsítésekkel élhetek.\\
 
-      A $\mathcal{S}$ algebra miatt szükséges a csomópontok valós távolságára. Ezt a repterek szélességi és hosszúsági koordinátái alapján a Haversine formulával számolom. Annak érdekében, hogy pontos, de mégsem túl nagy számokat kapjak a távolságot [km]-ben mért egész számmal jelölöm (az akár [m]-ben mért egytizedes pontosság helyett).\\
+      A $\mathcal{S}$ algebra miatt szükséges a csomópontok valós távolságára. Ezt a repülőterek szélességi és hosszúsági koordinátái alapján a Haversine formulával számolom. Annak érdekében, hogy pontos, de mégsem túl nagy számokat kapjak a távolságot [km]-ben mért egész számmal jelölöm (az akár [m]-ben mért egytizedes pontosság helyett).\\
       A $\mathcal{L}$ algebra pusztán az élek létét használja fel, így minden él súlya 1.\\
-      Az $\mathcal{O}$ algebra a népszerű reptereket részesíti előnyben, ami azt jelenti, hogy itt egy csúcs érték $\rightarrow$ élsúly konverzióra van szükség. Mivel a gráf irányított, nem kell azzal törődni, hogy egy esetleges hibás megadás esetén az él súlyát akkor is terheli a népszerű reptér, amikor onnan elfelé haladunk. Egyszerűen minden csomópontra, a befelé mutató éleket a csomópont népszerűsége szerint súlyozunk. Ez a tényleges megvalósítást tekintve azt jelenti, hogy a repterekre érkező és az onnan induló járatok, tehát a reptér teljes forgalma adja meg a csomópont népszerűségét.\\
+      Az $\mathcal{O}$ algebra a népszerű repülőtereket részesíti előnyben, ami azt jelenti, hogy itt egy csúcs érték $\rightarrow$ élsúly konverzióra van szükség. Minden élet a kezdő- és célcsomópontjának a népszerűsége szerint súlyozunk.\\
       A $\mathcal{K}$ algebra esetén azon az úton fogunk haladni, amin a legtöbben haladtak, így minden élnek a súlyát úgy határozzuk meg, hogy a megfigyelések szerint hányszor repültek az adott viszonylaton.
 
     %----------------------------------------------------------------------------
@@ -142,7 +141,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
   %----------------------------------------------------------------------------
   A szimulációs eredmények kiértékelését közönséges táblázatkezelő szoftver segítségével végeztem. Minden algebra által generált gráfról kétféle adathalmazt dolgoztam fel: egy ,,útlistás'' és egy csúcshalmazos reprezentációt.\\
 
-  Az útlistás megadást a generált utak alapján állítottam elő, négy adatot tartalmaz: a \textit{forrás}- és \textit{cél} csomópontokat, valamint a lépésszámot és az algebra szerinti távolságot -- jelen esetben a repterek fizikai távolságát. Ezekből az adatokból közvetlenül számíthatók az $AL$ és a $HC$ mutatók.\\
+  Az útlistás megadást a generált utak alapján állítottam elő, négy adatot tartalmaz: a \textit{forrás}- és \textit{cél} csomópontokat, valamint a lépésszámot és az algebra szerinti távolságot -- jelen esetben a repülőterek fizikai távolságát. Ezekből az adatokból közvetlenül számíthatók az $AL$ és a $HC$ mutatók.\\
 
   A csúcshalmazos reprezentáció minden felhasznált csúcsra tartalmazza a csomópont ki- és befokát, valamint ezen mutatók átlagát. Azért volt célszerű előállítani ezt az adathalmazt is, mert innen egyszerűen meghatározható a csomópontok ki- és befoka alapján a kétdimenziós fokszámeloszlás, illetve az egydimenziós átlagfokszám-eloszlás. Ebből a forrásból egyszerűen számíthatók a $GD$, a $C$ és az $EC$ mutatók, amiből pedig a $GV$.\\
 
@@ -197,7 +196,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
   %----------------------------------------------------------------------------
   \subsection{Az Összekötő-keresés-Shortest algebra}
   %----------------------------------------------------------------------------
-  Az Összekötő-keresés-Shortest algebra egy pontpár közötti legrövidebb utak közül a legforgalmasabb repterek felé haladó utat fogja választani. Ezzel két alapvető tulajdonságot határoz meg, azaz a gráf ,,magja'' és az élszám nagy lesz, hiszen két alternatív út közül azt választja, amelyik a több repteret érinti.\\
+  Az Összekötő-keresés-Shortest algebra egy pontpár közötti legrövidebb utak közül a legforgalmasabb repülőterek felé haladó utat fogja választani. Ezzel két alapvető tulajdonságot határoz meg, azaz a gráf ,,magja'' és az élszám nagy lesz, hiszen két alternatív út közül azt választja, amelyik a több repülőteret érinti.\\
   \Histo{OS}{Az $\mathcal{OS}$ algebra által generált gráf fokszámeloszlása.}{fig:OS}
 
   \Aref{fig:OS}. és \aref{fig:OS-avg} diagramokról leolvasható, hogy a generált gráf skálafüggetlen: $DD$ = 1.
@@ -211,7 +210,7 @@ Ebben a fejezetben az \href{http://openflights.org/}{openflights.org} oldalon el
   \subsection{A Korai-elfogadó-keresés-Shortest algebra}
   %----------------------------------------------------------------------------
   \Histo{KS}{A $\mathcal{KS}$ algebra által generált gráf fokszámeloszlása.}{fig:KS}
-  Ez az algebra a legrövidebb utakból azokat használja, amit előtte -- mások -- már sokan használtak. Ezt természetesen összefüggésben van az Összekötő-keresés algebrával ám itt nem számít a reptér tényleges népszerűsége.
+  Ez az algebra a legrövidebb utakból azokat használja, amit előtte -- mások -- már sokan használtak. Ezt természetesen összefüggésben van az Összekötő-keresés algebrával ám itt nem számít a repülőtér tényleges népszerűsége.
 
   \AvgPlot{KS}{A $\mathcal{KS}$ algebra által generált gráf csomópontonkénti átlagfokszám-eloszlása.}{fig:KS-avg}
   \Aref{fig:KS}. ábrán látható a $\mathcal{KS}$ algebra által generált gráf fokszámeloszlása, \aref{fig:KS-avg}. ábrán pedig a gráf átlagfokszám-eloszlása. A diagramokról leolvasható, hogy $DD$ = 1.
