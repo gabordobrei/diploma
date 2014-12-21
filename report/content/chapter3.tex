@@ -1,30 +1,28 @@
 %----------------------------------------------------------------------------
-%\Aref{framework}. fejezetben az előző vizsgálatok alapján egy olyan modellezési keretrendszer dolgozok ki és mutatok be, melynek segítségével a nagyméretű valós hálózatokat jellemző útvonalkialakítási dinamikát vagyok képes strukturált módon jellemezni.
-%----------------------------------------------------------------------------
 \chapter{A modellezési keretrendszer}\label{framework}
 %----------------------------------------------------------------------------
-\Aref{examples}. fejezetben bemutattam, hogy hogyan lehet az ott ismertetett problémák vizsgálatára hasznosítani a routing algebrák matematikai modelljét. Ahhoz, hogy ezt a gyakorlatban is fel tudjuk használni, az algebrákat szoftveresen is felhasználható módon kell leírni. Emellett ki kell dolgozni azt a modellezési, szimulációs eljárást is, amely keretrendszerként képes a változatos bemeneteket kezelve elemezni a különböző útvonalválasztási szabályrendszerek felderítését.\\
+Ahhoz, hogy a routing algebrák nyújtotta lehetőséget a gyakorlatban is fel tudjuk használni, az algebrákat szoftveresen felhasználható módon kell leírni. Emellett ki kell dolgozni azt a modellezési, szimulációs eljárást is, amely a változatos bemeneteket tudja kezelni és az útvonalválasztási szabályrendszerek felderítését el tudja végezni.\\
 
 Ezt a keretrendszert ebben a részben mutatom be. \Aref{section_specification}. rész elején pontosítom, hogy mit lehet elvárni egy ilyen rendszertől. Részletezem az adatok előzetes feldolgozására, tisztítására vonatkozó elvárásokat, amelynek során kitérek a feladat domainének esetleges szűkítésére is. Kijelölöm a szimulációtól elvárt működést és definiálom, hogy milyen kimenete legyen a rendszernek.\\
-Ezután \aref{section_simulator}. részben a keretrendszer egy konkrét megvalósítását írom le, amelynek részeként ismertetem az algebrák implementálást, elemzem a felhasznált útvonalválasztó (optimalizáló) algoritmust. Ezután bemutatom, hogy hogyan értékelem ki a szimulációs eredményeket, hogyan hasonlítom össze az eredetileg választott (megfigyelt) útvonalakat a policy primitívek által adott utakkal.\\
+Ezután \aref{section_simulator}. részben a keretrendszer egy konkrét megvalósítását írom le és ismertetem az algebrák implementálást. Ezután bemutatom, hogy hogyan értékelem a szimulációs eredményeket, hogyan hasonlítom össze az eredetileg választott (megfigyelt) útvonalakat a policy primitívek által adott utakkal.\\
 Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (repülési adatok alapján) hogyan lehet vizsgálni az itt ismertetett keretrendszer segítségével.
 
   %----------------------------------------------------------------------------
   \section{Specifikáció}\label{section_specification}
   %----------------------------------------------------------------------------
-  Ahogy a szoftvertermékeknél általában, ebben az esetben is meghatározó, hogy milyen specifikációnak kell megfelelnie a modellezési keretrendszernek. Ehhez természetesen meg kell határozni, hogy milyen célokat szeretnék elérni és ha erre szükség van, azt is, hogy hogyan szeretnénk céljainkat elérni.\\
+  Ahogy a szoftvertermékeknél mindig, ebben az esetben is meghatározó, hogy milyen specifikációnak kell megfelelnie a modellezési keretrendszernek. Ehhez természetesen meg kell határozni, hogy milyen célokat szeretnénk elérni és hogyan.\\
 
-  A keretrendszer fő célja, hogy a routing algebrák felhasználásával elemezni és akár visszafejteni is képesek legyünk kívülről megfigyelt útvonalválasztási szabályrendszereket. Ehhez alapvető, hogy a keretrendszer megfelelő rugalmassággal tudja használni az algebrákat, a definiált algebrák műveleteit képes legyen használni, valamint tudja az algebrákon értelmezett műveleteket is kezelni. Emellett szükség van egy általános formátumra is, amelyre a bemeneti adatokat át tudjuk konvertálni. Az ebben a formátumban lévő adathalmazon értelmezni kell egy optimalizáló függvényt, amely az adott algebrák rendező operátora ($\preceq$) alapján kiválasztja utak egy halmazának leginkább preferált útjait.
+  A keretrendszer fő célja, hogy a routing algebrák felhasználásával elemezni és akár visszafejteni is képesek legyünk kívülről megfigyelt útvonalválasztási szabályrendszereket. Ehhez alapvető, hogy a keretrendszer megfelelő rugalmassággal tudja használni az algebrákat, a definiált algebrák műveleteit képes legyen használni, valamint tudja az algebrákon értelmezett műveleteket is kezelni. Emellett szükség van egy általános formátumra is, amelyre a bemeneti adatokat át tudjuk konvertálni. Az ebben a formátumban lévő adathalmazon értelmezni kell egy optimalizáló függvényt, amely az adott algebrák rendező operátora ($\preceq$) alapján kiválasztja egy út halmaz leginkább preferált útjait.
 
     %----------------------------------------------------------------------------
     \subsection{A formátum}
     %----------------------------------------------------------------------------
-    Mivel szeretnénk minél több problémát vizsgálni a rendszer segítségével, pontosítani kell, hogy milyen az elvárt bemenet. Le kell képezni az általános problémát egy jól strukturált, könnyen kezelhető modellre. Ahogy ezt már bemutattam \aref{section_routingalgebrak}. részben, erre kiválóan alkalmas egy irányított, súlyozott teljes gráf. Ennek a gráfnak az élsúlyai többdimenziós vektorok, amelyeknek minden egyes komponense egy-egy (probléma-specifikus) tulajdonságként értelmezett súlyt tartalmaznak.
+    Mivel szeretnénk minél több problémát vizsgálni a rendszer segítségével, pontosítani kell, hogy milyen az elvárt bemenet. Le kell képezni az általános problémát egy jól strukturált, könnyen kezelhető modellre. Ahogy ezt már bemutattam \aref{section_routingalgebrak}. részben, erre kiválóan alkalmas egy irányított, súlyozott teljes gráf. Ennek a gráfnak az élsúlyai többdimenziós vektorok, amelyeknek minden egyes komponense egy-egy (probléma-specifikus) tulajdonságként értelmezett súly érték.
 
       %----------------------------------------------------------------------------
       \subsubsection{Az adatok előfeldolgozása, tisztítása}\label{prep}
       %----------------------------------------------------------------------------
-      Ahhoz, hogy az irányított, súlyozott teljes gráfban értelmezni tudjuk az adott problémát, mindenképpen szükség van szakterület-specifikus tudásra, azaz a problémakör ismeretére. Ezt azért nem tudjuk automatizálni, mert sokszor a rendelkezésre álló adatok nem az egyes kapcsolatokhoz vannak rendelve, hanem például a csomópontokhoz. Ezeket a speciális eseteket le kell fordítani élsúlyozásra. Emellett természetesen lehetséges, hogy maga a problémakör olyan információkat is kezel, amelyekre nincs szükségünk. Ebben az esetben ezen adatokat ki kell szűrni, amihez szintén szakterület-specifikus tudásra van szükség.\\
+      Ahhoz, hogy az irányított, súlyozott teljes gráfban értelmezni tudjuk az adott problémát, mindenképpen szükség van szakterület-specifikus tudásra, azaz a problémakör ismeretére. Ezt azért nem tudjuk automatizálni, mert sokszor a rendelkezésre álló adatok nem az egyes kapcsolatokhoz vannak rendelve, hanem például a csomópontokhoz. Ezeket a speciális eseteket át kell transzformálni élsúlyozásra. Emellett természetesen lehetséges, hogy maga a problémakör olyan információkat is kezel, amelyekre nincs szükségünk. Ebben az esetben ezen adatokat ki kell szűrni, amihez szintén szakterület-specifikus tudásra van szükség.\\
 
       A gráf csúcshalmazát viszonylag egyszerűen meg tudjuk határozni, hiszen általában a problémakörök esetében tudjuk, hogy milyen csomópontokat értelmezünk. Az élhalmaz esetében már nem ilyen egyértelmű a helyzet, de ha nem tudunk jó becslést adni, értelmezhetjük a teljes gráfot, mint bemenetet. Ez természetesen igen költséges lehet mind tárkapacitásban, mind algoritmikus futási időben. Ezért lehet szükséges az élhalmaz csökkentése, azaz az útvonalválasztási szabályrendszer domainének szűkítése. A Pareto-elv\footnote{A Pareto-elv, más néven a 80/20 szabály kimondja, hogy számos jelenség esetén a következmények 80\%-a az okok mindössze 20\%-ára vezethető vissza.} értelmében megpróbálhatjuk az élek egy részét kizárni a vizsgálatból, azaz törölni, vagy az algebra $\phi$ elemével súlyozni. (A végtelennel súlyozáskor természetesen az él megmarad, de az adott algebra biztosan nem fogja használni, ami az optimalizáló algoritmus futását gyorsíthatja, valamint fontos megemlíteni, hogy élet csak olyan esetben tudunk törölni, ha egyik algebra sem használná.)\\
 
@@ -33,7 +31,7 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
       %----------------------------------------------------------------------------
       \subsection{Az optimalizálás függvénye}
       %----------------------------------------------------------------------------
-      Miután generáltuk az irányított, vektor-súlyozott gráfot, szükség van egy függvényre, mely ki tudja választani utak egy halmazának legjobb útjait. Ezen legjobb utak algebránként változnak, ám az algoritmus lehet ugyanaz. Ilyen a következő algoritmus:
+      Miután generáltuk az irányított, vektor-súlyozott gráfot, szükség van egy függvényre, mely ki tudja választani utak egy halmazának legjobb útjait (ld. \aref{def:routing-policy}. definíciót). Ezen legjobb utak algebránként változnak, ám az algoritmus lehet ugyanaz. Ilyen a következő függvény:
 
       \begin{algorithm}
         \caption{Optimalizáló függvény}\label{algo_optimalizalo}
@@ -51,9 +49,9 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
         \end{algorithmic}
       \end{algorithm}
 
-      Természetesen ez a függvény nem implementálható ebben a formában, hiszen nincs részletezve, hogy hogyan működik a $\Call{getAllPathsBetween}{u,~v}$, de az általános felhasználhatósága látszódik az 5. sorban: az összes út közül a legjobbakat kiválasztani csupán az aktuális algebra alapján is képesek vagyunk. (Itt jól látszik egy algebra ,,jól viselkedése'', hiszen a $\Call{getAllPathsBetween}$ függvény akár a gráf méretében exponenciális méretű úthalmazzal is visszatérhet.)\\
+      Természetesen ez a függvény nem implementálható ebben a formában, hiszen nincs részletezve, hogy hogyan működik a $\Call{getAllPathsBetween}{u,~v}$, de az általános felhasználhatósága látszódik az 5. sorban: az összes út közül a legjobbakat kiválasztani csupán az aktuális algebra alapján is képesek vagyunk. (Itt jól látszik egy algebra ,,jól viselkedése'', ami elengedhetetlen ahhoz, hogy a $\Call{getAllPathsBetween}$ függvény a gráf méretében ne exponenciális méretű úthalmazzal térjen vissza.)\\
 
-      A konkrét implementálás előtt gondoljuk meg, hogy érdemes az összes út előállítása, majd a minimálisak kiválasztása helyett csak a minimális utak megtalálását megpróbálni. Egy minimális út keresésére számtalan \textit{mohó} megoldás ismert, melyek optimálisak és a gráf méretéhez képest polinom időben futnak. Nem triviális probléma azonban az \textit{összes} ilyen út megtalálása. Erre a problémára használható egy módosított Dijkstra algoritmus.
+      A konkrét implementálás előtt gondoljuk meg, hogy érdemes az összes út előállítása, majd a minimálisak kiválasztása helyett csak a minimális utak megtalálását megpróbálni. Egy minimális út keresésére számtalan \textit{mohó} megoldás ismert, melyek optimálisak és a gráf méretéhez képest polinom időben futnak. Nem triviális probléma azonban az \textit{összes} ilyen út megtalálása. Erre a problémára használható egy módosított Dijkstra algoritmus, amely számon tartja minden csomópontról, hogy honnan léptünk oda: az algoritmus a dinamikus programozásként ismert algoritmustervezést használja.
 
     %----------------------------------------------------------------------------
     \subsection{A kimenet}
@@ -70,10 +68,10 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
     %----------------------------------------------------------------------------
     \subsection{A matematikai struktúrák implementálása}
     %----------------------------------------------------------------------------
-    A különböző matematikai struktúrák felhasználása nem magától értetődő. Mivel bármilyen útvonalválasztási szabályt el lehet képzelni, és viszonylag egyszerűen meg lehet alkotni az ehhez tartozó algebrát, nem mindig egyszerű megfogalmazni a számítógép nyelvén ezeket.\\
+    A különböző matematikai struktúrák felhasználása nem magától értetődő. Mivel bármilyen útvonalválasztási szabályt el lehet képzelni, és viszonylag egyszerűen meg lehet alkotni az ehhez tartozó algebrát. Emiatt a nagy szabadság miatt azonban nem mindig egyszerű megfogalmazni egy számítógépes program nyelvén az algebrákat.\\
     Ahhoz, hogy a módosított Dijkstra algoritmus futtatható legyen, négy alapvető funkcióval kell ellátni egy ,,szoftver-algebrát'': Egy súlyfüggvénnyel (\texttt{W(Route route)}), egy összegző függvénnyel (\texttt{bigOPlus(Weight w1, Weight w2)}), egy átjárhatatlanságot (végtelen súlyt) jelentő függvénnyel (\texttt{phi()}) és egy olyan függvénnyel, amely megadja, hogy szerinte mi a legjobb (legkisebb) súly (\texttt{best()}). Látszódik, hogy a matematikai struktúra nem ültethető át tisztán egy szoftverbe, nincs szükség például a súlyok alaphalmazára, ez nem az algebrához tartozik egy szimulátoron belül (persze ismerni kell a halmazt).\\
 
-    A másik absztrakt fogalom, amit a szimuláció során használok, az a gráf, csúcsaival és éleivel. Mivel itt a csúcsoknak már biztosan nem tulajdonítunk semmilyen információhordozó szerepet (lásd a csúcsok adataink élekre való átírását \aref{prep}. szakaszban), egy egyszerű (egész) azonosítóval jelöljük, míg az élek -- összetettségük miatt -- már bonyolultabb modellt igényelnek, melyek azonban mindig az adott problémától függenek és algebra-súly párokat tartalmaznak (adott algebra szerint mi a súlya az élnek).\\
+    A másik absztrakt fogalom, amit a szimuláció során használok, az a gráf, csúcsaival és éleivel. Mivel a csúcsoknak már biztosan nem tulajdonítunk semmilyen információhordozó szerepet (lásd a csúcsok adataink élekre való átírását \aref{prep}. szakaszban), egy egyszerű (egész) azonosítóval jelöljük, míg az élek -- összetettségük miatt -- már bonyolultabb modellt igényelnek, melyek azonban mindig az adott problémától függenek és algebra-súly párokat tartalmaznak (adott algebra szerint mi a súlya az élnek).\\
     A gráfot ezután vagy éllistával, vagy szomszédossági mátrixszal jeleníthetjük meg. A szomszédossági mátrix a sűrű gráfoknál hatékonyabb, de az itt vizsgált problémák általában ritka gráfokkal modellezhetők\footnote{Ha elfogadjuk, hogy \textit{valamilyen} elv szerint optimális az útvonalválasztás, akkor nem lehet sok párhuzamos út $u$ és $v$ között, hiszen a redundancia nem hatékony az élszámok tekintetében.}. Mégis a módosított Dijkstra algoritmust a mátrixos megadásra készítettem fel pusztán a programozástechnikai egyszerűsége miatt (természetesen a mátrixos megadásnak az optimalizált formáját használom, azaz csak a létező éleknél tárolok adatot).
 
   %----------------------------------------------------------------------------
@@ -84,26 +82,26 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
     %----------------------------------------------------------------------------
     \subsection{A vizsgálandó metrikák}\label{metrikak}
     %----------------------------------------------------------------------------
-    A két gráfot -- az eredetit és a generáltat -- szeretnénk összehasonlítani, hogy mennyire hasonlítanak. A pontos egyezés eldöntése általában nehéz feladat, hiszen a gráfok izomorfiájának\footnote{Két gráf izomorfiáján bijektív struktúratartó leképezést értünk, lásd pontos definíciót \aref{grafizo} résznél.} eldöntése ugyan NP-beli (bővebben lásd \aref{eldontesi_def}. definíciót), de nem ismert hatékony módszer rá. Emellett nyilván az is szempont, hogy itt az is fontos és használható eredmény, ha nagyon hasonlítanak egymásra a gráfok (hálózatok), mert ez azt jelentené, hogy a nem ismert útvonalválasztási szabályt jól tudtuk becsülni az adott algebrával. Ez abban az esetben érdekes, ha az eredeti szabályrendszer bonyolult, vagy pl. egy mesterséges hálózat esetén nem automatizált: ekkor ugyanis a bonyolult szabályrendszert le lehet cserélni a szimuláció során használt policy primitív(ek)re. Így tehát még abban az esetben sem lenne érdemes izomorfiát vizsgálni, ha rendelkezésünkre állna egy erre alkalmas algoritmus.\\
+    A két gráfot -- az eredetit és a generáltat -- szeretnénk összehasonlítani, hogy mennyire hasonlítanak. A pontos egyezés eldöntése általában nehéz feladat, hiszen a gráfok izomorfiájának\footnote{Két gráf izomorfiáján bijektív struktúratartó leképezést értünk, lásd pontos definíciót \aref{grafizo} résznél.} eldöntése ugyan NP-beli (bővebben lásd \aref{eldontesi_def}. definíciót), de nem ismert hatékony módszer rá. Emellett nyilván az is szempont, hogy itt az is fontos és használható eredmény, ha nagyon hasonlítanak egymásra a gráfok (hálózatok), mert ez azt jelentené, hogy a nem ismert útvonalválasztási szabályt jól tudtuk becsülni az adott algebrával. Sőt, sz kifejezetten kívánatos, ha a szimuláció több javítási lehetőséget is feltár, amitől viszont nyílván nem fog teljesen hasonlítani a két gráf. Ez abban az esetben érdekes, ha az eredeti szabályrendszer bonyolult, vagy pl. egy mesterséges hálózat esetén nem automatizált: ekkor ugyanis a bonyolult szabályrendszert le lehet cserélni a szimuláció során használt policy primitív(ek)re. Így tehát még abban az esetben sem lenne érdemes izomorfiát vizsgálni, ha rendelkezésünkre állna egy erre alkalmas algoritmus.\\
 
-    Kétféle szempontrendszer szerint hasonlítom össze a gráfot: pontpáronként és globális hálózati mutatók alapján. Alapvető különbség van a két megközelítésben, hiszen különböző tulajdonságokat lehet megtudni a kétféle vizsgálatból.\\
+    Kétféle szempontrendszer szerint hasonlítom össze a gráfot: pontpáronként és globális hálózati mutatók alapján. Alapvető különbség van a két megközelítésben, hiszen különböző tulajdonságokat lehet megtudni a kétféle vizsgálatból. A pontpárok mutatói -- amennyiben a globális mutatók nem romlottak el -- azt jelzik, hogy tudunk-e javítani az aktuális útvonalválasztáson, még a globális mutatók arról árulkodnak, hogy a generált gráf jellegében mennyire hasonlít a megfigyelt hálózatra.\\
 
     A pontpárok közötti összehasonlítása során megvizsgálom, hogy a megfigyelt és a szimulált út mennyire hasonlít a lépésszám és az érintett köztes csomópontok alapján és ez alapján inkább jobb vagy inkább rosszabb a szimulált út, esetleg nem eldönthető (ez mindig függ a problémától, ezért a kiértékelésnél is szükség van probléma-specifikus tudásra).\\
-
     A globális hálózati metrikák közül a fokszámeloszlást fogom vizsgálni, valamint az élek számát, a hálózat átmérőjét és az élösszefüggőségét. A fokszámeloszlás és az átmérő összehasonlításra azért van szükség, mert ezek alapvető karakterisztikáját adják a hálózatnak. Ezzel feltárhatók olyan változások, melyek a pont-pont kapcsolatok vizsgálata során nem vettünk észre, például lehetséges, hogy a valóságban skálafüggetlen hálózatnak a fokszámeloszlása a szimuláció során már sokkal kiegyensúlyozottabb lesz. Hasonlóan fontos az élösszefüggőség, mellyel a gyakorlati használhatóságot mérhetjük, hiszen az eredetinél a szétesésre jóval érzékenyebb gráf esetén nem érdekes, hogy a többi szempont szerint ,,jól teljesít'' az adott algebra.\\
 
-    Minden fent említett összehasonlítási szempontot pontozok a következő részekben meghatározottak szerint és így minden szimulációs eredményt (algebrát) két pontszámmal fogok tudni mérni, egy globális- és egy pontpárokra vonatkozó mutatóval. Így könnyen meg tudom mondani, hogy az algebrák hogyan teljesítenek egymáshoz képest. A szempontoknál jellemzően háromféle pont adható: a legtöbb pont arra jár, ha szimulált eredmény a megfigyelttel megegyezik, ennél kicsivel kevesebb pontot ér, ha az adott szempont szerint jobb, illetve a legkevesebb (akár negatív pont is lehetséges), ha rosszabb annál.\\
+    Minden fent említett összehasonlítási szempontot pontozok a következő részekben meghatározottak szerint és így minden szimulációs eredményt (algebrát) két pontszámmal fogok tudni mérni, egy globális- és egy pontpárokra vonatkozó mutatóval. Így könnyen meg tudom mondani, hogy az algebrák hogyan teljesítenek egymáshoz képest.\\
 
-    Ahhoz, hogy meg tudjuk mondani, hogy milyen pontszám az, ami már elég pontosnak számít, referencia szimulációkat futtatok. Egy ilyen referencia vizsgálat során tudom, hogy milyen útvonalválasztási szabályrendszer alakította ki az utakat a hálózatban, így tudom, hogy egy adott algebrának hogyan kéne teljesítenie. Ezután az ezen a gráfon futtatott szimulációs eredményeket ki tudom értékelni, így megkapom azt a pontértéktartományt, illetve küszöbértéket, ami mellett elfogadhatóan pontosnak tartok egy algebrát.\\
+    Ahhoz, hogy meg tudjuk mondani, hogy milyen pontszám az, ami már elég pontosnak számít, referencia szimulációkat futtatok. Egy ilyen referencia vizsgálat során tudom, hogy milyen útvonalválasztási szabályrendszer alakította ki az utakat a hálózatban, így tudom, hogy egy adott algebrának hogyan kéne teljesítenie. Ezután az ezen a gráfon futtatott szimulációs eredményeket tudom értékelni, így megkapom azt a pontértéktartományt, illetve küszöbértéket, ami mellett elfogadhatóan pontosnak tartok egy algebrát.\\
     A következőkben leírt pontértékeket egy kezdeti pontozásból kiindulva a referencia szimulációk során finomhangolva határoztam meg. Emellett külön figyelmet fordítottam arra, hogy különböző mérőszámokat különböző súllyal szeretnék figyelembe venni.
 
+    \subsubsection{A pontpárok mutatói}
     %---------------------------------------------------------------------------
     \subsubsection{Az algebra szerinti távolság pontozása}
     %----------------------------------------------------------------------------
-    Az algebra szerinti távolság pontértékét $AL$-lel jelölöm ($AL$: $A$lgebra$L$ength). Az $AL$ értékét úgy alakítom ki, hogy nagy hangsúlyt kapjon, hiszen ez az a tulajdonság, ami miatt az algebrákkal foglalkozom, amit le tudnak írni a policy-kból a matematika nyelvén. Ezért a pontosan becsült út 0 pontot, a rövidebb út azzal arányos pontot ér, amennyivel rövidebb (pl. a valós hálózat vizsgálatánál km-ben számított távolság nyereség). A megfigyeltnél hosszabb út is kialakulhat, hiszen az algebra lehet, hogy másik szempont szerint optimalizál, ez azzal arányos pontot ér, amennyivel hosszabb az út.
+    Az algebra szerinti távolság pontértékét $AL$-lel jelölöm ($AL$: $A$lgebra$L$ength). Az $AL$ értékét úgy alakítom ki, hogy nagy hangsúlyt kapjon, hiszen ez az a tulajdonság, ami miatt az algebrákkal foglalkozom, amit le tudnak írni a policy-kből a matematika nyelvén. Ezért a pontosan becsült út 0 pontot, a rövidebb út azzal arányos pontot ér, amennyivel rövidebb (pl. a valós hálózat vizsgálatánál km-ben számított távolság nyereség). A megfigyeltnél hosszabb út is kialakulhat, hiszen az algebra lehet, hogy másik szempont szerint optimalizál, mint a megfigyelt hálózat policy-je. Ennek a pontértéke is azzal arányos, amennyivel hosszabb az út.
 
     \begin{note}
-      Ha a megfigyelt hálózatban csak az összes útvonalat ismerjük és ebből egy élhalmazt kapunk meg, akkor természetesen nem triviális, hogy hogyan kezeljük az algebra szerinti távolságot, sőt a következő pontpárokra értelmezett pontokat sem. Nem tudjuk biztosan megmondani, hogy az élhalmazból melyik élek mentén jutunk el a pontpárok között. Abban az esetben viszont, ha a megfigyelés úgy történik, hogy az adott pontpárok közötti utakat ismerjük (figyeljük meg), akkor nincs ilyen probléma.
+      Ha a megfigyelt hálózatban csak az \textit{összes} útvonalat ismerjük és ebből egy élhalmazt kapunk meg, akkor természetesen nem triviális, hogy hogyan kezeljük az algebra szerinti távolságot, sőt a következő pontpárokra értelmezett pontokat sem. Nem tudjuk biztosan megmondani, hogy az élhalmazból melyik élek mentén jutunk el a pontpárok között. Abban az esetben viszont, ha a megfigyelés úgy történik, hogy az adott pontpárok közötti utakat ismerjük (figyeljük meg), akkor nincs ilyen probléma.
     \end{note}
 
     %----------------------------------------------------------------------------
@@ -112,28 +110,20 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
     Hasonlóan az $AL$ pontozáshoz, a lépésszám szerinti távolság pontértékét a $HC$ ($H$op$C$ount) jelöli. Ez a mutató jóval inkább mennyiségi, mint minőségi mutató, hiszen az algebra alapvető hozzáadott értékét (a speciális távolságmérést) figyelmen kívül hagyja, nem törődik a meghatározott út távolságával, csak nagyon áttételesen. Ezért a pontértékek rendre megegyezik a változással -- esetleg a változásnak konstansszorosával.
 
     \begin{note}\label{AL-HC}
-      Értelemszerűen az $AL$ és $HC$ mutatók együttes értelmezése további információk kinyerését teszi lehetővé. Világos, hogy az algebra szerinti távolság fontos, de problémafüggő, hogy ,,milyen áron''. Hogyan értékeljük azt az eseményt, hogy az algebra szerinti távolság minimális csökkenése mellett a lépésszám egyről háromra nőtt? Problémától függően ez lehet, hogy nem jelent problémát, ám abban az esetben, ha ezt figyelembe kell venni, akkor az alábbi összefüggést érdemes vizsgálni: $\frac{1}{(HC+1)} \cdot AL$. A $HC$ nem lehet negatív, hiszen a megfigyelt utak mindig közvetlenek (azaz 1 a lépésszámuk), így a generált útnak 0 lépésből kéne állnia.
+      Értelemszerűen az $AL$ és $HC$ mutatók együttes értelmezése további információk kinyerését teszi lehetővé. Világos, hogy az algebra szerinti távolság fontos, de problémafüggő, hogy ,,milyen áron''. Hogyan értékeljük azt az eseményt, hogy az algebra szerinti távolság minimális csökkenése mellett a lépésszám egyről háromra nőtt? Problémától függően ez lehet, hogy nem jelent gondot, ám abban az esetben, ha ezt figyelembe kell venni, akkor az alábbi összefüggést érdemes vizsgálni: $\frac{1}{(HC+1)} \cdot AL$. A $HC$ nem lehet negatív, hiszen a megfigyelt utak mindig közvetlenek (azaz 1 a lépésszámuk), így a generált útnak 0 lépésből kéne állnia.
     \end{note}
 
-    \iffalse
-    %----------------------------------------------------------------------------
-    \subsubsection{Az út során érintett köztes csomópontok pontozása}
-    %----------------------------------------------------------------------------
-    A két csomópont közti út során érintett csúcsok pontértékét az $IV$ ($I$nside$V$ertices) jelöli. Ez a mutató algebra függő, mert vannak olyan problémák, ahol teljesen lényegtelen, hogy milyen csomópontokon halad végig az út, máshol viszont ez magát az útvonalválasztást befolyásoló tényező. Az algebrafüggésből adódóan itt a három eset (pontos, jobb, rosszabb) további pontosításra szorul\footnote{Ezt mindig az aktuális vizsgálatnál kell megtenni, lásd \aref{test}. fejezetet.}, a pontértékük rendre 5, 4 és 1 pont, hasonlóan a $HC$ mutatóhoz.
-    \fi
-
+    \subsubsection{Globális mutatók}
     %----------------------------------------------------------------------------
     \subsubsection{A fokszámeloszlás pontozása}
     %----------------------------------------------------------------------------
     A fokszámeloszlás már globális mutató, melyet $DD$-vel ($D$egree$D$istribution) jelölök. Ez a tulajdonság olyan alapvető, hogy nem különböztetek meg ,,pontos'', jobb és rosszabb esetet, csak \textit{hasonló}t és \textit{különböző}t, melyek pontértéke rendre 1 és $\infty$. A $DD$ mutatót nem is összegezve számítom bele a végpontszámba, hanem szorzótényezőként, így az, hogy hasonlítson a szimulált hálózat fokszámeloszlása a megfigyeltéhez egy szükséges feltétele annak, hogy értékelhető megoldást kapjunk. Ezután a $DD$ értéke a következő:
 
-    $$ DD = \left\{
-    \begin{array}{l l}
-      1 & \quad \text{ha megegyezik a fokszámeloszlás}\\
-      \infty & \quad \text{különben}
-    \end{array} \right.$$
-
-    %Mivel a fokszámeloszlás egy hisztogram, nincs értelme pontos egyezőséget vizsgálni, de több jó módszer is létezik két hisztogram összehasonlítására. Ilyen módszer a $\chi^2$ távolság mérése.
+    $$DD =
+    \begin{cases}
+      1 & \text{ha megegyezik a fokszámeloszlás}\\
+      \infty & \text{különben}
+    \end{cases}$$
 
     %----------------------------------------------------------------------------
     \subsubsection{A hálózat-átmérő pontozása}
@@ -158,12 +148,17 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
     %----------------------------------------------------------------------------
     \subsubsection{A globális mutatók egymásra hatása, együttes értékük}
     %----------------------------------------------------------------------------
-    Az összes globális mutatóról elmondható, hogy tényleges értéket, értelmezhető jelentést csak akkor hordoznak, ha egymással kapcsolatban vannak értelmezve, mégpedig a megfelelő hatásokat és ellenhatásokat figyelembevéve. A $GV$ ($G$lobal$V$alue) értéket a következő összefüggések\footnote{A pozitív derivált azt jelenti, hogy a több jobb, és fordítva.} befolyásolják:
-    $$0 < \frac{\partial GV}{\partial GD}$$
-    $$0 < \frac{\partial GV}{\partial C}$$
-    $$0 > \frac{\partial GV}{\partial EC}$$
+    Az összes globális mutatóról elmondható, hogy tényleges értéket, értelmezhető jelentést csak akkor hordoznak, ha egymással kapcsolatban vannak értelmezve, mégpedig a megfelelő hatásokat és ellenhatásokat figyelembe véve. A $GV$ ($G$lobal$V$alue) értéket a következő összefüggések\footnote{A pozitív derivált azt jelenti, hogy a több jobb, és fordítva.} befolyásolják:
+    $$0 > \frac{\partial GV}{\partial GD}$$
+    $$0 > \frac{\partial GV}{\partial C}$$
+    $$0 < \frac{\partial GV}{\partial EC}$$
     Egy ilyen függvény a következő:
     $$GV = \frac{DD \cdot GD \cdot C}{ln(EC)}$$
+
+    Az eddigi pontozási szabályok alapján már látszódik, hogy a $GV$ mutató minél közelebb van a nullához, annál pontosabb szimulációt jelent.\\
+    Fontos megjegyezni, hogy a képlet nevezőjében csak azért használok logaritmust, hogy szebb számértéket kapjak, ne egy egynél kisebb számot -- az $ln$ függvény szigorúan monoton, így a derivált viselkedésén nem változtat: a több jobb marad. Érdemes megfigyelni, hogy mivel a $GD$ átmérő relatíve fontos mutató, egy kis számmal érdemes jelölni, hiszen egységnyi változással így érhetünk el nagy változást $GV$-ben. Azaz mivel $GD$ egy kis pozitív egész, $GV$ értékében jóval többet számít az egységnyi növekedés, mint pl. a $C$ értéknél.\\
+
+    A referencia szimulációk és az egyes tagmutatók értékkészlete alapján az egyjegyű $GV$ értékeket tartom jó becslésnek, azaz $-10 < GV < 10$ esetén elfogadható egy szimuláció az eredeti hálózat becsléseként.
 
   %----------------------------------------------------------------------------
   \section{Valós hálózatok vizsgálata a keretrendszer segítségével}\label{section_real}
@@ -172,9 +167,8 @@ Végül \aref{section_real}. részben bemutatom, hogy egy valós hálózatot (re
 
   \Aref{examples}. fejezetben definiált algebrák modellezése után valós hálózatokon vizsgálhatjuk a viselkedésüket, hogy hogyan alakítanak ki utakat. Ezután tetszőleges algebrák lexikografikus szorzatát is szimulálhatjuk, így még pontosabb és változatosabb modellt kapunk.
 
-
-  %----------------------------------------------------------------------------
+   %----------------------------------------------------------------------------
   \section{Összefoglaló}
   %----------------------------------------------------------------------------
-  Ebben a fejezetben leírtam egy olyan keretrendszert, melynek segítségével szimulálás segítségével össze lehet hasonlítani különböző algebrákat ugyanazon a problémán. Specifikáltam ezt a rendszert, felvázoltam az elvárt célokat. Ezután leírtam az általános problémák előfeldolgozását, a tisztított és előkészített adatok alapján a szimuláció pontos menetét. Meghatároztam a szempontokat, ami alapján a szimulációs eredményeket értékelni lehet, ehhez pedig kidolgoztam egy pontrendszer, mely figyelembe veszi, hogy az elsődleges cél a megfigyelt útvonalválasztási szabályok visszafejtése, így a pontozásban a helyesen megtalált utak érik a legtöbbet, utána következnek az eredetinél jobb utak és legutoljára az eredeti rosszabb utak.\\
+  Ebben a fejezetben leírtam egy olyan keretrendszert, melynek segítségével szimulálás segítségével össze lehet hasonlítani különböző algebrákat ugyanazon a problémán. Specifikáltam a rendszert, felvázoltam az elvárt célokat. Ezután leírtam az általános problémák előfeldolgozását, a tisztított és előkészített adatok alapján a szimuláció pontos menetét. Meghatároztam a szempontokat, ami alapján a szimulációs eredményeket értékelni lehet, ehhez pedig kidolgoztam egy pontrendszer, amely figyelembe veszi, hogy a két alapvető cél közül az első a megfigyelt útvonalválasztási szabályok visszafejtése, a második pedig a javítási lehetőségek feltárása.\\
   A pontrendszer kidolgozását referencia szimulációk futtatásával támogattam, melynek segítségével már nem csak az algebrákat tudom összehasonlítani egymással, hanem egy abszolút mércét is kaptam.

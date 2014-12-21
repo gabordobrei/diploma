@@ -1,22 +1,21 @@
 %----------------------------------------------------------------------------
-% Kivonat
-%----------------------------------------------------------------------------
 \chapter*{Kivonat}\addcontentsline{toc}{chapter}{Kivonat}
-
+%----------------------------------------------------------------------------
 Az Internet rohamos fejlődésével az utóbbi időben mind nagyobb hangsúlyt kap a hagyományostól eltérő hálózatmenedzsment funkciókat megvalósító algoritmusok kutatása. Ezek egyik legaktívabban művelt ága az útvonalválasztás (routing) kérdéseivel foglalkozik, és lényegében az erőforrások optimalizálást célzó klasszikus (főként legrövidebb utak megtalálására koncentráló) algoritmusok alternatíváinak kutatását tűzi ki célul.\\
 
-Az algoritmusok általános szabályok (policy) mentén alakítják ki a lehetséges útvonalakat. A modern hálózatkutatás még nem adott megoldást arra a problémára, hogy hogyan deríthetjük fel egy hálózat szabályrendszerét a kialakított utak megfigyelésével. Az útvonalválasztási szabályok matematikai modellezése megfelelő alapot ad \cite{Compact_Policy_Routing} egy olyan rendszer kifejlesztéséhez, amivel erre a problémára egy hiánypótló megoldást adhatunk.\\
+A kommunikációs hálózatok általános szabályok (policy) mentén alakítják ki a lehetséges útvonalakat. A modern hálózatkutatás még nem adott megoldást arra a problémára, hogy hogyan deríthetjük fel egy hálózat szabályrendszerét a kialakított utak megfigyelésével. Az útvonalválasztási szabályok matematikai modellezése megfelelő alapot ad\cite{Compact_Policy_Routing} egy olyan rendszer kifejlesztéséhez, amivel erre a problémára egy hiánypótló megoldást adhatunk.\\
 
 Ebben a Diplomatervben leírok egy olyan szimulációs keretrendszert, amely képes a nagyméretű valós hálózatok útvonalválasztási szabályrendszerét vizsgálni és alkalmasan választott új szabályokkal akár javítani is. A szimulátor működését be is mutatom egy konkrét hálózat elemzésével: a repülőtársaságok útvonalválasztási szabályrendszerét azonosítom.
 
 \vfill
 
-\iffalse
-%----------------------------------------------------------------------------
-% Abstract
 %----------------------------------------------------------------------------
 \chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}
+%----------------------------------------------------------------------------
+Nowadays, a lot of researches are dealing with algorithms that implements alternative network management functions. One of the most popular branches of these researches are about routing and more particularly about optimizing classical algorithms -- mostly shortest path finding algorithms -- in terms of used resources.\\
 
-This document is a \LaTeX-based skeleton for BSc/MSc~theses of students at the Electrical Engineering and Informatics Faculty, Budapest University of Technology and Economics. The usage of this skeleton is optional. It has been tested with the \emph{TeXLive} \TeX~implementation, and it requires the PDF-\LaTeX~compiler.
+In communication networks, routing decisions are based on routing policies. There is no solution for the problem when we want to determine the policies by the observation of the network. However by using the mathematical models of routing policies, we will be able to create a simulator which helps discover this policies.\\
+
+In this thesis my goal is to build a simulation framework that can determine the routing policies of real large-scale networks. The simulation framework uses the mathematical models of the routing policies. I will define a measuring system to compare the simulation results. I will use the simulator to examine the policies behind the route-defining decisions of the largest airlines.
+
 \vfill
-\fi
