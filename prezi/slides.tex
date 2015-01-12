@@ -1,0 +1,238 @@
+%----------------------------------------------------------------------------
+\section[Hálózatok]{Hálózatok és útvonalválasztási szabályok}
+%----------------------------------------------------------------------------
+  %----------------------------------------------------------------------------
+  \subsection{Policy alapú útvonalválasztás}
+  %----------------------------------------------------------------------------
+  \begin{frame}[<+->]{Szabály alapú útvonalválasztás}
+
+%    \begin{itemize}
+%      \item Internet = világméretű IP hálózat (technológiai szemlélet)
+%      \item Csomagkapcsolás
+%      \item Routerekben az intelligencia
+%      \item Lényegében az egyetlen szolgáltatás, amit az Internet nyújt!
+%    \end{itemize}
+
+    \begin{definition} [Routing policy]
+      \justifying
+      A routing policy egy olyan $Pol: \mathcal{P}_{st} \rightarrow p_{st}$ függvény, aminek az értelmezési tartománya a lehetséges $s - t$ utak: $\mathcal{P}_{st}$ és az adott policy-nek megfelelő legkedvezőbb utat adja vissza: $p_{st}^{*}=Pol(\mathcal{P}_{st})$.
+    \end{definition}
+  \end{frame}
+
+  %----------------------------------------------------------------------------
+  \subsection{Az útvonalválasztás matematikai modellje}
+  %----------------------------------------------------------------------------
+  \begin{frame}[<+->]{Routing algebrák}
+    \begin{definition} [Routing algebra]
+      \justifying
+      Az $\mathcal{A}$ routing algebra egy teljesen rendezett félcsoport egy ,,végtelen elemmel'': $\mathcal{A}~=~(W,~\phi,~\bigoplus,~\preceq)$, ahol $W$ az élek súlyainak halmaza, $\phi~(\phi \notin W)$ egy speciális végtelen súly, abban az értelemben, hogy egy ilyen súlyú élen nem lehet átmenni, a $\bigoplus$ a súlyok kétváltozós kompozíció operátora, a $\preceq$ pedig a súlyok összehasonlító operátora.
+    \end{definition}
+
+    \begin{exampleblock} {$\mathcal{S}$ algebra}
+      Shortest-path routing algebrája a $\mathcal{S} = (\mathbb{R}^{+},~\infty,~+,~\leq)$.
+    \end{exampleblock}
+  \end{frame}
+
+  %----------------------------------------------------------------------------
+  \subsection{Hálózatkutatási modellek}
+  %----------------------------------------------------------------------------
+  \begin{frame}{Hálózatkutatási modellek}
+    \begin{itemize}
+      \item<1-> Vírusterjedés komplex hálózatokban
+      \begin{itemize}
+        \item<4-> Fertőzési-határ algebra: $\mathcal{F} = ((0,1],~0,~\max,~\geq)$
+        \item<4-> Unió-fedés algebra: $\mathcal{U} = (\mathbb{N},~\infty,~f,~\leq)$
+      \end{itemize}
+      \item<2-> Trendterjedés közösségi hálózatokban
+      \begin{itemize}
+        \item<5-> Összekötő-keresés algebra: $\mathcal{O} = ((1,d),~0,~\max,~\geq)$
+        \item<5-> Korai-elfogadó-keresés algebra: $\mathcal{K} = (\mathbb{N},~-1,~+,~\geq)$
+      \end{itemize}
+      \item<3-> Útvonalválasztás az Interneten
+      \begin{itemize}
+        \item<6-> Hiperbolikus-távolság algebra: $\mathcal{H} = (\mathbb{R}^{+},~\infty,~f_{\mathbb{H}},~\leq)$
+        \item<6-> Völgymentesség algebra: $\mathcal{V} = (\{f,~l,~p\},\phi,\bigoplus_{\mathcal{V}},\preceq$), ahol a $\bigoplus_{\mathcal{V}}:$
+        \begin{table}
+          \footnotesize
+          \begin{tabular}{ c | c c c }
+            $\bigoplus$ & $f$ & $l$ & $p$\\
+            \hline
+            $f$ & $f$ & $l$ & $p$\\
+            $l$ & $\phi$ & $l$ & $\phi$\\
+            $p$ & $\phi$ & $p$ & $\phi$\\
+          \end{tabular}
+        \end{table}
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+
+%----------------------------------------------------------------------------
+\section{A modellezési keretrendszer}
+%----------------------------------------------------------------------------
+
+\iffalse
+  %----------------------------------------------------------------------------
+  \subsection{Tervezési szempontok}
+  %----------------------------------------------------------------------------
+  \begin{frame}{Tervezési szempontok}
+    \todo
+  \end{frame}
+\fi
+
+  %----------------------------------------------------------------------------
+  \subsection{Pontrendszer}
+  %----------------------------------------------------------------------------
+  \begin{frame}{Pontrendszer}
+    \begin{itemize}
+      \item<1-> Pontpárok
+      %A pontpárok mutatói -- amennyiben a globális mutatók nem romlottak el -- azt jelzik, hogy tudunk-e javítani az aktuális útvonalválasztáson, még a globális mutatók arról árulkodnak, hogy a generált gráf jellegében mennyire hasonlít a megfigyelt hálózatra
+      \begin{itemize}
+        \item<3-> Az algebra szerinti távolság: $AL$
+        \item<4-> A lépésszám szerinti távolság: $HC$
+      \end{itemize}
+      \item<2-> Globális hálózati mutatók
+      \begin{itemize}
+        \item<5-> A fokszámeloszlás: $$DD =
+    \begin{cases}
+      1 & \text{ha megegyezik a fokszámeloszlás}\\
+      \infty & \text{különben}
+    \end{cases}$$
+        \item<6-> A hálózat-átmérő: $GD$
+        \item<7-> Az élösszefüggőség: $C$
+        \item<8-> Az élszám pontozása: $EC$
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[<+->]{A mutatók közötti kapcsolatok}
+    \begin{itemize}
+      \item $\frac{1}{(HC+1)} \cdot AL$
+      \item $0 > \frac{\partial EC}{\partial C}$
+      \item $0 > \frac{\partial GV}{\partial GD}$
+      \item $0 > \frac{\partial GV}{\partial C}$
+      \item $0 < \frac{\partial GV}{\partial EC}$
+    \end{itemize}
+
+    \onslide<6->$$GV = \frac{DD \cdot GD \cdot C}{ln(EC)}$$
+  \end{frame}
+
+  %----------------------------------------------------------------------------
+  \subsection{A szimulátor}
+  %----------------------------------------------------------------------------
+  \begin{frame}{A szimulátor}
+    %A szimulációs algoritmus a fent leírt irányított, súlyozott gráfon, mint bemeneten fut. Először meghatározzuk, hogy a konkrét probléma vizsgálata mekkora csúcshalmazt jelent, amelyből előáll egy $G(V=n, E=n \cdot (n-1))$ méretű gráf\footnote{Minden csúcsot minden csúccsal összekötünk és mindkét irányban irányítunk.}. Ezután meghatározzuk azon éleket, melyet ezen a gráfon az útvonalválasztási szabályrendszer akármilyen két pont között legalább egyszer használt. Ezt természetesen meg tudjuk tenni, hiszen a kialakult utakat megfigyelni képesek vagyunk. Miután meghatároztuk a felhasznált élhalmazt, minden olyan élet, amelyet nem tartalmaz ez a halmaz kitörlünk a gráfból (Az élek törlésével nem eshet szét a gráf, hiszen a ponthalmazt megfigyeléssel kaptuk, így biztos, hogy összefüggő marad a gráf.). A megmaradó éleket súlyozzuk.
+
+    %A szimuláció menete ezután a következő: Minden pontpárra és minden vizsgált algebrára meghatározzuk (a módosított Dijkstra algoritmussal), hogy milyen ut(ak)at jelölnek ki. Az így meghatározott ut(ak)at feljegyezzük. Ezzel előállítunk két gráfot: az első az eredetileg vizsgált gráf, a másik a feljegyzett utakból felépülő. Ezután ezen két gráfot hasonlítjuk össze.
+    \begin{itemize}
+      \item<1-> Irányított, súlyozott gráfon
+      \item<2-> $G(V=n, E=n \cdot (n-1))$ -- minden csúcspár oda-vissza irányítva
+    \end{itemize}
+    \onslide<3->\begin{algorithm}[H]
+      \caption{Optimalizáló függvény}\label{algo_optimalizalo}
+      \begin{algorithmic}[1]
+        \Procedure{getPreferredPath}{$Vertex~u,~Vertex~v,~Algebra~a$}
+          \State $\textit{paths} \gets \Call{getAllPathsBetween}{u,~v}$
+          \State $\textit{preferred} \gets [~]$
+
+          \For{\textbf{each} \textit{path} in \textit{paths}}
+            \If {$a_W(path_i)~a_\preceq~a_W(path)$}
+              \State $\textit{preferred} \gets \textit{preferred}~+~path$
+            \EndIf
+          \EndFor
+        \EndProcedure
+      \end{algorithmic}
+    \end{algorithm}
+  \end{frame}
+
+
+%----------------------------------------------------------------------------
+\section[Szimuláció]{A repülési hálózat vizsgálata}
+%----------------------------------------------------------------------------
+  %----------------------------------------------------------------------------
+  \subsection{Adatok feldolgozása}
+  %----------------------------------------------------------------------------
+  \begin{frame}{Adatok feldolgozása}
+    \todo
+  \end{frame}
+
+  %----------------------------------------------------------------------------
+  \subsection{Szimulációs eredmények}
+  %----------------------------------------------------------------------------
+    \begin{frame}{Szimulációs eredmények}
+      \center
+      \only<1>{\resizebox {!} { 0.8\textheight } {
+        \begin{tikzpicture}
+          \begin{axis}[
+            xlabel={A csomópont átlagfokszáma},
+            ylabel={A csomópontok aránya},
+            enlarge x limits=0.02,
+            enlarge y limits=0.02,
+            yticklabels={0, 0, , 0.1, , 0.2},
+            legend pos=north west
+          ]
+          \addplot[smooth,color=blue]
+          file{sim/least-avg-zoom.data};
+          \end{axis}
+        \end{tikzpicture}
+      }}
+      \only<2>{\resizebox {!} { 0.8\textheight } {
+        \begin{tikzpicture}
+          \begin{axis}[
+              xlabel={A csomópont befoka},
+              ylabel={A csomópont kifoka},
+              enlarge x limits=0.02,
+              enlarge y limits=0.02,
+              colorbar,
+              colorbar style={
+                %ylabel=A csomópontok aránya,
+                yticklabel style={
+                  text width=2.5em,
+                  align=right,
+                  /pgf/number format/.cd,
+                  fixed,
+                  fixed zerofill
+                  %{0, 0, , 0.1, , 0.2},
+                }
+              }
+            ]
+            \addplot[scatter, scatter src=explicit, only marks, mark=square*]
+            file{sim/least-zoom.data};
+          \end{axis}
+        \end{tikzpicture}
+      }}
+    \end{frame}
+
+
+%----------------------------------------------------------------------------
+\section[Továbbfejlesztés]{Továbbfejlesztési lehetőségek}
+%----------------------------------------------------------------------------
+  \begin{frame}{Továbbfejlesztési lehetőségek}
+    \begin{itemize}[<+->]
+      \item Gyakorlat -- szimulátor
+      \begin{itemize}
+        \item Algebra leíró nyelv (Algebra Description Language)
+        \item Automatizált beolvasás
+        \item Szimuláció további optimalizálása
+      \end{itemize}
+      \item Elmélet -- kutatás
+      \begin{itemize}
+        \item Algebrák súlyozott összege
+        \item Genetikus algoritmusok
+        \item Pontozás általánosítás
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+
+%----------------------------------------------------------------------------
+\section{Összefoglalás}
+%----------------------------------------------------------------------------
+  \begin{frame}{Összefoglalás}
+    \begin{itemize}[<+->]
+      \justifying
+      \item Az útvonalválasztási szabályrendszerek felderítése kezdetleges volt, és nem állt a hálózati kutatók rendelkezésére olyan eszköz, amely a policy alapú routing felderítést lehetővé tette volna. A diplomamunkámban \textbf{megoldást adtam} erre a problémára.
+      \item \textbf{Megterveztem egy szimulációs keretrendszert}, mely eleget tesz a feladatkiírásban szereplő elvárásoknak. Ennek keretében definiáltam egy pontrendszert, amellyel sikeresen össze lehet hasonlítani valós (megfigyelt) és szimulált hálózatokat.
+      \item \textbf{\emph{Implementáltam}} a szimulátort és egy valós hálózaton bemutattam a működését. \textbf{Beazonosítottam} az $\mathcal{OS}$ algebrát, mint a legvalószínűbb policy-t, amely alapján a repülőtársaságok kialakíthatják útvonalaikat. Emellett \textbf{javaslatot tettem}, hogy az $\mathcal{OS}$ algebra helyett célszerűbb lenne az egyszerűbb $\mathcal{S}$ algebrát használni.
+    \end{itemize}
+  \end{frame}
